@@ -1,0 +1,9 @@
+/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_description/CMakeFiles/uninstall.dir
+/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_description/CMakeFiles/cleanbot_description_uninstall.dir
+/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_description/CMakeFiles/test.dir
+/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_description/CMakeFiles/edit_cache.dir
+/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_description/CMakeFiles/rebuild_cache.dir
+/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_description/CMakeFiles/list_install_components.dir
+/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_description/CMakeFiles/install.dir
+/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_description/CMakeFiles/install/local.dir
+/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_description/CMakeFiles/install/strip.dir

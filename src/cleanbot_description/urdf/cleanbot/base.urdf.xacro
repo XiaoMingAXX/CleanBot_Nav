@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" >
+    <xacro:include filename="$(find cleanbot_description)/urdf/cleanbot/common_inertia.xacro"/>
+
+
+   <xacro:macro name="base_xacro" params="length radius">
+        <link name="base_footprint" />
+    
+        <!-- Define the base link of the robot -->
+        <link name="base_link">
+            <!-- Visual representation of the base link -->
+            <visual>
+                <!--沿着自己几何中心的偏移和旋转-->
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <!--几何形状-->
+                <geometry>
+                    <!--圆柱体-->
+                    <cylinder radius="${radius}" length="${length}"/>
+                </geometry>
+                <!--材质-->
+                <material name="white">
+                    <color rgba="1 1 1 0.5"/>
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <cylinder radius="${radius}" length="${length}"/>
+                </geometry>
+                <material name="white">
+                    <color rgba="1 1 1 0.5"/>
+                </material>
+            </collision>>
+
+            <!--惯量属性-->
+            <xacro:cylinder_inertia m="1.0" r="${radius}" h="${length}"/>
+        </link>
+
+        <!--定义关节：base_footprint到base_link-->
+        <joint name="base_to_base_footprint" type="fixed">
+            <parent link="base_footprint"/>
+            <child link="base_link"/>
+            <origin xyz="0 0 ${length/2+0.022-0.001}" rpy="0 0 0"/>
+        </joint>
+
+   </xacro:macro>
+</robot>

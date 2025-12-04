@@ -1,0 +1,101 @@
+[0.010s] Invoking command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_control': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_control -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control
+[0.098s] -- The C compiler identification is GNU 13.3.0
+[0.159s] -- The CXX compiler identification is GNU 13.3.0
+[0.172s] -- Detecting C compiler ABI info
+[0.230s] -- Detecting C compiler ABI info - done
+[0.236s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.236s] -- Detecting C compile features
+[0.237s] -- Detecting C compile features - done
+[0.243s] -- Detecting CXX compiler ABI info
+[0.308s] -- Detecting CXX compiler ABI info - done
+[0.314s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.314s] -- Detecting CXX compile features
+[0.314s] -- Detecting CXX compile features - done
+[0.318s] -- Found ament_cmake: 2.5.4 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[0.416s] -- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+[0.469s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.494s] -- Found rclcpp: 28.1.13 (/opt/ros/jazzy/share/rclcpp/cmake)
+[0.527s] -- Found rosidl_generator_c: 4.6.6 (/opt/ros/jazzy/share/rosidl_generator_c/cmake)
+[0.537s] -- Found rosidl_generator_cpp: 4.6.6 (/opt/ros/jazzy/share/rosidl_generator_cpp/cmake)
+[0.552s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.565s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.623s] -- Found rmw_implementation_cmake: 7.3.2 (/opt/ros/jazzy/share/rmw_implementation_cmake/cmake)
+[0.626s] -- Found rmw_fastrtps_cpp: 8.4.3 (/opt/ros/jazzy/share/rmw_fastrtps_cpp/cmake)
+[0.687s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.13")  
+[0.700s] -- Found FastRTPS: /opt/ros/jazzy/include (Required is at least version "2.13") 
+[0.717s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.778s] -- Found rclpy: 7.1.6 (/opt/ros/jazzy/share/rclpy/cmake)
+[0.779s] -- Found std_msgs: 5.3.6 (/opt/ros/jazzy/share/std_msgs/cmake)
+[0.791s] -- Found sensor_msgs: 5.3.6 (/opt/ros/jazzy/share/sensor_msgs/cmake)
+[0.820s] -- Found nav_msgs: 5.3.6 (/opt/ros/jazzy/share/nav_msgs/cmake)
+[0.842s] -- Found tf2: 0.36.16 (/opt/ros/jazzy/share/tf2/cmake)
+[0.847s] -- Found tf2_ros: 0.36.16 (/opt/ros/jazzy/share/tf2_ros/cmake)
+[1.969s] -- 找到ros2_control依赖，将编译硬件接口
+[1.989s] -- Found ament_lint_auto: 0.17.3 (/opt/ros/jazzy/share/ament_lint_auto/cmake)
+[2.224s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[2.224s] -- Configured cppcheck include dirs: $<BUILD_INTERFACE:/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_control/include>
+[2.225s] -- Configured cppcheck exclude dirs and/or files: 
+[2.225s] -- Added test 'flake8' to check Python code syntax and style conventions
+[2.225s] -- Configured 'flake8' exclude dirs and/or files: 
+[2.226s] -- Added test 'lint_cmake' to check CMake code style
+[2.227s] -- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+[2.228s] -- Added test 'uncrustify' to check C / C++ code style
+[2.228s] -- Configured uncrustify additional arguments: 
+[2.228s] -- Added test 'xmllint' to check XML markup files
+[2.233s] -- Configuring done (2.2s)
+[2.262s] -- Generating done (0.0s)
+[2.268s] -- Build files have been written to: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_control
+[2.288s] Invoked command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_control' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_control -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control
+[2.289s] Invoking command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_control': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_control -- -j20 -l20
+[2.360s] [ 50%] Building CXX object CMakeFiles/cleanbot_control.dir/src/cleanbot_hardware_interface.cpp.o
+[4.187s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_control/src/cleanbot_hardware_interface.cpp: In member function ‘virtual hardware_interface::CallbackReturn cleanbot_control::CleanBotHardwareInterface::on_init(const hardware_interface::HardwareInfo&)’:
+[4.187s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_control/src/cleanbot_hardware_interface.cpp:21:49: warning: ‘virtual rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn hardware_interface::HardwareComponentInterface::on_init(const hardware_interface::HardwareInfo&)’ is deprecated: Use on_init(const HardwareComponentInterfaceParams & params) instead. [-Wdeprecated-declarations]
+[4.187s]    21 |     hardware_interface::SystemInterface::on_init(info) !=
+[4.187s]       |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+[4.187s] In file included from /opt/ros/jazzy/include/hardware_interface/hardware_interface/system_interface.hpp:18,
+[4.187s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_control/include/cleanbot_control/cleanbot_hardware_interface.hpp:10,
+[4.187s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_control/src/cleanbot_hardware_interface.cpp:1:
+[4.187s] /opt/ros/jazzy/include/hardware_interface/hardware_interface/hardware_component_interface.hpp:235:26: note: declared here
+[4.187s]   235 |   virtual CallbackReturn on_init(const HardwareInfo & hardware_info)
+[4.187s]       |                          ^~~~~~~
+[8.944s] [100%] Linking CXX shared library libcleanbot_control.so
+[9.245s] [100%] Built target cleanbot_control
+[9.252s] Invoked command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_control' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_control -- -j20 -l20
+[9.253s] Invoking command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_control': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_control
+[9.257s] -- Install configuration: ""
+[9.258s] -- Execute custom install script
+[9.258s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control//cleanbot_control.xml
+[9.263s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/lib/libcleanbot_control.so
+[9.269s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/include/cleanbot_control/cleanbot_hardware_interface.hpp
+[9.274s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/lib/cleanbot_control/usb_communication_node.py
+[9.278s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/lib/cleanbot_control/web_control_node.py
+[9.285s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/launch/cleanbot.launch.py
+[9.290s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/config/cleanbot.ros2_control.xacro
+[9.296s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/config/cleanbot_controllers.yaml
+[9.301s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/config/cleanbot_real.ros2_control.xacro
+[9.307s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/config/cleanbot_real.urdf.xacro
+[9.312s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/config/ekf.yaml
+[9.317s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/web/static/control.js
+[9.321s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/web/templates/index.html
+[9.328s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/environment/library_path.sh
+[9.333s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/environment/library_path.dsv
+[9.339s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/ament_index/resource_index/package_run_dependencies/cleanbot_control
+[9.345s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/ament_index/resource_index/parent_prefix_path/cleanbot_control
+[9.350s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/environment/ament_prefix_path.sh
+[9.354s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/environment/ament_prefix_path.dsv
+[9.360s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/environment/path.sh
+[9.367s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/environment/path.dsv
+[9.373s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/local_setup.bash
+[9.379s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/local_setup.sh
+[9.384s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/local_setup.zsh
+[9.389s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/local_setup.dsv
+[9.394s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/package.dsv
+[9.400s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/ament_index/resource_index/packages/cleanbot_control
+[9.404s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/ament_index/resource_index/hardware_interface__pluginlib__plugin/cleanbot_control
+[9.410s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/cmake/ament_cmake_export_include_directories-extras.cmake
+[9.414s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/cmake/ament_cmake_export_libraries-extras.cmake
+[9.420s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/cmake/ament_cmake_export_dependencies-extras.cmake
+[9.424s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/cmake/cleanbot_controlConfig.cmake
+[9.429s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/cmake/cleanbot_controlConfig-version.cmake
+[9.434s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/package.xml
+[9.441s] Invoked command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_control' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_control

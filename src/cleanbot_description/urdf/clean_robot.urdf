@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<robot name="clean_robot">
+    <!-- Define the base link of the robot -->
+    <link name="base_link">
+        <!-- Visual representation of the base link -->
+        <visual>
+            <!--沿着自己几何中心的偏移和旋转-->
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <!--几何形状-->
+            <geometry>
+                <!--圆柱体-->
+                <cylinder radius="0.1" length="0.12"/>
+            </geometry>
+            <!--材质-->
+            <material name="white">
+                <color rgba="1 1 1 0.5"/>
+            </material>
+        </visual>
+    </link>
+
+    <!--IMU部件-->
+    <link name="imu_link">
+        <!-- Visual representation of the base link -->
+        <visual>
+            <!--沿着自己几何中心的偏移和旋转-->
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <!--几何形状-->
+            <geometry>
+                <!--正方体-->
+                <box size="0.02 0.02 0.02"/> 
+            </geometry>
+            <!--材质-->
+            <material name="black">
+                <color rgba="0 0 0 0.5"/>
+            </material>
+        </visual>
+    </link>
+
+    <!--定义关节：base_link到imu_link-->
+    <joint name="imu_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="imu_link"/>
+        <origin xyz="0 0 0.03" rpy="0 0 0"/>
+    </joint>
+</robot>

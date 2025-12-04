@@ -1,0 +1,1 @@
+/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_control/scripts/usb_communication_node.py

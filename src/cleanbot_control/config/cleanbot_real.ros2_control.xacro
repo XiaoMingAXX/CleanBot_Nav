@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <!-- 真实硬件的ros2_control配置 -->
+    <xacro:macro name="cleanbot_ros2_control_real">
+        <ros2_control name="CleanBotHardwareSystem" type="system">
+            <hardware>
+                <plugin>cleanbot_control/CleanBotHardwareInterface</plugin>
+                <param name="wheel_radius">0.032</param>
+                <param name="wheel_separation">0.2</param>
+            </hardware>
+            
+            <joint name="left_wheel_joint">
+                <command_interface name="velocity">
+                    <param name="min">-10</param>
+                    <param name="max">10</param>
+                </command_interface>
+                <state_interface name="position"/>
+                <state_interface name="velocity"/>
+            </joint>
+            
+            <joint name="right_wheel_joint">
+                <command_interface name="velocity">
+                    <param name="min">-10</param>
+                    <param name="max">10</param>
+                </command_interface>
+                <state_interface name="position"/>
+                <state_interface name="velocity"/>
+            </joint>
+        </ros2_control>
+    </xacro:macro>
+</robot>
+

@@ -1,0 +1,966 @@
+[0.005s] Invoking command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/rplidar_ros': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros
+[0.093s] -- The C compiler identification is GNU 13.3.0
+[0.152s] -- The CXX compiler identification is GNU 13.3.0
+[0.165s] -- Detecting C compiler ABI info
+[0.223s] -- Detecting C compiler ABI info - done
+[0.230s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.230s] -- Detecting C compile features
+[0.230s] -- Detecting C compile features - done
+[0.236s] -- Detecting CXX compiler ABI info
+[0.301s] -- Detecting CXX compiler ABI info - done
+[0.308s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.308s] -- Detecting CXX compile features
+[0.308s] -- Detecting CXX compile features - done
+[0.311s] -- Found ament_cmake: 2.5.4 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[0.412s] -- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+[0.462s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.487s] -- Found rclcpp: 28.1.13 (/opt/ros/jazzy/share/rclcpp/cmake)
+[0.520s] -- Found rosidl_generator_c: 4.6.6 (/opt/ros/jazzy/share/rosidl_generator_c/cmake)
+[0.530s] -- Found rosidl_generator_cpp: 4.6.6 (/opt/ros/jazzy/share/rosidl_generator_cpp/cmake)
+[0.545s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.559s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.617s] -- Found rmw_implementation_cmake: 7.3.2 (/opt/ros/jazzy/share/rmw_implementation_cmake/cmake)
+[0.619s] -- Found rmw_fastrtps_cpp: 8.4.3 (/opt/ros/jazzy/share/rmw_fastrtps_cpp/cmake)
+[0.679s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.13")  
+[0.694s] -- Found FastRTPS: /opt/ros/jazzy/include (Required is at least version "2.13") 
+[0.713s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.771s] -- Found sensor_msgs: 5.3.6 (/opt/ros/jazzy/share/sensor_msgs/cmake)
+[0.813s] -- Found std_srvs: 5.3.6 (/opt/ros/jazzy/share/std_srvs/cmake)
+[0.890s] -- Configuring done (0.9s)
+[0.904s] -- Generating done (0.0s)
+[0.908s] -- Build files have been written to: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/rplidar_ros
+[0.914s] Invoked command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/rplidar_ros' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros
+[0.915s] Invoking command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/rplidar_ros': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/rplidar_ros -- -j20 -l20
+[0.956s] [ 13%] Building CXX object CMakeFiles/rplidar_composition.dir/sdk/src/arch/linux/net_socket.cpp.o
+[0.956s] [ 15%] Building CXX object CMakeFiles/rplidar_composition.dir/sdk/src/dataunpacker/unpacker/handler_capsules.cpp.o
+[0.956s] [ 18%] Building CXX object CMakeFiles/rplidar_composition.dir/sdk/src/dataunpacker/unpacker/handler_hqnode.cpp.o
+[0.956s] [ 21%] Building CXX object CMakeFiles/rplidar_composition.dir/sdk/src/arch/linux/timer.cpp.o
+[0.957s] [ 23%] Building CXX object CMakeFiles/rplidar_node.dir/sdk/src/arch/linux/net_serial.cpp.o
+[0.957s] [ 26%] Building CXX object CMakeFiles/rplidar_composition.dir/sdk/src/dataunpacker/unpacker/handler_normalnode.cpp.o
+[0.957s] [ 28%] Building CXX object CMakeFiles/rplidar_node.dir/sdk/src/hal/thread.cpp.o
+[0.957s] [ 31%] Building CXX object CMakeFiles/rplidar_node.dir/sdk/src/arch/linux/timer.cpp.o
+[0.957s] [ 13%] Building CXX object CMakeFiles/rplidar_node.dir/sdk/src/dataunpacker/dataunpacker.cpp.o
+[0.958s] [ 34%] Building CXX object CMakeFiles/rplidar_composition.dir/sdk/src/dataunpacker/dataunpacker.cpp.o
+[0.958s] [ 13%] Building CXX object CMakeFiles/rplidar_composition.dir/src/rplidar_node.cpp.o
+[0.958s] [ 13%] Building CXX object CMakeFiles/rplidar_client.dir/src/rplidar_client.cpp.o
+[0.958s] [ 39%] Building CXX object CMakeFiles/rplidar_node.dir/src/rplidar_node.cpp.o
+[0.959s] [ 34%] Building CXX object CMakeFiles/rplidar_composition.dir/sdk/src/arch/linux/net_serial.cpp.o
+[0.959s] [ 44%] Building CXX object CMakeFiles/rplidar_composition.dir/sdk/src/hal/thread.cpp.o
+[0.959s] [ 44%] Building CXX object CMakeFiles/rplidar_node.dir/sdk/src/arch/linux/net_socket.cpp.o
+[0.959s] [ 42%] Building CXX object CMakeFiles/rplidar_node.dir/sdk/src/dataunpacker/unpacker/handler_capsules.cpp.o
+[0.959s] [ 47%] Building CXX object CMakeFiles/rplidar_node.dir/sdk/src/dataunpacker/unpacker/handler_normalnode.cpp.o
+[0.962s] [ 50%] Building CXX object CMakeFiles/rplidar_node.dir/sdk/src/rplidar_driver.cpp.o
+[0.967s] [ 52%] Building CXX object CMakeFiles/rplidar_node.dir/sdk/src/dataunpacker/unpacker/handler_hqnode.cpp.o
+[1.452s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_protocol.h:36,
+[1.452s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:39,
+[1.452s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sdkcommon.h:49,
+[1.452s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/rplidar_driver.cpp:33:
+[1.453s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16: warning: ISO C++ forbids zero-size array ‘data’ [-Wpedantic]
+[1.453s]    66 |     sl_u8 data[0];
+[1.453s]       |                ^
+[1.453s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_cmd.h:36,
+[1.453s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:40:
+[1.453s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20: warning: ISO C++ forbids zero-size array ‘payload’ [-Wpedantic]
+[1.453s]   324 |     sl_u8  payload[0];
+[1.454s]       |                    ^
+[1.460s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_protocol.h:36,
+[1.461s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:39,
+[1.461s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sdkcommon.h:49,
+[1.461s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunnpacker_commondef.h:41,
+[1.461s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/handler_capsules.cpp:39:
+[1.461s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16: warning: ISO C++ forbids zero-size array ‘data’ [-Wpedantic]
+[1.461s]    66 |     sl_u8 data[0];
+[1.464s]       |                ^
+[1.465s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_cmd.h:36,
+[1.465s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:40:
+[1.465s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20: warning: ISO C++ forbids zero-size array ‘payload’ [-Wpedantic]
+[1.465s]   324 |     sl_u8  payload[0];
+[1.465s]       |                    ^
+[1.472s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_protocol.h:36,
+[1.473s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:39,
+[1.473s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sdkcommon.h:49,
+[1.473s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/hal/thread.cpp:35:
+[1.473s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16: warning: ISO C++ forbids zero-size array ‘data’ [-Wpedantic]
+[1.473s]    66 |     sl_u8 data[0];
+[1.473s]       |                ^
+[1.475s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_cmd.h:36,
+[1.475s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:40:
+[1.475s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20: warning: ISO C++ forbids zero-size array ‘payload’ [-Wpedantic]
+[1.475s]   324 |     sl_u8  payload[0];
+[1.475s]       |                    ^
+[1.488s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_protocol.h:36,
+[1.489s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:39,
+[1.489s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sdkcommon.h:49,
+[1.489s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunnpacker_commondef.h:41,
+[1.489s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.cpp:39:
+[1.489s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16: warning: ISO C++ forbids zero-size array ‘data’ [-Wpedantic]
+[1.489s]    66 |     sl_u8 data[0];
+[1.489s]       |                ^
+[1.491s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_cmd.h:36,
+[1.491s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:40:
+[1.491s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20: warning: ISO C++ forbids zero-size array ‘payload’ [-Wpedantic]
+[1.491s]   324 |     sl_u8  payload[0];
+[1.491s]       |                    ^
+[1.491s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_protocol.h:36,
+[1.495s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:39,
+[1.495s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sdkcommon.h:49,
+[1.495s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/net_socket.cpp:10:
+[1.495s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16: warning: ISO C++ forbids zero-size array ‘data’ [-Wpedantic]
+[1.495s]    66 |     sl_u8 data[0];
+[1.495s]       |                ^
+[1.495s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_cmd.h:36,
+[1.495s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:40:
+[1.495s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20: warning: ISO C++ forbids zero-size array ‘payload’ [-Wpedantic]
+[1.495s]   324 |     sl_u8  payload[0];
+[1.495s]       |                    ^
+[1.496s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/net_serial.cpp: In member function ‘bool rp::arch::net::raw_serial::open(const char*, uint32_t, uint32_t)’:
+[1.496s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/net_serial.cpp:97:74: warning: unused parameter ‘flags’ [-Wunused-parameter]
+[1.496s]    97 | bool raw_serial::open(const char * portname, uint32_t baudrate, uint32_t flags)
+[1.496s]       |                                                                 ~~~~~~~~~^~~~~
+[1.496s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/net_serial.cpp: In member function ‘virtual void rp::arch::net::raw_serial::flush(_u32)’:
+[1.496s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/net_serial.cpp:281:30: warning: unused parameter ‘flags’ [-Wunused-parameter]
+[1.496s]   281 | void raw_serial::flush( _u32 flags)
+[1.496s]       |                         ~~~~~^~~~~
+[1.496s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/net_serial.cpp: In member function ‘virtual int rp::arch::net::raw_serial::waitforsent(_u32, size_t*)’:
+[1.496s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/net_serial.cpp:286:34: warning: unused parameter ‘timeout’ [-Wunused-parameter]
+[1.496s]   286 | int raw_serial::waitforsent(_u32 timeout, size_t * returned_size)
+[1.496s]       |                             ~~~~~^~~~~~~
+[1.497s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/net_serial.cpp: In member function ‘virtual int rp::arch::net::raw_serial::waitforrecv(_u32, size_t*)’:
+[1.497s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/net_serial.cpp:292:34: warning: unused parameter ‘timeout’ [-Wunused-parameter]
+[1.497s]   292 | int raw_serial::waitforrecv(_u32 timeout, size_t * returned_size)
+[1.497s]       |                             ~~~~~^~~~~~~
+[1.498s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_protocol.h:36,
+[1.498s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:39,
+[1.499s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sdkcommon.h:49,
+[1.500s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/net_socket.cpp:10:
+[1.500s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16: warning: ISO C++ forbids zero-size array ‘data’ [-Wpedantic]
+[1.500s]    66 |     sl_u8 data[0];
+[1.500s]       |                ^
+[1.500s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/net_serial.cpp: In member function ‘virtual void rp::arch::net::raw_serial::cancelOperation()’:
+[1.500s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/net_serial.cpp:427:5: warning: value computed is not used [-Wunused-value]
+[1.500s]   427 |     (int)::write(_selfpipe[1], "x", 1);
+[1.500s]       |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[1.500s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_protocol.h:36,
+[1.500s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:39,
+[1.500s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sdkcommon.h:49,
+[1.500s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunnpacker_commondef.h:41,
+[1.501s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/handler_normalnode.cpp:39:
+[1.501s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16: warning: ISO C++ forbids zero-size array ‘data’ [-Wpedantic]
+[1.501s]    66 |     sl_u8 data[0];
+[1.501s]       |                ^
+[1.501s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_cmd.h:36,
+[1.501s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:40:
+[1.501s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20: warning: ISO C++ forbids zero-size array ‘payload’ [-Wpedantic]
+[1.501s]   324 |     sl_u8  payload[0];
+[1.501s]       |                    ^
+[1.505s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_cmd.h:36,
+[1.505s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:40:
+[1.505s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20: warning: ISO C++ forbids zero-size array ‘payload’ [-Wpedantic]
+[1.505s]   324 |     sl_u8  payload[0];
+[1.505s]       |                    ^
+[1.505s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_protocol.h:36,
+[1.505s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:39,
+[1.505s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sdkcommon.h:49,
+[1.505s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunnpacker_commondef.h:41,
+[1.505s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/handler_capsules.cpp:39:
+[1.506s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16: warning: ISO C++ forbids zero-size array ‘data’ [-Wpedantic]
+[1.506s]    66 |     sl_u8 data[0];
+[1.506s]       |                ^
+[1.506s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_cmd.h:36,
+[1.507s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:40:
+[1.507s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20: warning: ISO C++ forbids zero-size array ‘payload’ [-Wpedantic]
+[1.507s]   324 |     sl_u8  payload[0];
+[1.507s]       |                    ^
+[1.512s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_protocol.h:36,
+[1.513s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:39,
+[1.513s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sdkcommon.h:49,
+[1.513s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunnpacker_commondef.h:41,
+[1.513s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/handler_hqnode.cpp:39:
+[1.513s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16: warning: ISO C++ forbids zero-size array ‘data’ [-Wpedantic]
+[1.515s]    66 |     sl_u8 data[0];
+[1.515s]       |                ^
+[1.517s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/hal/thread.cpp:43:
+[1.518s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/thread.hpp: In static member function ‘static rp::hal::Thread rp::hal::Thread::create(thread_proc_t, void*)’:
+[1.518s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/thread.hpp:52:57: warning: cast between incompatible function types from ‘thread_proc_t’ {aka ‘long unsigned int (*)(void*)’} to ‘void* (*)(void*)’ [-Wcast-function-type]
+[1.518s]    52 |     pthread_create((pthread_t *)&newborn._handle, NULL, (void * (*)(void *))proc, data);
+[1.518s]       |                                                         ^~~~~~~~~~~~~~~~~~~~~~~~
+[1.518s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/thread.hpp: In member function ‘u_result rp::hal::Thread::join(long unsigned int)’:
+[1.518s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/thread.hpp:176:37: warning: unused parameter ‘timeout’ [-Wunused-parameter]
+[1.518s]   176 | u_result Thread::join(unsigned long timeout)
+[1.519s]       |                       ~~~~~~~~~~~~~~^~~~~~~
+[1.519s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_cmd.h:36,
+[1.519s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:40:
+[1.519s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20: warning: ISO C++ forbids zero-size array ‘payload’ [-Wpedantic]
+[1.519s]   324 |     sl_u8  payload[0];
+[1.519s]       |                    ^
+[1.524s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_protocol.h:36,
+[1.524s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:39,
+[1.524s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sdkcommon.h:49,
+[1.526s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/hal/thread.cpp:35:
+[1.527s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16: warning: ISO C++ forbids zero-size array ‘data’ [-Wpedantic]
+[1.527s]    66 |     sl_u8 data[0];
+[1.527s]       |                ^
+[1.527s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_cmd.h:36,
+[1.527s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:40:
+[1.527s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20: warning: ISO C++ forbids zero-size array ‘payload’ [-Wpedantic]
+[1.527s]   324 |     sl_u8  payload[0];
+[1.527s]       |                    ^
+[1.531s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/rplidar_driver.cpp: In member function ‘u_result rp::standalone::rplidar::RPlidarDriver::connect(const char*, _u32, _u32)’:
+[1.531s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/rplidar_driver.cpp:67:77: warning: unused parameter ‘flag’ [-Wunused-parameter]
+[1.532s]    67 |     u_result RPlidarDriver::connect(const char *path, _u32 portOrBaud, _u32 flag)
+[1.532s]       |                                                                        ~~~~~^~~~
+[1.532s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/rplidar_driver.cpp: In member function ‘u_result rp::standalone::rplidar::RPlidarDriver::reset(_u32)’:
+[1.532s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/rplidar_driver.cpp:101:40: warning: unused parameter ‘timeout’ [-Wunused-parameter]
+[1.532s]   101 |     u_result RPlidarDriver::reset(_u32 timeout)
+[1.532s]       |                                   ~~~~~^~~~~~~
+[1.533s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/rplidar_driver.cpp: In member function ‘u_result rp::standalone::rplidar::RPlidarDriver::getScanDataWithInterval(rplidar_response_measurement_node_t*, size_t&)’:
+[1.533s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/rplidar_driver.cpp:180:91: warning: unused parameter ‘nodebuffer’ [-Wunused-parameter]
+[1.533s]   180 |     u_result RPlidarDriver::getScanDataWithInterval(rplidar_response_measurement_node_t * nodebuffer, size_t & count)
+[1.533s]       |                                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+[1.533s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/rplidar_driver.cpp:180:112: warning: unused parameter ‘count’ [-Wunused-parameter]
+[1.533s]   180 |     u_result RPlidarDriver::getScanDataWithInterval(rplidar_response_measurement_node_t * nodebuffer, size_t & count)
+[1.535s]       |                                                                                                       ~~~~~~~~~^~~~~
+[1.536s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_protocol.h:36,
+[1.536s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:39,
+[1.536s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sdkcommon.h:49,
+[1.536s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunnpacker_commondef.h:41,
+[1.536s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.cpp:39:
+[1.536s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16: warning: ISO C++ forbids zero-size array ‘data’ [-Wpedantic]
+[1.536s]    66 |     sl_u8 data[0];
+[1.536s]       |                ^
+[1.539s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_cmd.h:36,
+[1.539s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:40:
+[1.539s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20: warning: ISO C++ forbids zero-size array ‘payload’ [-Wpedantic]
+[1.539s]   324 |     sl_u8  payload[0];
+[1.539s]       |                    ^
+[1.539s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/net_serial.cpp: In member function ‘bool rp::arch::net::raw_serial::open(const char*, uint32_t, uint32_t)’:
+[1.539s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/net_serial.cpp:97:74: warning: unused parameter ‘flags’ [-Wunused-parameter]
+[1.539s]    97 | bool raw_serial::open(const char * portname, uint32_t baudrate, uint32_t flags)
+[1.539s]       |                                                                 ~~~~~~~~~^~~~~
+[1.539s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/net_serial.cpp: In member function ‘virtual void rp::arch::net::raw_serial::flush(_u32)’:
+[1.539s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/net_serial.cpp:281:30: warning: unused parameter ‘flags’ [-Wunused-parameter]
+[1.539s]   281 | void raw_serial::flush( _u32 flags)
+[1.539s]       |                         ~~~~~^~~~~
+[1.540s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/net_serial.cpp: In member function ‘virtual int rp::arch::net::raw_serial::waitforsent(_u32, size_t*)’:
+[1.540s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/net_serial.cpp:286:34: warning: unused parameter ‘timeout’ [-Wunused-parameter]
+[1.540s]   286 | int raw_serial::waitforsent(_u32 timeout, size_t * returned_size)
+[1.540s]       |                             ~~~~~^~~~~~~
+[1.540s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/net_serial.cpp: In member function ‘virtual int rp::arch::net::raw_serial::waitforrecv(_u32, size_t*)’:
+[1.540s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/net_serial.cpp:292:34: warning: unused parameter ‘timeout’ [-Wunused-parameter]
+[1.540s]   292 | int raw_serial::waitforrecv(_u32 timeout, size_t * returned_size)
+[1.540s]       |                             ~~~~~^~~~~~~
+[1.543s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/net_serial.cpp: In member function ‘virtual void rp::arch::net::raw_serial::cancelOperation()’:
+[1.543s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/net_serial.cpp:427:5: warning: value computed is not used [-Wunused-value]
+[1.543s]   427 |     (int)::write(_selfpipe[1], "x", 1);
+[1.543s]       |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[1.543s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/arch_linux.h:42,
+[1.543s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sdkcommon.h:41:
+[1.543s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/net_socket.cpp: In member function ‘virtual u_result rp::arch::net::DGramSocketImpl::sendTo(const rp::net::SocketAddress*, const void*, size_t)’:
+[1.543s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/net_socket.cpp:733:24: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+[1.543s]   733 |             assert(ans == len);
+[1.543s]       |                    ~~~~^~~~~~
+[1.551s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/arch_linux.h:42,
+[1.552s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sdkcommon.h:41:
+[1.552s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/net_socket.cpp: In member function ‘virtual u_result rp::arch::net::DGramSocketImpl::sendTo(const rp::net::SocketAddress*, const void*, size_t)’:
+[1.552s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/net_socket.cpp:733:24: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+[1.552s]   733 |             assert(ans == len);
+[1.552s]       |                    ~~~~^~~~~~
+[1.570s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/hal/thread.cpp:43:
+[1.570s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/thread.hpp: In static member function ‘static rp::hal::Thread rp::hal::Thread::create(thread_proc_t, void*)’:
+[1.570s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/thread.hpp:52:57: warning: cast between incompatible function types from ‘thread_proc_t’ {aka ‘long unsigned int (*)(void*)’} to ‘void* (*)(void*)’ [-Wcast-function-type]
+[1.570s]    52 |     pthread_create((pthread_t *)&newborn._handle, NULL, (void * (*)(void *))proc, data);
+[1.570s]       |                                                         ^~~~~~~~~~~~~~~~~~~~~~~~
+[1.570s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/thread.hpp: In member function ‘u_result rp::hal::Thread::join(long unsigned int)’:
+[1.570s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/arch/linux/thread.hpp:176:37: warning: unused parameter ‘timeout’ [-Wunused-parameter]
+[1.570s]   176 | u_result Thread::join(unsigned long timeout)
+[1.570s]       |                       ~~~~~~~~~~~~~~^~~~~~~
+[1.570s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/handler_capsules.cpp:40:
+[1.570s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h: In member function ‘virtual void sl::internal::LIDARSampleDataListener::onCustomSampleDataDecoded(_u8, _u32, const void*, size_t)’:
+[1.571s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:54:52: warning: unused parameter ‘ansType’ [-Wunused-parameter]
+[1.571s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.571s]       |                                                ~~~~^~~~~~~
+[1.571s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:54:66: warning: unused parameter ‘customCode’ [-Wunused-parameter]
+[1.571s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.571s]       |                                                             ~~~~~^~~~~~~~~~
+[1.571s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:54:90: warning: unused parameter ‘data’ [-Wunused-parameter]
+[1.571s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.571s]       |                                                                              ~~~~~~~~~~~~^~~~
+[1.571s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:54:103: warning: unused parameter ‘size’ [-Wunused-parameter]
+[1.571s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.571s]       |                                                                                                ~~~~~~~^~~~
+[1.571s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h: In member function ‘virtual void sl::internal::LIDARSampleDataListener::onDecodingError(int, _u8, const void*, size_t)’:
+[1.571s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:56:42: warning: unused parameter ‘errMsg’ [-Wunused-parameter]
+[1.571s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.571s]       |                                      ~~~~^~~~~~
+[1.571s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:56:54: warning: unused parameter ‘ansType’ [-Wunused-parameter]
+[1.572s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.572s]       |                                                  ~~~~^~~~~~~
+[1.576s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:56:75: warning: unused parameter ‘payload’ [-Wunused-parameter]
+[1.576s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.576s]       |                                                               ~~~~~~~~~~~~^~~~~~~
+[1.576s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:56:91: warning: unused parameter ‘size’ [-Wunused-parameter]
+[1.576s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.576s]       |                                                                                    ~~~~~~~^~~~
+[1.583s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/handler_capsules.cpp: In member function ‘void sl::internal::unpacker::UnpackerHandler_DenseCapsuleNode::_onScanNodeDenseCapsuleData(rplidar_response_dense_capsule_measurement_nodes_t&, sl::internal::LIDARSampleDataUnpackerInner*)’:
+[1.584s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/handler_capsules.cpp:763:30: warning: type qualifiers ignored on cast result type [-Wignored-qualifiers]
+[1.584s]   763 |             const int dist = static_cast<const int>(_cached_previous_dense_capsuledata.cabins[pos].distance);
+[1.584s]       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[1.594s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.cpp:40:
+[1.594s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h: In member function ‘virtual void sl::internal::LIDARSampleDataListener::onCustomSampleDataDecoded(_u8, _u32, const void*, size_t)’:
+[1.594s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:54:52: warning: unused parameter ‘ansType’ [-Wunused-parameter]
+[1.594s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.594s]       |                                                ~~~~^~~~~~~
+[1.594s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:54:66: warning: unused parameter ‘customCode’ [-Wunused-parameter]
+[1.594s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.594s]       |                                                             ~~~~~^~~~~~~~~~
+[1.594s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:54:90: warning: unused parameter ‘data’ [-Wunused-parameter]
+[1.594s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.594s]       |                                                                              ~~~~~~~~~~~~^~~~
+[1.594s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:54:103: warning: unused parameter ‘size’ [-Wunused-parameter]
+[1.594s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.594s]       |                                                                                                ~~~~~~~^~~~
+[1.595s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h: In member function ‘virtual void sl::internal::LIDARSampleDataListener::onDecodingError(int, _u8, const void*, size_t)’:
+[1.595s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:56:42: warning: unused parameter ‘errMsg’ [-Wunused-parameter]
+[1.595s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.595s]       |                                      ~~~~^~~~~~
+[1.595s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:56:54: warning: unused parameter ‘ansType’ [-Wunused-parameter]
+[1.595s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.595s]       |                                                  ~~~~^~~~~~~
+[1.595s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:56:75: warning: unused parameter ‘payload’ [-Wunused-parameter]
+[1.595s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.595s]       |                                                               ~~~~~~~~~~~~^~~~~~~
+[1.595s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:56:91: warning: unused parameter ‘size’ [-Wunused-parameter]
+[1.595s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.595s]       |                                                                                    ~~~~~~~^~~~
+[1.601s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_protocol.h:36,
+[1.601s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:39,
+[1.601s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sdkcommon.h:49,
+[1.601s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunnpacker_commondef.h:41,
+[1.601s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/handler_normalnode.cpp:39:
+[1.601s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16: warning: ISO C++ forbids zero-size array ‘data’ [-Wpedantic]
+[1.604s]    66 |     sl_u8 data[0];
+[1.604s]       |                ^
+[1.604s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_cmd.h:36,
+[1.604s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:40:
+[1.604s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20: warning: ISO C++ forbids zero-size array ‘payload’ [-Wpedantic]
+[1.604s]   324 |     sl_u8  payload[0];
+[1.605s]       |                    ^
+[1.619s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/handler_normalnode.cpp:40:
+[1.621s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h: In member function ‘virtual void sl::internal::LIDARSampleDataListener::onCustomSampleDataDecoded(_u8, _u32, const void*, size_t)’:
+[1.622s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:54:52: warning: unused parameter ‘ansType’ [-Wunused-parameter]
+[1.622s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.622s]       |                                                ~~~~^~~~~~~
+[1.622s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:54:66: warning: unused parameter ‘customCode’ [-Wunused-parameter]
+[1.622s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.622s]       |                                                             ~~~~~^~~~~~~~~~
+[1.622s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:54:90: warning: unused parameter ‘data’ [-Wunused-parameter]
+[1.622s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.622s]       |                                                                              ~~~~~~~~~~~~^~~~
+[1.622s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:54:103: warning: unused parameter ‘size’ [-Wunused-parameter]
+[1.623s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.623s]       |                                                                                                ~~~~~~~^~~~
+[1.623s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h: In member function ‘virtual void sl::internal::LIDARSampleDataListener::onDecodingError(int, _u8, const void*, size_t)’:
+[1.623s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:56:42: warning: unused parameter ‘errMsg’ [-Wunused-parameter]
+[1.623s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.623s]       |                                      ~~~~^~~~~~
+[1.623s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:56:54: warning: unused parameter ‘ansType’ [-Wunused-parameter]
+[1.623s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.623s]       |                                                  ~~~~^~~~~~~
+[1.623s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:56:75: warning: unused parameter ‘payload’ [-Wunused-parameter]
+[1.623s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.623s]       |                                                               ~~~~~~~~~~~~^~~~~~~
+[1.624s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:56:91: warning: unused parameter ‘size’ [-Wunused-parameter]
+[1.624s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.624s]       |                                                                                    ~~~~~~~^~~~
+[1.624s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_protocol.h:36,
+[1.624s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:39,
+[1.624s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sdkcommon.h:49,
+[1.624s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunnpacker_commondef.h:41,
+[1.633s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/handler_hqnode.cpp:39:
+[1.633s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16: warning: ISO C++ forbids zero-size array ‘data’ [-Wpedantic]
+[1.633s]    66 |     sl_u8 data[0];
+[1.633s]       |                ^
+[1.633s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_cmd.h:36,
+[1.633s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:40:
+[1.633s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20: warning: ISO C++ forbids zero-size array ‘payload’ [-Wpedantic]
+[1.634s]   324 |     sl_u8  payload[0];
+[1.634s]       |                    ^
+[1.634s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/handler_capsules.cpp:40:
+[1.634s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h: In member function ‘virtual void sl::internal::LIDARSampleDataListener::onCustomSampleDataDecoded(_u8, _u32, const void*, size_t)’:
+[1.634s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:54:52: warning: unused parameter ‘ansType’ [-Wunused-parameter]
+[1.634s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.634s]       |                                                ~~~~^~~~~~~
+[1.634s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:54:66: warning: unused parameter ‘customCode’ [-Wunused-parameter]
+[1.635s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.635s]       |                                                             ~~~~~^~~~~~~~~~
+[1.635s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:54:90: warning: unused parameter ‘data’ [-Wunused-parameter]
+[1.635s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.635s]       |                                                                              ~~~~~~~~~~~~^~~~
+[1.635s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:54:103: warning: unused parameter ‘size’ [-Wunused-parameter]
+[1.635s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.635s]       |                                                                                                ~~~~~~~^~~~
+[1.636s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h: In member function ‘virtual void sl::internal::LIDARSampleDataListener::onDecodingError(int, _u8, const void*, size_t)’:
+[1.636s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:56:42: warning: unused parameter ‘errMsg’ [-Wunused-parameter]
+[1.636s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.636s]       |                                      ~~~~^~~~~~
+[1.636s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:56:54: warning: unused parameter ‘ansType’ [-Wunused-parameter]
+[1.636s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.636s]       |                                                  ~~~~^~~~~~~
+[1.636s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:56:75: warning: unused parameter ‘payload’ [-Wunused-parameter]
+[1.636s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.636s]       |                                                               ~~~~~~~~~~~~^~~~~~~
+[1.636s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:56:91: warning: unused parameter ‘size’ [-Wunused-parameter]
+[1.637s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.637s]       |                                                                                    ~~~~~~~^~~~
+[1.642s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/handler_capsules.cpp: In member function ‘void sl::internal::unpacker::UnpackerHandler_DenseCapsuleNode::_onScanNodeDenseCapsuleData(rplidar_response_dense_capsule_measurement_nodes_t&, sl::internal::LIDARSampleDataUnpackerInner*)’:
+[1.642s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/handler_capsules.cpp:763:30: warning: type qualifiers ignored on cast result type [-Wignored-qualifiers]
+[1.642s]   763 |             const int dist = static_cast<const int>(_cached_previous_dense_capsuledata.cabins[pos].distance);
+[1.642s]       |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[1.656s] [ 55%] Building CXX object CMakeFiles/rplidar_node.dir/sdk/src/sl_async_transceiver.cpp.o
+[1.662s] [ 57%] Building CXX object CMakeFiles/rplidar_composition.dir/sdk/src/rplidar_driver.cpp.o
+[1.672s] [ 60%] Building CXX object CMakeFiles/rplidar_composition.dir/sdk/src/sl_async_transceiver.cpp.o
+[1.676s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.cpp:40:
+[1.677s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h: In member function ‘virtual void sl::internal::LIDARSampleDataListener::onCustomSampleDataDecoded(_u8, _u32, const void*, size_t)’:
+[1.677s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:54:52: warning: unused parameter ‘ansType’ [-Wunused-parameter]
+[1.677s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.677s]       |                                                ~~~~^~~~~~~
+[1.677s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:54:66: warning: unused parameter ‘customCode’ [-Wunused-parameter]
+[1.677s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.677s]       |                                                             ~~~~~^~~~~~~~~~
+[1.677s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:54:90: warning: unused parameter ‘data’ [-Wunused-parameter]
+[1.677s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.677s]       |                                                                              ~~~~~~~~~~~~^~~~
+[1.677s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:54:103: warning: unused parameter ‘size’ [-Wunused-parameter]
+[1.677s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.678s]       |                                                                                                ~~~~~~~^~~~
+[1.678s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h: In member function ‘virtual void sl::internal::LIDARSampleDataListener::onDecodingError(int, _u8, const void*, size_t)’:
+[1.678s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:56:42: warning: unused parameter ‘errMsg’ [-Wunused-parameter]
+[1.678s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.678s]       |                                      ~~~~^~~~~~
+[1.678s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:56:54: warning: unused parameter ‘ansType’ [-Wunused-parameter]
+[1.678s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.679s]       |                                                  ~~~~^~~~~~~
+[1.679s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:56:75: warning: unused parameter ‘payload’ [-Wunused-parameter]
+[1.680s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.680s]       |                                                               ~~~~~~~~~~~~^~~~~~~
+[1.680s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:56:91: warning: unused parameter ‘size’ [-Wunused-parameter]
+[1.680s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.680s]       |                                                                                    ~~~~~~~^~~~
+[1.690s] [ 63%] Building CXX object CMakeFiles/rplidar_node.dir/sdk/src/sl_lidar_driver.cpp.o
+[1.690s] [ 68%] Building CXX object CMakeFiles/rplidar_node.dir/sdk/src/sl_lidarprotocol_codec.cpp.o
+[1.693s] [ 68%] Building CXX object CMakeFiles/rplidar_node.dir/sdk/src/sl_crc.cpp.o
+[1.695s] [ 71%] Building CXX object CMakeFiles/rplidar_composition.dir/sdk/src/sl_crc.cpp.o
+[1.731s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:41,
+[1.731s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_crc.h:36,
+[1.731s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_crc.cpp:33:
+[1.731s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16: warning: ISO C++ forbids zero-size array ‘data’ [-Wpedantic]
+[1.731s]    66 |     sl_u8 data[0];
+[1.731s]       |                ^
+[1.731s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20: warning: ISO C++ forbids zero-size array ‘payload’ [-Wpedantic]
+[1.731s]   324 |     sl_u8  payload[0];
+[1.731s]       |                    ^
+[1.733s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:41,
+[1.733s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_crc.h:36,
+[1.733s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_crc.cpp:33:
+[1.733s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16: warning: ISO C++ forbids zero-size array ‘data’ [-Wpedantic]
+[1.733s]    66 |     sl_u8 data[0];
+[1.733s]       |                ^
+[1.734s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20: warning: ISO C++ forbids zero-size array ‘payload’ [-Wpedantic]
+[1.734s]   324 |     sl_u8  payload[0];
+[1.734s]       |                    ^
+[1.750s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/handler_hqnode.cpp:40:
+[1.753s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h: In member function ‘virtual void sl::internal::LIDARSampleDataListener::onCustomSampleDataDecoded(_u8, _u32, const void*, size_t)’:
+[1.754s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:54:52: warning: unused parameter ‘ansType’ [-Wunused-parameter]
+[1.754s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.754s]       |                                                ~~~~^~~~~~~
+[1.754s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/handler_normalnode.cpp:40:
+[1.754s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h: In member function ‘virtual void sl::internal::LIDARSampleDataListener::onCustomSampleDataDecoded(_u8, _u32, const void*, size_t)’:
+[1.754s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:54:52: warning: unused parameter ‘ansType’ [-Wunused-parameter]
+[1.754s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.754s]       |                                                ~~~~^~~~~~~
+[1.755s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:54:66: warning: unused parameter ‘customCode’ [-Wunused-parameter]
+[1.755s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.755s]       |                                                             ~~~~~^~~~~~~~~~
+[1.755s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:54:90: warning: unused parameter ‘data’ [-Wunused-parameter]
+[1.755s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.755s]       |                                                                              ~~~~~~~~~~~~^~~~
+[1.755s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:54:103: warning: unused parameter ‘size’ [-Wunused-parameter]
+[1.755s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.755s]       |                                                                                                ~~~~~~~^~~~
+[1.755s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h: In member function ‘virtual void sl::internal::LIDARSampleDataListener::onDecodingError(int, _u8, const void*, size_t)’:
+[1.755s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:56:42: warning: unused parameter ‘errMsg’ [-Wunused-parameter]
+[1.755s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.756s]       |                                      ~~~~^~~~~~
+[1.756s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:56:54: warning: unused parameter ‘ansType’ [-Wunused-parameter]
+[1.756s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.756s]       |                                                  ~~~~^~~~~~~
+[1.756s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:56:75: warning: unused parameter ‘payload’ [-Wunused-parameter]
+[1.756s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.756s]       |                                                               ~~~~~~~~~~~~^~~~~~~
+[1.761s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:56:91: warning: unused parameter ‘size’ [-Wunused-parameter]
+[1.762s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.762s]       |                                                                                    ~~~~~~~^~~~
+[1.764s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:54:66: warning: unused parameter ‘customCode’ [-Wunused-parameter]
+[1.764s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.765s]       |                                                             ~~~~~^~~~~~~~~~
+[1.765s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:54:90: warning: unused parameter ‘data’ [-Wunused-parameter]
+[1.765s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.765s]       |                                                                              ~~~~~~~~~~~~^~~~
+[1.765s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:54:103: warning: unused parameter ‘size’ [-Wunused-parameter]
+[1.765s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.765s]       |                                                                                                ~~~~~~~^~~~
+[1.765s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/handler_hqnode.cpp:40:
+[1.765s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h: In member function ‘virtual void sl::internal::LIDARSampleDataListener::onCustomSampleDataDecoded(_u8, _u32, const void*, size_t)’:
+[1.765s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:54:52: warning: unused parameter ‘ansType’ [-Wunused-parameter]
+[1.765s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.765s]       |                                                ~~~~^~~~~~~
+[1.766s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:54:66: warning: unused parameter ‘customCode’ [-Wunused-parameter]
+[1.766s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.766s]       |                                                             ~~~~~^~~~~~~~~~
+[1.766s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:54:90: warning: unused parameter ‘data’ [-Wunused-parameter]
+[1.766s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.766s]       |                                                                              ~~~~~~~~~~~~^~~~
+[1.766s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:54:103: warning: unused parameter ‘size’ [-Wunused-parameter]
+[1.766s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[1.766s]       |                                                                                                ~~~~~~~^~~~
+[1.766s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h: In member function ‘virtual void sl::internal::LIDARSampleDataListener::onDecodingError(int, _u8, const void*, size_t)’:
+[1.766s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:56:42: warning: unused parameter ‘errMsg’ [-Wunused-parameter]
+[1.766s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.767s]       |                                      ~~~~^~~~~~
+[1.767s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:56:54: warning: unused parameter ‘ansType’ [-Wunused-parameter]
+[1.767s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.767s]       |                                                  ~~~~^~~~~~~
+[1.767s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h: In member function ‘virtual void sl::internal::LIDARSampleDataListener::onDecodingError(int, _u8, const void*, size_t)’:
+[1.767s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:56:42: warning: unused parameter ‘errMsg’ [-Wunused-parameter]
+[1.767s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.773s]       |                                      ~~~~^~~~~~
+[1.773s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:56:54: warning: unused parameter ‘ansType’ [-Wunused-parameter]
+[1.773s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.773s]       |                                                  ~~~~^~~~~~~
+[1.773s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:56:75: warning: unused parameter ‘payload’ [-Wunused-parameter]
+[1.773s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.773s]       |                                                               ~~~~~~~~~~~~^~~~~~~
+[1.773s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:56:75: warning: unused parameter ‘payload’ [-Wunused-parameter]
+[1.774s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.774s]       |                                                               ~~~~~~~~~~~~^~~~~~~
+[1.774s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:56:91: warning: unused parameter ‘size’ [-Wunused-parameter]
+[1.774s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.774s]       |                                                                                    ~~~~~~~^~~~
+[1.774s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/unpacker/../dataunpacker.h:56:91: warning: unused parameter ‘size’ [-Wunused-parameter]
+[1.774s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[1.777s]       |                                                                                    ~~~~~~~^~~~
+[1.787s] [ 76%] Building CXX object CMakeFiles/rplidar_composition.dir/sdk/src/sl_lidarprotocol_codec.cpp.o
+[1.787s] [ 73%] Building CXX object CMakeFiles/rplidar_node.dir/sdk/src/sl_serial_channel.cpp.o
+[1.792s] [ 81%] Building CXX object CMakeFiles/rplidar_node.dir/sdk/src/sl_tcp_channel.cpp.o
+[1.792s] [ 78%] Building CXX object CMakeFiles/rplidar_composition.dir/sdk/src/sl_lidar_driver.cpp.o
+[1.810s] [ 84%] Building CXX object CMakeFiles/rplidar_node.dir/sdk/src/sl_udp_channel.cpp.o
+[1.818s] [ 86%] Building CXX object CMakeFiles/rplidar_composition.dir/sdk/src/sl_serial_channel.cpp.o
+[1.873s] [ 89%] Building CXX object CMakeFiles/rplidar_composition.dir/sdk/src/sl_tcp_channel.cpp.o
+[1.909s] [ 92%] Building CXX object CMakeFiles/rplidar_composition.dir/sdk/src/sl_udp_channel.cpp.o
+[2.085s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:41,
+[2.086s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_driver.h:54,
+[2.086s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_tcp_channel.cpp:33:
+[2.086s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16: warning: ISO C++ forbids zero-size array ‘data’ [-Wpedantic]
+[2.086s]    66 |     sl_u8 data[0];
+[2.086s]       |                ^
+[2.086s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20: warning: ISO C++ forbids zero-size array ‘payload’ [-Wpedantic]
+[2.086s]   324 |     sl_u8  payload[0];
+[2.086s]       |                    ^
+[2.089s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_tcp_channel.cpp: In member function ‘void sl::TcpChannel::setStatus(_u32)’:
+[2.090s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_tcp_channel.cpp:109:29: warning: unused parameter ‘flag’ [-Wunused-parameter]
+[2.090s]   109 |         void setStatus(_u32 flag){}
+[2.090s]       |                        ~~~~~^~~~
+[2.122s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:41,
+[2.122s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_driver.h:54,
+[2.123s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_serial_channel.cpp:33:
+[2.123s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16: warning: ISO C++ forbids zero-size array ‘data’ [-Wpedantic]
+[2.123s]    66 |     sl_u8 data[0];
+[2.123s]       |                ^
+[2.124s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20: warning: ISO C++ forbids zero-size array ‘payload’ [-Wpedantic]
+[2.126s]   324 |     sl_u8  payload[0];
+[2.126s]       |                    ^
+[2.129s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_protocol.h:36,
+[2.129s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:39,
+[2.129s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sdkcommon.h:49,
+[2.129s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/rplidar_driver.cpp:33:
+[2.130s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16: warning: ISO C++ forbids zero-size array ‘data’ [-Wpedantic]
+[2.130s]    66 |     sl_u8 data[0];
+[2.131s]       |                ^
+[2.131s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_cmd.h:36,
+[2.131s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:40:
+[2.131s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20: warning: ISO C++ forbids zero-size array ‘payload’ [-Wpedantic]
+[2.131s]   324 |     sl_u8  payload[0];
+[2.131s]       |                    ^
+[2.143s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:41,
+[2.144s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_driver.h:54,
+[2.144s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_serial_channel.cpp:33:
+[2.144s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16: warning: ISO C++ forbids zero-size array ‘data’ [-Wpedantic]
+[2.144s]    66 |     sl_u8 data[0];
+[2.144s]       |                ^
+[2.144s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20: warning: ISO C++ forbids zero-size array ‘payload’ [-Wpedantic]
+[2.144s]   324 |     sl_u8  payload[0];
+[2.144s]       |                    ^
+[2.149s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:41,
+[2.149s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_driver.h:54,
+[2.149s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_tcp_channel.cpp:33:
+[2.149s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16: warning: ISO C++ forbids zero-size array ‘data’ [-Wpedantic]
+[2.149s]    66 |     sl_u8 data[0];
+[2.149s]       |                ^
+[2.151s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20: warning: ISO C++ forbids zero-size array ‘payload’ [-Wpedantic]
+[2.151s]   324 |     sl_u8  payload[0];
+[2.151s]       |                    ^
+[2.154s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_tcp_channel.cpp: In member function ‘void sl::TcpChannel::setStatus(_u32)’:
+[2.154s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_tcp_channel.cpp:109:29: warning: unused parameter ‘flag’ [-Wunused-parameter]
+[2.154s]   109 |         void setStatus(_u32 flag){}
+[2.154s]       |                        ~~~~~^~~~
+[2.155s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_protocol.h:36,
+[2.155s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:39,
+[2.155s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sdkcommon.h:49,
+[2.155s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidarprotocol_codec.cpp:35:
+[2.155s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16: warning: ISO C++ forbids zero-size array ‘data’ [-Wpedantic]
+[2.155s]    66 |     sl_u8 data[0];
+[2.155s]       |                ^
+[2.156s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_cmd.h:36,
+[2.156s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:40:
+[2.156s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20: warning: ISO C++ forbids zero-size array ‘payload’ [-Wpedantic]
+[2.156s]   324 |     sl_u8  payload[0];
+[2.156s]       |                    ^
+[2.157s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_protocol.h:36,
+[2.157s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:39,
+[2.157s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sdkcommon.h:49,
+[2.158s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_async_transceiver.cpp:35:
+[2.158s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16: warning: ISO C++ forbids zero-size array ‘data’ [-Wpedantic]
+[2.158s]    66 |     sl_u8 data[0];
+[2.158s]       |                ^
+[2.158s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_cmd.h:36,
+[2.158s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:40:
+[2.158s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20: warning: ISO C++ forbids zero-size array ‘payload’ [-Wpedantic]
+[2.158s]   324 |     sl_u8  payload[0];
+[2.158s]       |                    ^
+[2.174s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:41,
+[2.174s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_driver.h:54,
+[2.174s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_udp_channel.cpp:33:
+[2.174s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16: warning: ISO C++ forbids zero-size array ‘data’ [-Wpedantic]
+[2.174s]    66 |     sl_u8 data[0];
+[2.174s]       |                ^
+[2.174s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20: warning: ISO C++ forbids zero-size array ‘payload’ [-Wpedantic]
+[2.174s]   324 |     sl_u8  payload[0];
+[2.174s]       |                    ^
+[2.178s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_udp_channel.cpp: In member function ‘void sl::UdpChannel::setStatus(_u32)’:
+[2.178s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_udp_channel.cpp:112:29: warning: unused parameter ‘flag’ [-Wunused-parameter]
+[2.178s]   112 |         void setStatus(_u32 flag){}
+[2.178s]       |                        ~~~~~^~~~
+[2.186s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:41,
+[2.187s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_driver.h:54,
+[2.187s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_udp_channel.cpp:33:
+[2.187s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16: warning: ISO C++ forbids zero-size array ‘data’ [-Wpedantic]
+[2.187s]    66 |     sl_u8 data[0];
+[2.187s]       |                ^
+[2.187s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20: warning: ISO C++ forbids zero-size array ‘payload’ [-Wpedantic]
+[2.187s]   324 |     sl_u8  payload[0];
+[2.187s]       |                    ^
+[2.192s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_udp_channel.cpp: In member function ‘void sl::UdpChannel::setStatus(_u32)’:
+[2.192s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_udp_channel.cpp:112:29: warning: unused parameter ‘flag’ [-Wunused-parameter]
+[2.192s]   112 |         void setStatus(_u32 flag){}
+[2.192s]       |                        ~~~~~^~~~
+[2.194s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_protocol.h:36,
+[2.194s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:39,
+[2.194s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sdkcommon.h:49,
+[2.194s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_async_transceiver.cpp:35:
+[2.194s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16: warning: ISO C++ forbids zero-size array ‘data’ [-Wpedantic]
+[2.194s]    66 |     sl_u8 data[0];
+[2.195s]       |                ^
+[2.195s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_cmd.h:36,
+[2.195s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:40:
+[2.195s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20: warning: ISO C++ forbids zero-size array ‘payload’ [-Wpedantic]
+[2.195s]   324 |     sl_u8  payload[0];
+[2.195s]       |                    ^
+[2.199s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/rplidar_driver.cpp: In member function ‘u_result rp::standalone::rplidar::RPlidarDriver::connect(const char*, _u32, _u32)’:
+[2.199s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/rplidar_driver.cpp:67:77: warning: unused parameter ‘flag’ [-Wunused-parameter]
+[2.200s]    67 |     u_result RPlidarDriver::connect(const char *path, _u32 portOrBaud, _u32 flag)
+[2.200s]       |                                                                        ~~~~~^~~~
+[2.200s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/rplidar_driver.cpp: In member function ‘u_result rp::standalone::rplidar::RPlidarDriver::reset(_u32)’:
+[2.200s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/rplidar_driver.cpp:101:40: warning: unused parameter ‘timeout’ [-Wunused-parameter]
+[2.200s]   101 |     u_result RPlidarDriver::reset(_u32 timeout)
+[2.200s]       |                                   ~~~~~^~~~~~~
+[2.200s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/rplidar_driver.cpp: In member function ‘u_result rp::standalone::rplidar::RPlidarDriver::getScanDataWithInterval(rplidar_response_measurement_node_t*, size_t&)’:
+[2.200s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/rplidar_driver.cpp:180:91: warning: unused parameter ‘nodebuffer’ [-Wunused-parameter]
+[2.200s]   180 |     u_result RPlidarDriver::getScanDataWithInterval(rplidar_response_measurement_node_t * nodebuffer, size_t & count)
+[2.200s]       |                                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+[2.200s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/rplidar_driver.cpp:180:112: warning: unused parameter ‘count’ [-Wunused-parameter]
+[2.200s]   180 |     u_result RPlidarDriver::getScanDataWithInterval(rplidar_response_measurement_node_t * nodebuffer, size_t & count)
+[2.201s]       |                                                                                                       ~~~~~~~~~^~~~~
+[2.223s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_protocol.h:36,
+[2.223s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:39,
+[2.223s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sdkcommon.h:49,
+[2.224s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp:33:
+[2.224s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16: warning: ISO C++ forbids zero-size array ‘data’ [-Wpedantic]
+[2.224s]    66 |     sl_u8 data[0];
+[2.224s]       |                ^
+[2.224s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_cmd.h:36,
+[2.224s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:40:
+[2.224s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20: warning: ISO C++ forbids zero-size array ‘payload’ [-Wpedantic]
+[2.224s]   324 |     sl_u8  payload[0];
+[2.224s]       |                    ^
+[2.249s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_async_transceiver.cpp:44:
+[2.249s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_async_transceiver.h: In member function ‘virtual void sl::internal::IAsyncProtocolCodec::onChannelError(u_result)’:
+[2.249s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_async_transceiver.h:90:48: warning: unused parameter ‘errCode’ [-Wunused-parameter]
+[2.249s]    90 |         virtual void   onChannelError(u_result errCode) {}
+[2.250s]       |                                       ~~~~~~~~~^~~~~~~
+[2.250s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidarprotocol_codec.cpp:49:
+[2.250s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_async_transceiver.h: In member function ‘virtual void sl::internal::IAsyncProtocolCodec::onChannelError(u_result)’:
+[2.250s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_async_transceiver.h:90:48: warning: unused parameter ‘errCode’ [-Wunused-parameter]
+[2.250s]    90 |         virtual void   onChannelError(u_result errCode) {}
+[2.250s]       |                                       ~~~~~~~~~^~~~~~~
+[2.288s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_protocol.h:36,
+[2.288s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:39,
+[2.288s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sdkcommon.h:49,
+[2.288s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidarprotocol_codec.cpp:35:
+[2.288s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16: warning: ISO C++ forbids zero-size array ‘data’ [-Wpedantic]
+[2.288s]    66 |     sl_u8 data[0];
+[2.288s]       |                ^
+[2.288s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_cmd.h:36,
+[2.289s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:40:
+[2.289s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20: warning: ISO C++ forbids zero-size array ‘payload’ [-Wpedantic]
+[2.289s]   324 |     sl_u8  payload[0];
+[2.289s]       |                    ^
+[2.298s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_async_transceiver.cpp:44:
+[2.299s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_async_transceiver.h: In member function ‘virtual void sl::internal::IAsyncProtocolCodec::onChannelError(u_result)’:
+[2.299s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_async_transceiver.h:90:48: warning: unused parameter ‘errCode’ [-Wunused-parameter]
+[2.299s]    90 |         virtual void   onChannelError(u_result errCode) {}
+[2.299s]       |                                       ~~~~~~~~~^~~~~~~
+[2.319s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_protocol.h:36,
+[2.320s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:39,
+[2.320s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sdkcommon.h:49,
+[2.320s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp:33:
+[2.320s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16: warning: ISO C++ forbids zero-size array ‘data’ [-Wpedantic]
+[2.320s]    66 |     sl_u8 data[0];
+[2.320s]       |                ^
+[2.320s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar_cmd.h:36,
+[2.320s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/rplidar.h:40:
+[2.320s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20: warning: ISO C++ forbids zero-size array ‘payload’ [-Wpedantic]
+[2.320s]   324 |     sl_u8  payload[0];
+[2.320s]       |                    ^
+[2.334s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp:50:
+[2.334s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h: In member function ‘virtual void sl::internal::LIDARSampleDataListener::onCustomSampleDataDecoded(_u8, _u32, const void*, size_t)’:
+[2.334s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:54:52: warning: unused parameter ‘ansType’ [-Wunused-parameter]
+[2.334s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[2.334s]       |                                                ~~~~^~~~~~~
+[2.334s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:54:66: warning: unused parameter ‘customCode’ [-Wunused-parameter]
+[2.334s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[2.334s]       |                                                             ~~~~~^~~~~~~~~~
+[2.334s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:54:90: warning: unused parameter ‘data’ [-Wunused-parameter]
+[2.334s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[2.335s]       |                                                                              ~~~~~~~~~~~~^~~~
+[2.335s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:54:103: warning: unused parameter ‘size’ [-Wunused-parameter]
+[2.335s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[2.335s]       |                                                                                                ~~~~~~~^~~~
+[2.335s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h: In member function ‘virtual void sl::internal::LIDARSampleDataListener::onDecodingError(int, _u8, const void*, size_t)’:
+[2.335s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:56:42: warning: unused parameter ‘errMsg’ [-Wunused-parameter]
+[2.335s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[2.335s]       |                                      ~~~~^~~~~~
+[2.335s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:56:54: warning: unused parameter ‘ansType’ [-Wunused-parameter]
+[2.335s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[2.335s]       |                                                  ~~~~^~~~~~~
+[2.335s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:56:75: warning: unused parameter ‘payload’ [-Wunused-parameter]
+[2.335s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[2.335s]       |                                                               ~~~~~~~~~~~~^~~~~~~
+[2.335s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:56:91: warning: unused parameter ‘size’ [-Wunused-parameter]
+[2.335s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[2.335s]       |                                                                                    ~~~~~~~^~~~
+[2.342s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp:51:
+[2.342s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_async_transceiver.h: In member function ‘virtual void sl::internal::IAsyncProtocolCodec::onChannelError(u_result)’:
+[2.342s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_async_transceiver.h:90:48: warning: unused parameter ‘errCode’ [-Wunused-parameter]
+[2.343s]    90 |         virtual void   onChannelError(u_result errCode) {}
+[2.343s]       |                                       ~~~~~~~~~^~~~~~~
+[2.363s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidarprotocol_codec.cpp:49:
+[2.363s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_async_transceiver.h: In member function ‘virtual void sl::internal::IAsyncProtocolCodec::onChannelError(u_result)’:
+[2.364s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_async_transceiver.h:90:48: warning: unused parameter ‘errCode’ [-Wunused-parameter]
+[2.364s]    90 |         virtual void   onChannelError(u_result errCode) {}
+[2.364s]       |                                       ~~~~~~~~~^~~~~~~
+[2.368s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp: In member function ‘virtual sl_result sl::SlamtecLidarDriver::reset(sl_u32)’:
+[2.368s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp:511:32: warning: unused parameter ‘timeoutInMs’ [-Wunused-parameter]
+[2.368s]   511 |         sl_result reset(sl_u32 timeoutInMs = DEFAULT_TIMEOUT)
+[2.368s]       |                         ~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[2.371s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp: In member function ‘virtual sl_result sl::SlamtecLidarDriver::startScan(bool, bool, sl_u32, sl::LidarScanMode*)’:
+[2.371s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp:586:69: warning: unused parameter ‘options’ [-Wunused-parameter]
+[2.371s]   586 |         sl_result startScan(bool force, bool useTypicalScan, sl_u32 options = 0, LidarScanMode* outUsedScanMode = nullptr)
+[2.371s]       |                                                              ~~~~~~~^~~~~~~~~~~
+[2.372s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp: In member function ‘virtual sl_result sl::SlamtecLidarDriver::stop(sl_u32)’:
+[2.372s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp:763:31: warning: unused parameter ‘timeout’ [-Wunused-parameter]
+[2.372s]   763 |         sl_result stop(sl_u32 timeout = DEFAULT_TIMEOUT)
+[2.372s]       |                        ~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~
+[2.373s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp: In member function ‘virtual sl_result sl::SlamtecLidarDriver::getFrequency(const sl::LidarScanMode&, const sl_lidar_response_measurement_node_hq_t*, size_t, float&)’:
+[2.374s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp:880:110: warning: unused parameter ‘nodes’ [-Wunused-parameter]
+[2.374s]   880 |         sl_result getFrequency(const LidarScanMode& scanMode, const sl_lidar_response_measurement_node_hq_t* nodes, size_t count, float& frequency)
+[2.374s]       |                                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+[2.375s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp: In member function ‘virtual sl_result sl::SlamtecLidarDriver::getMotorInfo(sl::LidarMotorInfo&, sl_u32)’:
+[2.375s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp:1023:66: warning: unused parameter ‘timeoutInMs’ [-Wunused-parameter]
+[2.375s]  1023 |         sl_result getMotorInfo(LidarMotorInfo &motorInfo, sl_u32 timeoutInMs)
+[2.375s]       |                                                           ~~~~~~~^~~~~~~~~~~
+[2.376s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp: In member function ‘u_result sl::SlamtecLidarDriver::getScanModeCount(sl_u16&, sl_u32)’:
+[2.376s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp:1199:61: warning: unused parameter ‘timeoutInMs’ [-Wunused-parameter]
+[2.376s]  1199 |         u_result getScanModeCount(sl_u16& modeCount, sl_u32 timeoutInMs = DEFAULT_TIMEOUT)
+[2.376s]       |                                                      ~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[2.404s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp: In instantiation of ‘void sl::RawSampleNodeHolder<T>::pushNode(_u64, const T*) [with T = sl_lidar_response_measurement_node_hq_t; _u64 = long unsigned int]’:
+[2.404s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp:1648:42:   required from here
+[2.405s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp:202:28: warning: unused parameter ‘timestamp_uS’ [-Wunused-parameter]
+[2.405s]   202 |         void pushNode(_u64 timestamp_uS, const T* node)
+[2.405s]       |                       ~~~~~^~~~~~~~~~~~
+[2.406s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp:50:
+[2.406s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h: In member function ‘virtual void sl::internal::LIDARSampleDataListener::onCustomSampleDataDecoded(_u8, _u32, const void*, size_t)’:
+[2.407s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:54:52: warning: unused parameter ‘ansType’ [-Wunused-parameter]
+[2.407s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[2.407s]       |                                                ~~~~^~~~~~~
+[2.407s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:54:66: warning: unused parameter ‘customCode’ [-Wunused-parameter]
+[2.407s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[2.407s]       |                                                             ~~~~~^~~~~~~~~~
+[2.407s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:54:90: warning: unused parameter ‘data’ [-Wunused-parameter]
+[2.407s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[2.407s]       |                                                                              ~~~~~~~~~~~~^~~~
+[2.407s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:54:103: warning: unused parameter ‘size’ [-Wunused-parameter]
+[2.407s]    54 |         virtual void onCustomSampleDataDecoded(_u8 ansType, _u32 customCode, const void* data, size_t size) {}
+[2.408s]       |                                                                                                ~~~~~~~^~~~
+[2.408s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h: In member function ‘virtual void sl::internal::LIDARSampleDataListener::onDecodingError(int, _u8, const void*, size_t)’:
+[2.408s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:56:42: warning: unused parameter ‘errMsg’ [-Wunused-parameter]
+[2.408s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[2.408s]       |                                      ~~~~^~~~~~
+[2.408s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:56:54: warning: unused parameter ‘ansType’ [-Wunused-parameter]
+[2.408s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[2.408s]       |                                                  ~~~~^~~~~~~
+[2.408s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:56:75: warning: unused parameter ‘payload’ [-Wunused-parameter]
+[2.408s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[2.408s]       |                                                               ~~~~~~~~~~~~^~~~~~~
+[2.408s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/dataunpacker/dataunpacker.h:56:91: warning: unused parameter ‘size’ [-Wunused-parameter]
+[2.408s]    56 |         virtual void onDecodingError(int errMsg, _u8 ansType, const void* payload, size_t size) {}
+[2.408s]       |                                                                                    ~~~~~~~^~~~
+[2.413s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp:51:
+[2.413s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_async_transceiver.h: In member function ‘virtual void sl::internal::IAsyncProtocolCodec::onChannelError(u_result)’:
+[2.414s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_async_transceiver.h:90:48: warning: unused parameter ‘errCode’ [-Wunused-parameter]
+[2.414s]    90 |         virtual void   onChannelError(u_result errCode) {}
+[2.414s]       |                                       ~~~~~~~~~^~~~~~~
+[2.434s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp: In member function ‘virtual sl_result sl::SlamtecLidarDriver::reset(sl_u32)’:
+[2.434s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp:511:32: warning: unused parameter ‘timeoutInMs’ [-Wunused-parameter]
+[2.434s]   511 |         sl_result reset(sl_u32 timeoutInMs = DEFAULT_TIMEOUT)
+[2.434s]       |                         ~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[2.436s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp: In member function ‘virtual sl_result sl::SlamtecLidarDriver::startScan(bool, bool, sl_u32, sl::LidarScanMode*)’:
+[2.436s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp:586:69: warning: unused parameter ‘options’ [-Wunused-parameter]
+[2.436s]   586 |         sl_result startScan(bool force, bool useTypicalScan, sl_u32 options = 0, LidarScanMode* outUsedScanMode = nullptr)
+[2.436s]       |                                                              ~~~~~~~^~~~~~~~~~~
+[2.437s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp: In member function ‘virtual sl_result sl::SlamtecLidarDriver::stop(sl_u32)’:
+[2.438s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp:763:31: warning: unused parameter ‘timeout’ [-Wunused-parameter]
+[2.438s]   763 |         sl_result stop(sl_u32 timeout = DEFAULT_TIMEOUT)
+[2.438s]       |                        ~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~
+[2.438s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp: In member function ‘virtual sl_result sl::SlamtecLidarDriver::getFrequency(const sl::LidarScanMode&, const sl_lidar_response_measurement_node_hq_t*, size_t, float&)’:
+[2.439s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp:880:110: warning: unused parameter ‘nodes’ [-Wunused-parameter]
+[2.439s]   880 |         sl_result getFrequency(const LidarScanMode& scanMode, const sl_lidar_response_measurement_node_hq_t* nodes, size_t count, float& frequency)
+[2.439s]       |                                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+[2.440s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp: In member function ‘virtual sl_result sl::SlamtecLidarDriver::getMotorInfo(sl::LidarMotorInfo&, sl_u32)’:
+[2.440s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp:1023:66: warning: unused parameter ‘timeoutInMs’ [-Wunused-parameter]
+[2.440s]  1023 |         sl_result getMotorInfo(LidarMotorInfo &motorInfo, sl_u32 timeoutInMs)
+[2.440s]       |                                                           ~~~~~~~^~~~~~~~~~~
+[2.441s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp: In member function ‘u_result sl::SlamtecLidarDriver::getScanModeCount(sl_u16&, sl_u32)’:
+[2.441s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp:1199:61: warning: unused parameter ‘timeoutInMs’ [-Wunused-parameter]
+[2.441s]  1199 |         u_result getScanModeCount(sl_u16& modeCount, sl_u32 timeoutInMs = DEFAULT_TIMEOUT)
+[2.441s]       |                                                      ~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[2.466s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp: In instantiation of ‘void sl::RawSampleNodeHolder<T>::pushNode(_u64, const T*) [with T = sl_lidar_response_measurement_node_hq_t; _u64 = long unsigned int]’:
+[2.466s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp:1648:42:   required from here
+[2.466s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp:202:28: warning: unused parameter ‘timestamp_uS’ [-Wunused-parameter]
+[2.466s]   202 |         void pushNode(_u64 timestamp_uS, const T* node)
+[2.466s]       |                       ~~~~~^~~~~~~~~~~~
+[2.479s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp: At global scope:
+[2.479s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp:83:17: warning: ‘void sl::convert(const sl_lidar_response_measurement_node_hq_t&, sl_lidar_response_measurement_node_t&)’ defined but not used [-Wunused-function]
+[2.479s]    83 |     static void convert(const sl_lidar_response_measurement_node_hq_t& from, sl_lidar_response_measurement_node_t& to)
+[2.479s]       |                 ^~~~~~~
+[2.479s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp:75:17: warning: ‘void sl::convert(const sl_lidar_response_measurement_node_t&, sl_lidar_response_measurement_node_hq_t&)’ defined but not used [-Wunused-function]
+[2.479s]    75 |     static void convert(const sl_lidar_response_measurement_node_t& from, sl_lidar_response_measurement_node_hq_t& to)
+[2.479s]       |                 ^~~~~~~
+[2.480s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp:70:17: warning: ‘void sl::printDeprecationWarn(const char*, const char*)’ defined but not used [-Wunused-function]
+[2.480s]    70 |     static void printDeprecationWarn(const char* fn, const char* replacement)
+[2.480s]       |                 ^~~~~~~~~~~~~~~~~~~~
+[2.536s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp: At global scope:
+[2.536s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp:83:17: warning: ‘void sl::convert(const sl_lidar_response_measurement_node_hq_t&, sl_lidar_response_measurement_node_t&)’ defined but not used [-Wunused-function]
+[2.536s]    83 |     static void convert(const sl_lidar_response_measurement_node_hq_t& from, sl_lidar_response_measurement_node_t& to)
+[2.536s]       |                 ^~~~~~~
+[2.536s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp:75:17: warning: ‘void sl::convert(const sl_lidar_response_measurement_node_t&, sl_lidar_response_measurement_node_hq_t&)’ defined but not used [-Wunused-function]
+[2.536s]    75 |     static void convert(const sl_lidar_response_measurement_node_t& from, sl_lidar_response_measurement_node_hq_t& to)
+[2.536s]       |                 ^~~~~~~
+[2.536s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/src/sl_lidar_driver.cpp:70:17: warning: ‘void sl::printDeprecationWarn(const char*, const char*)’ defined but not used [-Wunused-function]
+[2.537s]    70 |     static void printDeprecationWarn(const char* fn, const char* replacement)
+[2.537s]       |                 ^~~~~~~~~~~~~~~~~~~~
+[3.389s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:41,
+[3.389s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_driver.h:54,
+[3.389s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar.h:36,
+[3.389s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/src/rplidar_node.cpp:38:
+[3.389s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16: warning: ISO C++ forbids zero-size array ‘data’ [-Wpedantic]
+[3.389s]    66 |     sl_u8 data[0];
+[3.389s]       |                ^
+[3.389s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20: warning: ISO C++ forbids zero-size array ‘payload’ [-Wpedantic]
+[3.389s]   324 |     sl_u8  payload[0];
+[3.389s]       |                    ^
+[3.394s] In file included from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:41,
+[3.394s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_driver.h:54,
+[3.394s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar.h:36,
+[3.394s]                  from /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/src/rplidar_node.cpp:38:
+[3.394s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_protocol.h:66:16: warning: ISO C++ forbids zero-size array ‘data’ [-Wpedantic]
+[3.394s]    66 |     sl_u8 data[0];
+[3.394s]       |                ^
+[3.394s] /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/sdk/include/sl_lidar_cmd.h:324:20: warning: ISO C++ forbids zero-size array ‘payload’ [-Wpedantic]
+[3.394s]   324 |     sl_u8  payload[0];
+[3.394s]       |                    ^
+[5.475s] [ 94%] Linking CXX executable rplidar_node
+[5.497s] [ 97%] Linking CXX executable rplidar_composition
+[5.660s] [ 97%] Built target rplidar_node
+[5.678s] [ 97%] Built target rplidar_composition
+[6.808s] [100%] Linking CXX executable rplidar_client
+[6.978s] [100%] Built target rplidar_client
+[6.985s] Invoked command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/rplidar_ros' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/rplidar_ros -- -j20 -l20
+[6.985s] Invoking command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/rplidar_ros': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/rplidar_ros
+[6.992s] -- Install configuration: ""
+[6.993s] -- Execute custom install script
+[6.993s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/rplidar_a1_launch.py
+[6.998s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/rplidar_a2m12_launch.py
+[7.003s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/rplidar_a2m7_launch.py
+[7.011s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/rplidar_a2m8_launch.py
+[7.016s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/rplidar_a3_launch.py
+[7.021s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/rplidar_c1_launch.py
+[7.027s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/rplidar_s1_launch.py
+[7.033s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/rplidar_s1_tcp_launch.py
+[7.038s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/rplidar_s2_launch.py
+[7.044s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/rplidar_s2e_launch.py
+[7.049s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/rplidar_s3_launch.py
+[7.055s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/rplidar_t1_launch.py
+[7.061s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a1_launch.py
+[7.067s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a2m12_launch.py
+[7.074s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a2m7_launch.py
+[7.080s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a2m8_launch.py
+[7.086s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a3_launch.py
+[7.091s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_c1_launch.py
+[7.099s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s1_launch.py
+[7.104s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s1_tcp_launch.py
+[7.109s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s2_launch.py
+[7.115s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s2e_launch.py
+[7.121s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s3_launch.py
+[7.126s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_t1_launch.py
+[7.133s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/rviz/rplidar_ros.rviz
+[7.141s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/lib/rplidar_ros/rplidar_node
+[7.146s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/lib/rplidar_ros/rplidar_composition
+[7.152s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/lib/rplidar_ros/rplidar_client
+[7.160s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/ament_index/resource_index/package_run_dependencies/rplidar_ros
+[7.166s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/ament_index/resource_index/parent_prefix_path/rplidar_ros
+[7.171s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/environment/ament_prefix_path.sh
+[7.178s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/environment/ament_prefix_path.dsv
+[7.184s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/environment/path.sh
+[7.189s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/environment/path.dsv
+[7.196s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/local_setup.bash
+[7.203s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/local_setup.sh
+[7.208s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/local_setup.zsh
+[7.214s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/local_setup.dsv
+[7.220s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/package.dsv
+[7.225s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/ament_index/resource_index/packages/rplidar_ros
+[7.231s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/cmake/ament_cmake_export_dependencies-extras.cmake
+[7.237s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/cmake/ament_cmake_export_include_directories-extras.cmake
+[7.242s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/cmake/rplidar_rosConfig.cmake
+[7.247s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/cmake/rplidar_rosConfig-version.cmake
+[7.253s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/package.xml
+[7.260s] Invoked command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/rplidar_ros' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/rplidar_ros

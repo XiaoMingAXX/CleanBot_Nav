@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<library path="cleanbot_control">
+  <class name="cleanbot_control/CleanBotHardwareInterface"
+         type="cleanbot_control::CleanBotHardwareInterface"
+         base_class_type="hardware_interface::SystemInterface">
+    <description>
+      CleanBot硬件接口插件，用于ros2_control框架
+    </description>
+  </class>
+</library>
+
+

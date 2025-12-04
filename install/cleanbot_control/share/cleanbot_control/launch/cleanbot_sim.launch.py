@@ -1,0 +1,1 @@
+/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_control/launch/cleanbot_sim.launch.py

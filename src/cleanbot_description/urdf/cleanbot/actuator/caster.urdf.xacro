@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+<xacro:include filename="$(find cleanbot_description)/urdf/cleanbot/common_inertia.xacro"/>
+   <xacro:macro name="caster_xacro" params="caster_name xyz">
+        <!--IMU部件-->
+        <link name="${caster_name}_link">
+            <!-- Visual representation of the base link -->
+            <visual>
+                <!--沿着自己几何中心的偏移和旋转-->
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <!--几何形状-->
+                <geometry>
+                    <sphere radius="0.02"/>
+                </geometry>
+                <!--材质-->
+                <material name="black">
+                    <color rgba="0 0 0 0.8"/>
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <sphere radius="0.02"/>
+                </geometry>
+                <material name="black">
+                    <color rgba="0 0 0 0.8"/>
+                </material>
+            </collision>
+            <xacro:sphere_inertia m="0.03" r="0.02"/>
+        </link>
+
+        <!--定义关节：base_link到imu_link-->
+        <joint name="${caster_name}_joint" type="fixed">
+            <parent link="base_link"/>
+            <child link="${caster_name}_link"/>
+            <origin xyz="${xyz}" rpy="0 0 0"/>
+     
+        </joint>
+
+        <gazebo reference="${caster_name}_link">
+            <material>Gazebo/Black</material>
+            <mu1 value="0.0"/>
+            <mu2 value="0.0"/>
+            <kp value="1000000000.0"/>
+            <kd value="1.0"/>
+        </gazebo>
+   </xacro:macro>
+    
+</robot>

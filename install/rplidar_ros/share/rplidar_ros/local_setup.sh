@@ -1,0 +1,1 @@
+/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/rplidar_ros/ament_cmake_environment_hooks/local_setup.sh

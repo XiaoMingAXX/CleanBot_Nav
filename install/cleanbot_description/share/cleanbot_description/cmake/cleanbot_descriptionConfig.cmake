@@ -1,0 +1,1 @@
+/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_description/ament_cmake_core/cleanbot_descriptionConfig.cmake

@@ -1,0 +1,1 @@
+/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros/launch/view_rplidar_a2m7_launch.py

@@ -1,0 +1,4 @@
+source;share/cleanbot_description/local_setup.bash
+source;share/cleanbot_description/local_setup.dsv
+source;share/cleanbot_description/local_setup.sh
+source;share/cleanbot_description/local_setup.zsh
