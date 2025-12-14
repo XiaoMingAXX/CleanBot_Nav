@@ -34,7 +34,7 @@ diff_drive_controller:
 
     open_loop: true  # 开环模式
     position_feedback: false  # 完全不使用反馈！
-    enable_odom_tf: true
+    enable_odom_tf: false
 
     cmd_vel_timeout: 10.0  # 增加到10秒
     publish_limited_velocity: true
@@ -69,3 +69,4 @@ joint_state_broadcaster:
       - right_wheel_joint
 
 
+我准备使用slam_toolbox来建图，AMCL来做导航下的定位，前端指令通过切换不同节点来实现导航与建图的切换。整体使用Navigation2框架，请你给我纂写一个实现文档。
