@@ -631,6 +631,28 @@
                 <button class="danger" onclick="stopRobot()">🛑 紧急停止</button>
             </div>
 
+            <!-- 导航模式控制 -->
+            <div class="card">
+                <h2>🗺️ 导航模式</h2>
+                <div class="button-group">
+                    <button onclick="setNavigationMode(0)" id="nav-mode-0" class="active">手动</button>
+                    <button onclick="setNavigationMode(1)" id="nav-mode-1">建图</button>
+                    <button onclick="setNavigationMode(2)" id="nav-mode-2">导航</button>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">当前导航模式</span>
+                    <span class="data-value" id="nav-mode-status">手动</span>
+                </div>
+                <div class="control-section" style="margin-top: 15px;">
+                    <button onclick="saveMap()" id="save-map-btn" disabled style="width: 100%; background: var(--success);">
+                        💾 保存地图
+                    </button>
+                </div>
+                <div class="data-row" style="margin-top: 10px; font-size: 0.9em; color: var(--text-secondary);">
+                    <span id="nav-info">在建图模式下可保存地图</span>
+                </div>
+            </div>
+
             <!-- 工作模式 -->
             <div class="card">
                 <h2>工作模式</h2>

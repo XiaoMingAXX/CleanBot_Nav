@@ -11,9 +11,10 @@ WebSocket控制节点 - 提供Web界面与机器人的交互
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Imu, JointState
-from std_msgs.msg import Bool, UInt8MultiArray, String
+from std_msgs.msg import Bool, UInt8MultiArray, String, UInt8
 from geometry_msgs.msg import Twist, TwistStamped
 from nav_msgs.msg import Odometry
+from std_srvs.srv import Empty
 import asyncio
 import json
 import threading
@@ -99,6 +100,18 @@ class WebControlNode(Node):
         self.control_cmd_pub = self.create_publisher(
             UInt8MultiArray, 'control_command', 10)
         self.port_scan_pub = self.create_publisher(String, 'scan_connect_port', 10)
+        
+        # 导航模式发布器
+        self.nav_mode_pub = self.create_publisher(UInt8, 'navigation/mode_cmd', 10)
+        
+        # 订阅导航模式状态
+        self.nav_mode_status_sub = self.create_subscription(
+            UInt8, 'navigation/mode_status', self.nav_mode_status_callback, 10)
+        self.nav_info_sub = self.create_subscription(
+            String, 'navigation/info', self.nav_info_callback, 10)
+        
+        # 导航相关服务客户端
+        self.save_map_client = self.create_client(Empty, 'navigation/save_map')
         
         # 定时推送状态数据
         self.create_timer(0.1, self.broadcast_state)  # 10Hz
@@ -209,6 +222,42 @@ class WebControlNode(Node):
         """系统状态回调"""
         with self.state_lock:
             self.robot_state['system_status'] = msg.data
+    
+    def nav_mode_status_callback(self, msg: UInt8):
+        """导航模式状态回调"""
+        with self.state_lock:
+            if 'navigation' not in self.robot_state:
+                self.robot_state['navigation'] = {}
+            self.robot_state['navigation']['mode'] = msg.data
+    
+    def nav_info_callback(self, msg: String):
+        """导航信息回调"""
+        # 通过WebSocket发送导航信息给前端
+        if hasattr(self, 'loop') and self.loop:
+            try:
+                asyncio.run_coroutine_threadsafe(
+                    self._send_nav_info(msg.data),
+                    self.loop
+                )
+            except Exception as e:
+                self.get_logger().error(f'发送导航信息失败: {e}')
+    
+    async def _send_nav_info(self, info: str):
+        """异步发送导航信息到WebSocket客户端"""
+        if not self.ws_clients:
+            return
+        
+        message = json.dumps({
+            'type': 'navigation_info',
+            'message': info
+        })
+        
+        for ws in list(self.ws_clients):
+            try:
+                if not ws.closed:
+                    await ws.send_str(message)
+            except Exception:
+                pass
     
     # ==================== WebSocket相关 ====================
     
@@ -388,15 +437,36 @@ class WebControlNode(Node):
                     'data': {'message': '地图数据接口已预留'}
                 }))
             
+            elif cmd_type == 'navigation_mode':
+                # 设置导航模式
+                mode = data.get('mode', 0)
+                msg = UInt8()
+                msg.data = int(mode)
+                self.nav_mode_pub.publish(msg)
+                self.get_logger().info(f'切换导航模式: {mode}')
+            
             elif cmd_type == 'save_map':
-                # 保存地图（预留接口）
-                map_name = data.get('name', 'default_map')
-                self.get_logger().info(f'保存地图: {map_name}')
-                # TODO: 调用map_saver服务
-                await ws.send_str(json.dumps({
-                    'type': 'info',
-                    'message': f'地图保存接口已预留: {map_name}'
-                }))
+                # 保存地图
+                self.get_logger().info('调用保存地图服务...')
+                if self.save_map_client.wait_for_service(timeout_sec=1.0):
+                    try:
+                        request = Empty.Request()
+                        future = self.save_map_client.call_async(request)
+                        await ws.send_str(json.dumps({
+                            'type': 'info',
+                            'message': '正在保存地图...'
+                        }))
+                    except Exception as e:
+                        self.get_logger().error(f'调用保存地图服务失败: {e}')
+                        await ws.send_str(json.dumps({
+                            'type': 'error',
+                            'message': f'保存地图失败: {str(e)}'
+                        }))
+                else:
+                    await ws.send_str(json.dumps({
+                        'type': 'error',
+                        'message': '保存地图服务不可用'
+                    }))
             
             elif cmd_type == 'load_map':
                 # 加载地图（预留接口）

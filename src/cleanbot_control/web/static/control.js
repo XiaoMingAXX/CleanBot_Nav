@@ -23,6 +23,11 @@ const workModeNames = ['待机', '自动全屋', '沿边', '弓形', '遥控', '
 const dockStatusNames = ['无', '接近', '成功', '失败'];
 let currentMode = 0;
 
+// 导航模式映射
+const navigationModeNames = ['手动', '建图', '导航'];
+let currentNavigationMode = 0;  // 0=手动, 1=建图, 2=导航
+let joystickEnabled = true;
+
 // 初始化
 window.onload = function() {
     initMap();
@@ -564,6 +569,11 @@ function endDrag() {
 }
 
 function sendVelocityCommand() {
+    // 在导航模式下禁用摇杆控制
+    if (!joystickEnabled) {
+        return;
+    }
+    
     const msg = {
         type: 'cmd_vel',
         linear: currentLinear,
@@ -679,10 +689,74 @@ function addLog(message) {
     logContainer.scrollTop = logContainer.scrollHeight;
 }
 
-// ==================== 导航功能预留接口 ====================
+// ==================== 导航模式控制 ====================
+
+// 设置导航模式
+function setNavigationMode(mode) {
+    // 更新按钮状态
+    for (let i = 0; i < 3; i++) {
+        const btn = document.getElementById(`nav-mode-${i}`);
+        if (btn) {
+            if (i === mode) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        }
+    }
+    
+    currentNavigationMode = mode;
+    
+    // 发送模式切换命令到ROS
+    sendWebSocketMessage({
+        type: 'navigation_mode',
+        mode: mode
+    });
+    
+    // 更新UI
+    document.getElementById('nav-mode-status').textContent = navigationModeNames[mode];
+    
+    // 在导航模式下禁用摇杆
+    joystickEnabled = (mode === 0);  // 只有手动模式下才能用摇杆
+    
+    // 更新保存地图按钮状态
+    const saveBtn = document.getElementById('save-map-btn');
+    if (mode === 1) {  // 建图模式
+        saveBtn.disabled = false;
+        document.getElementById('nav-info').textContent = '建图中，可保存地图';
+    } else if (mode === 2) {  // 导航模式
+        saveBtn.disabled = true;
+        document.getElementById('nav-info').textContent = '导航模式下摇杆已禁用';
+    } else {  // 手动模式
+        saveBtn.disabled = true;
+        document.getElementById('nav-info').textContent = '手动控制模式';
+    }
+    
+    addLog(`切换导航模式: ${navigationModeNames[mode]}`);
+}
+
+// 保存地图
+function saveMap() {
+    if (currentNavigationMode !== 1) {
+        addLog('⚠️ 仅在建图模式下可以保存地图');
+        return;
+    }
+    
+    sendWebSocketMessage({
+        type: 'save_map'
+    });
+    addLog('发送保存地图请求...');
+}
+
+// ==================== 导航功能 ====================
 
 // 发送导航目标点
 function sendNavigationGoal(x, y, theta = 0) {
+    if (currentNavigationMode !== 2) {
+        addLog('⚠️ 请先切换到导航模式');
+        return;
+    }
+    
     sendWebSocketMessage({
         type: 'navigation_goal',
         x: x,
@@ -707,15 +781,6 @@ function requestMapUpdate() {
     sendWebSocketMessage({
         type: 'request_map'
     });
-}
-
-// 保存地图
-function saveMap(mapName) {
-    sendWebSocketMessage({
-        type: 'save_map',
-        name: mapName
-    });
-    addLog(`保存地图: ${mapName}`);
 }
 
 // 加载地图
