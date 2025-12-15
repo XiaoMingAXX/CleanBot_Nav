@@ -1,0 +1,339 @@
+[0.055s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[0.055s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=20, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x7c0312582330>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7c03125822d0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7c03125822d0>>)
+[0.079s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.079s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.079s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.079s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.079s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.079s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.079s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws'
+[0.079s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.080s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.080s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.080s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.080s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.080s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.080s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.080s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.080s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.095s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.095s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.095s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.095s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.095s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.095s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.095s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.095s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.095s] Level 1:colcon.colcon_core.package_identification:_identify(docs) by extensions ['ignore', 'ignore_ament_install']
+[0.095s] Level 1:colcon.colcon_core.package_identification:_identify(docs) by extension 'ignore'
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(docs) by extension 'ignore_ament_install'
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(docs) by extensions ['colcon_pkg']
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(docs) by extension 'colcon_pkg'
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(docs) by extensions ['colcon_meta']
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(docs) by extension 'colcon_meta'
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(docs) by extensions ['ros']
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(docs) by extension 'ros'
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(docs) by extensions ['cmake', 'python']
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(docs) by extension 'cmake'
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(docs) by extension 'python'
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(docs) by extensions ['python_setup_py']
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(docs) by extension 'python_setup_py'
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(src/cleanbot_control) by extensions ['ignore', 'ignore_ament_install']
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(src/cleanbot_control) by extension 'ignore'
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(src/cleanbot_control) by extension 'ignore_ament_install'
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(src/cleanbot_control) by extensions ['colcon_pkg']
+[0.096s] Level 1:colcon.colcon_core.package_identification:_identify(src/cleanbot_control) by extension 'colcon_pkg'
+[0.097s] Level 1:colcon.colcon_core.package_identification:_identify(src/cleanbot_control) by extensions ['colcon_meta']
+[0.097s] Level 1:colcon.colcon_core.package_identification:_identify(src/cleanbot_control) by extension 'colcon_meta'
+[0.097s] Level 1:colcon.colcon_core.package_identification:_identify(src/cleanbot_control) by extensions ['ros']
+[0.097s] Level 1:colcon.colcon_core.package_identification:_identify(src/cleanbot_control) by extension 'ros'
+[0.099s] DEBUG:colcon.colcon_core.package_identification:Package 'src/cleanbot_control' with type 'ros.ament_cmake' and name 'cleanbot_control'
+[0.099s] Level 1:colcon.colcon_core.package_identification:_identify(src/cleanbot_description) by extensions ['ignore', 'ignore_ament_install']
+[0.099s] Level 1:colcon.colcon_core.package_identification:_identify(src/cleanbot_description) by extension 'ignore'
+[0.099s] Level 1:colcon.colcon_core.package_identification:_identify(src/cleanbot_description) by extension 'ignore_ament_install'
+[0.099s] Level 1:colcon.colcon_core.package_identification:_identify(src/cleanbot_description) by extensions ['colcon_pkg']
+[0.099s] Level 1:colcon.colcon_core.package_identification:_identify(src/cleanbot_description) by extension 'colcon_pkg'
+[0.099s] Level 1:colcon.colcon_core.package_identification:_identify(src/cleanbot_description) by extensions ['colcon_meta']
+[0.099s] Level 1:colcon.colcon_core.package_identification:_identify(src/cleanbot_description) by extension 'colcon_meta'
+[0.099s] Level 1:colcon.colcon_core.package_identification:_identify(src/cleanbot_description) by extensions ['ros']
+[0.099s] Level 1:colcon.colcon_core.package_identification:_identify(src/cleanbot_description) by extension 'ros'
+[0.099s] DEBUG:colcon.colcon_core.package_identification:Package 'src/cleanbot_description' with type 'ros.ament_cmake' and name 'cleanbot_description'
+[0.099s] Level 1:colcon.colcon_core.package_identification:_identify(src/cleanbot_navigation) by extensions ['ignore', 'ignore_ament_install']
+[0.100s] Level 1:colcon.colcon_core.package_identification:_identify(src/cleanbot_navigation) by extension 'ignore'
+[0.100s] Level 1:colcon.colcon_core.package_identification:_identify(src/cleanbot_navigation) by extension 'ignore_ament_install'
+[0.100s] Level 1:colcon.colcon_core.package_identification:_identify(src/cleanbot_navigation) by extensions ['colcon_pkg']
+[0.100s] Level 1:colcon.colcon_core.package_identification:_identify(src/cleanbot_navigation) by extension 'colcon_pkg'
+[0.100s] Level 1:colcon.colcon_core.package_identification:_identify(src/cleanbot_navigation) by extensions ['colcon_meta']
+[0.100s] Level 1:colcon.colcon_core.package_identification:_identify(src/cleanbot_navigation) by extension 'colcon_meta'
+[0.100s] Level 1:colcon.colcon_core.package_identification:_identify(src/cleanbot_navigation) by extensions ['ros']
+[0.100s] Level 1:colcon.colcon_core.package_identification:_identify(src/cleanbot_navigation) by extension 'ros'
+[0.100s] DEBUG:colcon.colcon_core.package_identification:Package 'src/cleanbot_navigation' with type 'ros.ament_python' and name 'cleanbot_navigation'
+[0.100s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros) by extensions ['ignore', 'ignore_ament_install']
+[0.100s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros) by extension 'ignore'
+[0.100s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros) by extension 'ignore_ament_install'
+[0.100s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros) by extensions ['colcon_pkg']
+[0.100s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros) by extension 'colcon_pkg'
+[0.100s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros) by extensions ['colcon_meta']
+[0.100s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros) by extension 'colcon_meta'
+[0.100s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros) by extensions ['ros']
+[0.100s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros) by extension 'ros'
+[0.101s] DEBUG:colcon.colcon_core.package_identification:Package 'src/rplidar_ros' with type 'ros.ament_cmake' and name 'rplidar_ros'
+[0.101s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.101s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.101s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.101s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.101s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.112s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.112s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.113s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 4 installed packages in /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install
+[0.114s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 422 installed packages in /opt/ros/jazzy
+[0.114s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.141s] Level 5:colcon.colcon_core.verb:set package 'cleanbot_control' build argument 'cmake_args' from command line to 'None'
+[0.141s] Level 5:colcon.colcon_core.verb:set package 'cleanbot_control' build argument 'cmake_target' from command line to 'None'
+[0.141s] Level 5:colcon.colcon_core.verb:set package 'cleanbot_control' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.141s] Level 5:colcon.colcon_core.verb:set package 'cleanbot_control' build argument 'cmake_clean_cache' from command line to 'False'
+[0.141s] Level 5:colcon.colcon_core.verb:set package 'cleanbot_control' build argument 'cmake_clean_first' from command line to 'False'
+[0.141s] Level 5:colcon.colcon_core.verb:set package 'cleanbot_control' build argument 'cmake_force_configure' from command line to 'False'
+[0.141s] Level 5:colcon.colcon_core.verb:set package 'cleanbot_control' build argument 'ament_cmake_args' from command line to 'None'
+[0.141s] Level 5:colcon.colcon_core.verb:set package 'cleanbot_control' build argument 'catkin_cmake_args' from command line to 'None'
+[0.141s] Level 5:colcon.colcon_core.verb:set package 'cleanbot_control' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.141s] DEBUG:colcon.colcon_core.verb:Building package 'cleanbot_control' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_control', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control', 'merge_install': False, 'path': '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_control', 'symlink_install': False, 'test_result_base': None}
+[0.141s] Level 5:colcon.colcon_core.verb:set package 'cleanbot_description' build argument 'cmake_args' from command line to 'None'
+[0.141s] Level 5:colcon.colcon_core.verb:set package 'cleanbot_description' build argument 'cmake_target' from command line to 'None'
+[0.141s] Level 5:colcon.colcon_core.verb:set package 'cleanbot_description' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.141s] Level 5:colcon.colcon_core.verb:set package 'cleanbot_description' build argument 'cmake_clean_cache' from command line to 'False'
+[0.141s] Level 5:colcon.colcon_core.verb:set package 'cleanbot_description' build argument 'cmake_clean_first' from command line to 'False'
+[0.141s] Level 5:colcon.colcon_core.verb:set package 'cleanbot_description' build argument 'cmake_force_configure' from command line to 'False'
+[0.141s] Level 5:colcon.colcon_core.verb:set package 'cleanbot_description' build argument 'ament_cmake_args' from command line to 'None'
+[0.142s] Level 5:colcon.colcon_core.verb:set package 'cleanbot_description' build argument 'catkin_cmake_args' from command line to 'None'
+[0.142s] Level 5:colcon.colcon_core.verb:set package 'cleanbot_description' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.142s] DEBUG:colcon.colcon_core.verb:Building package 'cleanbot_description' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_description', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description', 'merge_install': False, 'path': '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_description', 'symlink_install': False, 'test_result_base': None}
+[0.142s] Level 5:colcon.colcon_core.verb:set package 'cleanbot_navigation' build argument 'cmake_args' from command line to 'None'
+[0.142s] Level 5:colcon.colcon_core.verb:set package 'cleanbot_navigation' build argument 'cmake_target' from command line to 'None'
+[0.142s] Level 5:colcon.colcon_core.verb:set package 'cleanbot_navigation' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.142s] Level 5:colcon.colcon_core.verb:set package 'cleanbot_navigation' build argument 'cmake_clean_cache' from command line to 'False'
+[0.142s] Level 5:colcon.colcon_core.verb:set package 'cleanbot_navigation' build argument 'cmake_clean_first' from command line to 'False'
+[0.142s] Level 5:colcon.colcon_core.verb:set package 'cleanbot_navigation' build argument 'cmake_force_configure' from command line to 'False'
+[0.142s] Level 5:colcon.colcon_core.verb:set package 'cleanbot_navigation' build argument 'ament_cmake_args' from command line to 'None'
+[0.142s] Level 5:colcon.colcon_core.verb:set package 'cleanbot_navigation' build argument 'catkin_cmake_args' from command line to 'None'
+[0.142s] Level 5:colcon.colcon_core.verb:set package 'cleanbot_navigation' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.142s] DEBUG:colcon.colcon_core.verb:Building package 'cleanbot_navigation' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_navigation', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation', 'merge_install': False, 'path': '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_navigation', 'symlink_install': False, 'test_result_base': None}
+[0.142s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'cmake_args' from command line to 'None'
+[0.142s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'cmake_target' from command line to 'None'
+[0.142s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.142s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'cmake_clean_cache' from command line to 'False'
+[0.142s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'cmake_clean_first' from command line to 'False'
+[0.142s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'cmake_force_configure' from command line to 'False'
+[0.142s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'ament_cmake_args' from command line to 'None'
+[0.142s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'catkin_cmake_args' from command line to 'None'
+[0.142s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.142s] DEBUG:colcon.colcon_core.verb:Building package 'rplidar_ros' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/rplidar_ros', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros', 'merge_install': False, 'path': '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros', 'symlink_install': False, 'test_result_base': None}
+[0.142s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.143s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.143s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_control' with build type 'ament_cmake'
+[0.143s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_control'
+[0.144s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.144s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.144s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.147s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_description' with build type 'ament_cmake'
+[0.147s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_description'
+[0.147s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.148s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.149s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_navigation' with build type 'ament_python'
+[0.150s] Level 1:colcon.colcon_core.shell:create_environment_hook('cleanbot_navigation', 'ament_prefix_path')
+[0.150s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/share/cleanbot_navigation/hook/ament_prefix_path.ps1'
+[0.150s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/share/cleanbot_navigation/hook/ament_prefix_path.dsv'
+[0.150s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/share/cleanbot_navigation/hook/ament_prefix_path.sh'
+[0.151s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.151s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.152s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros' with build type 'ament_cmake'
+[0.153s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/rplidar_ros'
+[0.153s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.153s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.157s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_control': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_control -- -j20 -l20
+[0.159s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_description -- -j20 -l20
+[0.281s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_navigation'
+[0.282s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.282s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.286s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_control' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_control -- -j20 -l20
+[0.294s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_control': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_control
+[0.294s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_description -- -j20 -l20
+[0.295s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_description
+[0.298s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/rplidar_ros': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/rplidar_ros -- -j20 -l20
+[0.309s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(cleanbot_description)
+[0.309s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_description
+[0.311s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description' for CMake module files
+[0.311s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description' for CMake config files
+[0.311s] Level 1:colcon.colcon_core.shell:create_environment_hook('cleanbot_description', 'cmake_prefix_path')
+[0.311s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/hook/cmake_prefix_path.ps1'
+[0.312s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/hook/cmake_prefix_path.dsv'
+[0.312s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/hook/cmake_prefix_path.sh'
+[0.313s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/bin'
+[0.313s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/lib/pkgconfig/cleanbot_description.pc'
+[0.313s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/lib/python3.12/site-packages'
+[0.313s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/bin'
+[0.313s] INFO:colcon.colcon_core.shell:Creating package script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/package.ps1'
+[0.314s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/package.dsv'
+[0.314s] INFO:colcon.colcon_core.shell:Creating package script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/package.sh'
+[0.315s] INFO:colcon.colcon_core.shell:Creating package script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/package.bash'
+[0.315s] INFO:colcon.colcon_core.shell:Creating package script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/package.zsh'
+[0.316s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/colcon-core/packages/cleanbot_description)
+[0.316s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(cleanbot_description)
+[0.316s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description' for CMake module files
+[0.316s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description' for CMake config files
+[0.317s] Level 1:colcon.colcon_core.shell:create_environment_hook('cleanbot_description', 'cmake_prefix_path')
+[0.317s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/hook/cmake_prefix_path.ps1'
+[0.317s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/hook/cmake_prefix_path.dsv'
+[0.317s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/hook/cmake_prefix_path.sh'
+[0.317s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/bin'
+[0.317s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/lib/pkgconfig/cleanbot_description.pc'
+[0.318s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/lib/python3.12/site-packages'
+[0.318s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/bin'
+[0.318s] INFO:colcon.colcon_core.shell:Creating package script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/package.ps1'
+[0.318s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/package.dsv'
+[0.318s] INFO:colcon.colcon_core.shell:Creating package script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/package.sh'
+[0.319s] INFO:colcon.colcon_core.shell:Creating package script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/package.bash'
+[0.319s] INFO:colcon.colcon_core.shell:Creating package script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/package.zsh'
+[0.319s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/colcon-core/packages/cleanbot_description)
+[0.320s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(cleanbot_control)
+[0.320s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control' for CMake module files
+[0.321s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_control' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_control
+[0.321s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control' for CMake config files
+[0.322s] Level 1:colcon.colcon_core.shell:create_environment_hook('cleanbot_control', 'cmake_prefix_path')
+[0.322s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/hook/cmake_prefix_path.ps1'
+[0.322s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/hook/cmake_prefix_path.dsv'
+[0.322s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/hook/cmake_prefix_path.sh'
+[0.323s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/lib'
+[0.323s] Level 1:colcon.colcon_core.shell:create_environment_hook('cleanbot_control', 'ld_library_path_lib')
+[0.323s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/hook/ld_library_path_lib.ps1'
+[0.323s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/hook/ld_library_path_lib.dsv'
+[0.323s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/hook/ld_library_path_lib.sh'
+[0.324s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/bin'
+[0.324s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/lib/pkgconfig/cleanbot_control.pc'
+[0.324s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/lib/python3.12/site-packages'
+[0.324s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/bin'
+[0.324s] INFO:colcon.colcon_core.shell:Creating package script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/package.ps1'
+[0.325s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/package.dsv'
+[0.325s] INFO:colcon.colcon_core.shell:Creating package script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/package.sh'
+[0.325s] INFO:colcon.colcon_core.shell:Creating package script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/package.bash'
+[0.325s] INFO:colcon.colcon_core.shell:Creating package script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/package.zsh'
+[0.326s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/colcon-core/packages/cleanbot_control)
+[0.326s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(cleanbot_control)
+[0.326s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control' for CMake module files
+[0.326s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control' for CMake config files
+[0.327s] Level 1:colcon.colcon_core.shell:create_environment_hook('cleanbot_control', 'cmake_prefix_path')
+[0.327s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/hook/cmake_prefix_path.ps1'
+[0.327s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/hook/cmake_prefix_path.dsv'
+[0.327s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/hook/cmake_prefix_path.sh'
+[0.327s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/lib'
+[0.327s] Level 1:colcon.colcon_core.shell:create_environment_hook('cleanbot_control', 'ld_library_path_lib')
+[0.327s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/hook/ld_library_path_lib.ps1'
+[0.328s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/hook/ld_library_path_lib.dsv'
+[0.328s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/hook/ld_library_path_lib.sh'
+[0.328s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/bin'
+[0.328s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/lib/pkgconfig/cleanbot_control.pc'
+[0.328s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/lib/python3.12/site-packages'
+[0.329s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/bin'
+[0.329s] INFO:colcon.colcon_core.shell:Creating package script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/package.ps1'
+[0.329s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/package.dsv'
+[0.329s] INFO:colcon.colcon_core.shell:Creating package script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/package.sh'
+[0.329s] INFO:colcon.colcon_core.shell:Creating package script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/package.bash'
+[0.330s] INFO:colcon.colcon_core.shell:Creating package script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/package.zsh'
+[0.330s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/colcon-core/packages/cleanbot_control)
+[0.349s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/rplidar_ros' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/rplidar_ros -- -j20 -l20
+[0.350s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/rplidar_ros': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/rplidar_ros
+[0.368s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(rplidar_ros)
+[0.368s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros' for CMake module files
+[0.368s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/rplidar_ros' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/rplidar_ros
+[0.368s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros' for CMake config files
+[0.369s] Level 1:colcon.colcon_core.shell:create_environment_hook('rplidar_ros', 'cmake_prefix_path')
+[0.369s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/hook/cmake_prefix_path.ps1'
+[0.369s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/hook/cmake_prefix_path.dsv'
+[0.369s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/hook/cmake_prefix_path.sh'
+[0.370s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/lib'
+[0.370s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/bin'
+[0.370s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/lib/pkgconfig/rplidar_ros.pc'
+[0.370s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/lib/python3.12/site-packages'
+[0.370s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/bin'
+[0.370s] INFO:colcon.colcon_core.shell:Creating package script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/package.ps1'
+[0.370s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/package.dsv'
+[0.371s] INFO:colcon.colcon_core.shell:Creating package script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/package.sh'
+[0.371s] INFO:colcon.colcon_core.shell:Creating package script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/package.bash'
+[0.371s] INFO:colcon.colcon_core.shell:Creating package script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/package.zsh'
+[0.371s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/colcon-core/packages/rplidar_ros)
+[0.371s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(rplidar_ros)
+[0.371s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros' for CMake module files
+[0.372s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros' for CMake config files
+[0.372s] Level 1:colcon.colcon_core.shell:create_environment_hook('rplidar_ros', 'cmake_prefix_path')
+[0.372s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/hook/cmake_prefix_path.ps1'
+[0.372s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/hook/cmake_prefix_path.dsv'
+[0.372s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/hook/cmake_prefix_path.sh'
+[0.373s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/lib'
+[0.373s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/bin'
+[0.373s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/lib/pkgconfig/rplidar_ros.pc'
+[0.373s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/lib/python3.12/site-packages'
+[0.373s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/bin'
+[0.373s] INFO:colcon.colcon_core.shell:Creating package script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/package.ps1'
+[0.373s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/package.dsv'
+[0.374s] INFO:colcon.colcon_core.shell:Creating package script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/package.sh'
+[0.374s] INFO:colcon.colcon_core.shell:Creating package script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/package.bash'
+[0.374s] INFO:colcon.colcon_core.shell:Creating package script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/package.zsh'
+[0.374s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/colcon-core/packages/rplidar_ros)
+[0.603s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_navigation': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_navigation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/cleanbot_navigation build --build-base /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_navigation/build install --record /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_navigation/install.log --single-version-externally-managed install_data
+[0.894s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation' for CMake module files
+[0.894s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_navigation' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_navigation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/cleanbot_navigation build --build-base /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_navigation/build install --record /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_navigation/install.log --single-version-externally-managed install_data
+[0.895s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation' for CMake config files
+[0.895s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/lib'
+[0.895s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/bin'
+[0.895s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/lib/pkgconfig/cleanbot_navigation.pc'
+[0.895s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/lib/python3.12/site-packages'
+[0.895s] Level 1:colcon.colcon_core.shell:create_environment_hook('cleanbot_navigation', 'pythonpath')
+[0.895s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/share/cleanbot_navigation/hook/pythonpath.ps1'
+[0.896s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/share/cleanbot_navigation/hook/pythonpath.dsv'
+[0.896s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/share/cleanbot_navigation/hook/pythonpath.sh'
+[0.896s] Level 1:colcon.colcon_core.environment:checking '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/bin'
+[0.896s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(cleanbot_navigation)
+[0.897s] INFO:colcon.colcon_core.shell:Creating package script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/share/cleanbot_navigation/package.ps1'
+[0.897s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/share/cleanbot_navigation/package.dsv'
+[0.897s] INFO:colcon.colcon_core.shell:Creating package script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/share/cleanbot_navigation/package.sh'
+[0.897s] INFO:colcon.colcon_core.shell:Creating package script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/share/cleanbot_navigation/package.bash'
+[0.897s] INFO:colcon.colcon_core.shell:Creating package script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/share/cleanbot_navigation/package.zsh'
+[0.898s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/share/colcon-core/packages/cleanbot_navigation)
+[0.898s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[0.898s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[0.898s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[0.898s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[0.901s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[0.901s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[0.901s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[0.930s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[0.930s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/local_setup.ps1'
+[0.931s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/_local_setup_util_ps1.py'
+[0.932s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/setup.ps1'
+[0.932s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/local_setup.sh'
+[0.933s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/_local_setup_util_sh.py'
+[0.933s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/setup.sh'
+[0.934s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/local_setup.bash'
+[0.934s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/setup.bash'
+[0.935s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/local_setup.zsh'
+[0.935s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/setup.zsh'

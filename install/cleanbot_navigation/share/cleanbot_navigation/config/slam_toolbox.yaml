@@ -63,7 +63,7 @@ slam_toolbox:
     # 格式: [x噪声, y噪声, theta噪声]
     minimum_time_interval: 0.5  # 最小时间间隔(秒)
     
-    # 生命周期节点
+    # 生命周期节点（测试时禁用，完整系统中由navigation_mode_manager管理）
     use_lifecycle_manager: true
     
     # 调试
@@ -74,4 +74,5 @@ slam_toolbox:
     map_file_name: ""  # 启动时加载的地图（为空则新建）
     map_start_pose: [0.0, 0.0, 0.0]  # 起始位姿 [x, y, yaw]
     map_start_at_dock: true
+
 

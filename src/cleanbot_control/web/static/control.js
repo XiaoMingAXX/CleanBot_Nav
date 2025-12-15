@@ -27,12 +27,15 @@ let currentMode = 0;
 const navigationModeNames = ['手动', '建图', '导航'];
 let currentNavigationMode = 0;  // 0=手动, 1=建图, 2=导航
 let joystickEnabled = true;
+let availableMaps = [];  // 可用地图列表
+let modeSwitchTimeoutId = null;  // 模式切换超时定时器
 
 // 初始化
 window.onload = function() {
     initMap();
     connectWebSocket();
     initJoystick();
+    // 注意：不在这里刷新地图列表，等WebSocket连接成功后再刷新
     addLog('前端界面加载完成');
 };
 
@@ -279,6 +282,10 @@ function connectWebSocket() {
                 clearInterval(reconnectInterval);
                 reconnectInterval = null;
             }
+            // WebSocket连接成功后，刷新地图列表
+            setTimeout(() => {
+                refreshMapList();
+            }, 500);
         };
         
         ws.onmessage = function(event) {
@@ -341,6 +348,10 @@ function handleWebSocketMessage(data) {
             updateMapData(message.data);
         } else if (message.type === 'path_update') {
             updatePath(message.data);
+        } else if (message.type === 'navigation_info') {
+            handleNavigationInfo(message.message);
+        } else if (message.type === 'map_list') {
+            updateMapList(message.maps);
         } else if (message.type === 'error') {
             addLog('❌ 错误: ' + message.message);
             console.error('[WebSocket] 错误:', message.message);
@@ -354,11 +365,23 @@ function handleWebSocketMessage(data) {
     }
 }
 
+
 function sendWebSocketMessage(message) {
     if (ws && ws.readyState === WebSocket.OPEN) {
-        ws.send(JSON.stringify(message));
+        try {
+            ws.send(JSON.stringify(message));
+        } catch (error) {
+            console.error('发送WebSocket消息失败:', error);
+            // 不要每次都打印到日志，避免刷屏
+            if (message.type !== 'cmd_vel') {
+                addLog('WebSocket发送失败: ' + error.message);
+            }
+        }
     } else {
-        addLog('WebSocket未连接，无法发送消息');
+        // 只对非速度命令打印警告
+        if (message.type !== 'cmd_vel') {
+            addLog('WebSocket未连接，无法发送消息');
+        }
     }
 }
 
@@ -504,10 +527,19 @@ function initJoystick() {
 function startDrag(e) {
     e.preventDefault();
     isDragging = true;
+    console.log('[摇杆调试] 开始拖拽, 摇杆启用:', joystickEnabled, '导航模式:', currentNavigationMode);
 }
 
+// 添加拖拽计数器用于调试
+let dragEventCount = 0;
+let lastDragEventTime = 0;
+
 function drag(e) {
-    if (!isDragging) return;
+    if (!isDragging) {
+        // 调试：拖拽事件在非拖拽状态下触发
+        console.log('[摇杆调试] drag事件触发但isDragging=false');
+        return;
+    }
     
     e.preventDefault();
     const joystick = document.getElementById('joystick');
@@ -540,18 +572,45 @@ function drag(e) {
     handle.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
     
     // 计算速度 (-y是前进方向，x是转向)
-    currentLinear = -y / maxRadius * 0.8;  // 最大线速度0.8m/s
-    currentAngular = -x / maxRadius * 2.0;  // 最大角速度2.0rad/s
+    let linear = -y / maxRadius * 0.8;  // 最大线速度0.8m/s
+    let angular = -x / maxRadius * 2.0;  // 最大角速度2.0rad/s
+    
+    // 应用死区（deadzone）减少抖动
+    const linearDeadzone = 0.05;  // 5%的死区
+    const angularDeadzone = 0.1;  // 10%的死区
+    
+    if (Math.abs(linear) < linearDeadzone) {
+        linear = 0;
+    }
+    if (Math.abs(angular) < angularDeadzone) {
+        angular = 0;
+    }
+    
+    currentLinear = linear;
+    currentAngular = angular;
+    
+    // 调试：记录drag事件频率
+    dragEventCount++;
+    const now = Date.now();
+    if (now - lastDragEventTime > 5000) {
+        console.log(`[摇杆调试] drag事件触发了${dragEventCount}次，平均${(dragEventCount / 5).toFixed(1)}次/秒`);
+        dragEventCount = 0;
+        lastDragEventTime = now;
+    }
     
     // 更新显示
     document.getElementById('linear-vel').textContent = currentLinear.toFixed(2) + ' m/s';
     document.getElementById('angular-vel').textContent = currentAngular.toFixed(2) + ' rad/s';
 }
 
-function endDrag() {
+function endDrag(e) {
     if (!isDragging) return;
     
     isDragging = false;
+    
+    // 调试：记录endDrag触发原因
+    const eventType = e ? e.type : 'unknown';
+    console.log(`[摇杆调试] 结束拖拽 (事件:${eventType}), 发送停止命令`);
     
     // 回到中心
     const handle = document.getElementById('joystick-handle');
@@ -568,19 +627,74 @@ function endDrag() {
     sendVelocityCommand();
 }
 
+// 上一次发送的速度值（用于检测变化）
+let lastSentLinear = 0;
+let lastSentAngular = 0;
+let cmdVelSendCount = 0;  // 发送计数器
+let lastCmdVelLogTime = 0;  // 上次打印日志的时间
+let zeroVelSendCount = 0;  // 0速度发送计数
+let nonZeroVelSendCount = 0;  // 非0速度发送计数
+
 function sendVelocityCommand() {
     // 在导航模式下禁用摇杆控制
     if (!joystickEnabled) {
+        // 调试：摇杆被禁用
+        if (currentLinear !== 0 || currentAngular !== 0) {
+            console.log('[摇杆调试] 摇杆被禁用，当前模式:', currentNavigationMode, '速度:', currentLinear, currentAngular);
+        }
         return;
     }
     
-    const msg = {
-        type: 'cmd_vel',
-        linear: currentLinear,
-        angular: currentAngular
-    };
+    // 速度改变时必须发送
+    const velocityChanged = (currentLinear !== lastSentLinear || currentAngular !== lastSentAngular);
     
-    sendWebSocketMessage(msg);
+    // 速度不为0时也要持续发送（保持控制器活跃，避免超时停止）
+    const isMoving = (currentLinear !== 0 || currentAngular !== 0);
+    
+    // 只在以下情况发送：
+    // 1. 速度改变了（包括从0变到非0，或从非0变到0）
+    // 2. 正在移动（速度不为0）需要持续发送保持控制
+    if (velocityChanged || isMoving) {
+        const msg = {
+            type: 'cmd_vel',
+            linear: currentLinear,
+            angular: currentAngular
+        };
+        
+        // 调试：记录发送状态
+        cmdVelSendCount++;
+        if (currentLinear === 0 && currentAngular === 0) {
+            zeroVelSendCount++;
+            // 调试：发送0速度时记录isDragging状态
+            console.log(`[摇杆调试] ⚠️ 发送0速度! isDragging=${isDragging}, 已发送0速度${zeroVelSendCount}次`);
+        } else {
+            nonZeroVelSendCount++;
+        }
+        
+        const now = Date.now();
+        
+        // 每5秒打印一次统计信息（避免刷屏）
+        if (now - lastCmdVelLogTime > 5000) {
+            if (isMoving || zeroVelSendCount > 0) {
+                console.log(`[摇杆调试] 统计: 总${cmdVelSendCount}条, 非0:${nonZeroVelSendCount}条, 0:${zeroVelSendCount}条, WebSocket:${ws ? ws.readyState : 'null'}, 当前速度: (${currentLinear.toFixed(2)}, ${currentAngular.toFixed(2)}), 拖拽中:${isDragging}`);
+                // 重置0速度计数
+                zeroVelSendCount = 0;
+                nonZeroVelSendCount = 0;
+            }
+            lastCmdVelLogTime = now;
+        }
+        
+        // 速度改变时立即打印
+        if (velocityChanged) {
+            console.log(`[摇杆调试] 速度改变: (${lastSentLinear.toFixed(2)}, ${lastSentAngular.toFixed(2)}) -> (${currentLinear.toFixed(2)}, ${currentAngular.toFixed(2)}) [isDragging=${isDragging}]`);
+        }
+        
+        sendWebSocketMessage(msg);
+        
+        // 记录已发送的速度
+        lastSentLinear = currentLinear;
+        lastSentAngular = currentAngular;
+    }
 }
 
 // ==================== 控制命令 ====================
@@ -705,7 +819,34 @@ function setNavigationMode(mode) {
         }
     }
     
+    // 更新当前导航模式变量！！！
     currentNavigationMode = mode;
+    
+    // 显示启动中状态（等待真实反馈）
+    const stateElement = document.getElementById('nav-mode-state');
+    stateElement.textContent = '⏳ 切换中...';
+    stateElement.style.color = 'var(--warning)';
+    
+    // 清除之前的超时定时器
+    if (modeSwitchTimeoutId) {
+        clearTimeout(modeSwitchTimeoutId);
+    }
+    
+    // 设置超时保护（20秒后如果还没有反馈，自动恢复）
+    modeSwitchTimeoutId = setTimeout(() => {
+        if (stateElement.textContent === '⏳ 切换中...') {
+            stateElement.textContent = '❌ 切换超时';
+            stateElement.style.color = 'var(--danger)';
+            addLog('❌ 模式切换超时（20秒未响应），可能是节点启动时间过长');
+            console.error('[导航调试] 模式切换超时！');
+            
+            // 3秒后恢复就绪状态
+            setTimeout(() => {
+                stateElement.textContent = '✅ 就绪';
+                stateElement.style.color = 'var(--success)';
+            }, 3000);
+        }
+    }, 20000);  // 20秒超时
     
     // 发送模式切换命令到ROS
     sendWebSocketMessage({
@@ -713,39 +854,208 @@ function setNavigationMode(mode) {
         mode: mode
     });
     
-    // 更新UI
+    // 更新UI显示
     document.getElementById('nav-mode-status').textContent = navigationModeNames[mode];
     
-    // 在导航模式下禁用摇杆
-    joystickEnabled = (mode === 0);  // 只有手动模式下才能用摇杆
+    // 修复bug：只有导航模式下禁用摇杆，建图模式需要摇杆！
+    joystickEnabled = (mode !== 2);  // 只有导航模式(2)禁用摇杆
     
-    // 更新保存地图按钮状态
-    const saveBtn = document.getElementById('save-map-btn');
-    if (mode === 1) {  // 建图模式
-        saveBtn.disabled = false;
-        document.getElementById('nav-info').textContent = '建图中，可保存地图';
-    } else if (mode === 2) {  // 导航模式
-        saveBtn.disabled = true;
-        document.getElementById('nav-info').textContent = '导航模式下摇杆已禁用';
-    } else {  // 手动模式
-        saveBtn.disabled = true;
-        document.getElementById('nav-info').textContent = '手动控制模式';
+    // 更新信息提示
+    const infoElement = document.getElementById('nav-info');
+    if (mode === 0) {  // 手动模式
+        infoElement.textContent = '✅ 摇杆控制已启用';
+    } else if (mode === 1) {  // 建图模式
+        infoElement.textContent = '✅ 摇杆可用，驾驶建图';
+    } else {  // 导航模式
+        infoElement.textContent = '⚠️ 自主导航中，摇杆已禁用';
     }
     
-    addLog(`切换导航模式: ${navigationModeNames[mode]}`);
+    addLog(`📡 请求切换导航模式: ${navigationModeNames[mode]} (摇杆: ${joystickEnabled ? '启用' : '禁用'})`);
+}
+
+// 处理导航信息（模式切换反馈、地图保存反馈等）
+function handleNavigationInfo(info) {
+    const stateElement = document.getElementById('nav-mode-state');
+    
+    // 调试：打印收到的所有导航信息
+    console.log(`[导航调试] 收到导航信息: ${info}`);
+    
+    if (info.startsWith('mode_changed:')) {
+        // 模式切换完成
+        const modeName = info.split(':')[1];
+        
+        // 清除超时定时器
+        if (modeSwitchTimeoutId) {
+            clearTimeout(modeSwitchTimeoutId);
+            modeSwitchTimeoutId = null;
+        }
+        
+        stateElement.textContent = '✅ 就绪';
+        stateElement.style.color = 'var(--success)';
+        addLog(`✅ 模式切换完成: ${modeName}`);
+    } else if (info.startsWith('mode_failed:')) {
+        // 模式切换失败
+        const error = info.split(':')[1] || '未知错误';
+        
+        // 清除超时定时器
+        if (modeSwitchTimeoutId) {
+            clearTimeout(modeSwitchTimeoutId);
+            modeSwitchTimeoutId = null;
+        }
+        
+        stateElement.textContent = '❌ 切换失败';
+        stateElement.style.color = 'var(--danger)';
+        addLog(`❌ 模式切换失败: ${error}`);
+        console.error(`[导航调试] 模式切换失败: ${error}`);
+        
+        // 3秒后恢复就绪状态
+        setTimeout(() => {
+            stateElement.textContent = '✅ 就绪';
+            stateElement.style.color = 'var(--success)';
+        }, 3000);
+    } else if (info.startsWith('map_saved:')) {
+        // 地图保存成功
+        const mapName = info.split(':')[1];
+        const feedbackEl = document.getElementById('map-save-feedback');
+        if (feedbackEl) {
+            feedbackEl.textContent = `✅ 已保存: ${mapName}`;
+            feedbackEl.style.color = 'var(--success)';
+        }
+        addLog(`✅ 地图保存成功: ${mapName}`);
+        
+        // 恢复保存按钮
+        const saveBtn = document.getElementById('save-map-btn');
+        if (saveBtn) {
+            saveBtn.disabled = false;
+            saveBtn.textContent = '💾 保存当前地图';
+        }
+        
+        // 自动刷新地图列表
+        setTimeout(() => {
+            refreshMapList();
+            // 清除反馈信息
+            if (feedbackEl) {
+                feedbackEl.textContent = '';
+            }
+        }, 3000);
+    } else if (info.startsWith('map_save_failed:')) {
+        // 地图保存失败
+        const error = info.split(':')[1];
+        const feedbackEl = document.getElementById('map-save-feedback');
+        if (feedbackEl) {
+            feedbackEl.textContent = `❌ 保存失败: ${error}`;
+            feedbackEl.style.color = 'var(--danger)';
+        }
+        addLog(`❌ 地图保存失败: ${error}`);
+        
+        // 恢复保存按钮
+        const saveBtn = document.getElementById('save-map-btn');
+        if (saveBtn) {
+            saveBtn.disabled = false;
+            saveBtn.textContent = '💾 保存当前地图';
+        }
+        
+        // 3秒后清除反馈信息
+        setTimeout(() => {
+            if (feedbackEl) {
+                feedbackEl.textContent = '';
+            }
+        }, 3000);
+    } else if (info.startsWith('slam_activating')) {
+        // SLAM激活中
+        stateElement.textContent = '⏳ SLAM启动中...';
+        stateElement.style.color = 'var(--warning)';
+        addLog('⏳ 正在激活SLAM节点...');
+    } else if (info.startsWith('nav_activating')) {
+        // 导航激活中
+        stateElement.textContent = '⏳ 导航启动中...';
+        stateElement.style.color = 'var(--warning)';
+        addLog('⏳ 正在激活导航节点...');
+    } else {
+        addLog(`📡 导航信息: ${info}`);
+    }
 }
 
 // 保存地图
 function saveMap() {
     if (currentNavigationMode !== 1) {
+        const feedbackEl = document.getElementById('map-save-feedback');
+        if (feedbackEl) {
+            feedbackEl.textContent = '⚠️ 仅在建图模式下可以保存地图';
+            feedbackEl.style.color = 'var(--warning)';
+        }
         addLog('⚠️ 仅在建图模式下可以保存地图');
         return;
+    }
+    
+    const feedbackEl = document.getElementById('map-save-feedback');
+    if (feedbackEl) {
+        feedbackEl.textContent = '💾 保存中...';
+        feedbackEl.style.color = 'var(--warning)';
+    }
+    
+    // 禁用按钮防止重复点击
+    const saveBtn = document.getElementById('save-map-btn');
+    if (saveBtn) {
+        saveBtn.disabled = true;
+        saveBtn.textContent = '💾 保存中...';
     }
     
     sendWebSocketMessage({
         type: 'save_map'
     });
-    addLog('发送保存地图请求...');
+    addLog('📡 发送保存地图请求...');
+    
+    // 10秒后如果没有响应，恢复按钮
+    setTimeout(() => {
+        if (saveBtn) {
+            saveBtn.disabled = false;
+            saveBtn.textContent = '💾 保存当前地图';
+        }
+    }, 10000);
+}
+
+// 启动地图服务器
+// 地图选择改变时通知后端
+function onMapSelectChange() {
+    const mapSelect = document.getElementById('map-select');
+    const selectedMap = mapSelect.value;
+    
+    if (selectedMap) {
+        sendWebSocketMessage({
+            type: 'set_map_path',
+            map_path: selectedMap
+        });
+        addLog(`📍 已选择导航地图: ${selectedMap.split('/').pop()}`);
+    }
+}
+
+// 刷新地图列表
+function refreshMapList() {
+    sendWebSocketMessage({
+        type: 'list_maps'
+    });
+    addLog('📡 刷新地图列表...');
+}
+
+// 更新地图列表（从服务器接收）
+function updateMapList(maps) {
+    availableMaps = maps;
+    const mapSelect = document.getElementById('map-select');
+    
+    // 清空现有选项
+    mapSelect.innerHTML = '<option value="">选择地图...</option>';
+    
+    // 添加地图选项
+    maps.forEach(mapPath => {
+        const option = document.createElement('option');
+        const mapName = mapPath.split('/').pop().replace('.yaml', '');
+        option.value = mapPath;
+        option.textContent = mapName;
+        mapSelect.appendChild(option);
+    });
+    
+    addLog(`✅ 发现 ${maps.length} 个地图`);
 }
 
 // ==================== 导航功能 ====================

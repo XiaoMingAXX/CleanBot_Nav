@@ -45,7 +45,7 @@ def generate_launch_description():
     
     declare_autostart = DeclareLaunchArgument(
         'autostart',
-        default_value='true',
+        default_value='false',
         description='Automatically startup the nav2 stack')
     
     declare_map = DeclareLaunchArgument(
@@ -143,6 +143,18 @@ def generate_launch_description():
         ]
     )
     
+    # 8. 启动RViz2
+    rviz_config = os.path.join(nav_pkg_dir, 'rviz', 'nav2_default_view.rviz')
+    rviz_node = Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2',
+        arguments=['-d', rviz_config],
+        parameters=[{'use_sim_time': use_sim_time}],
+        output='screen',  # 仍输出到屏幕，但仅输出ERROR级
+        ros_arguments=['--log-level', 'ERROR']  # 只打印ERROR及以上日志
+    )
+    
     # 创建启动描述
     ld = LaunchDescription()
     
@@ -159,6 +171,8 @@ def generate_launch_description():
     ld.add_action(lifecycle_manager_nav)
     ld.add_action(nav2_bringup)
     ld.add_action(mode_manager_node)
+    ld.add_action(rviz_node)
     
     return ld
+
 

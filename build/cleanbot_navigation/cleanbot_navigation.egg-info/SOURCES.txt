@@ -17,8 +17,10 @@ config/slam_toolbox.yaml
 launch/localization_only.launch.py
 launch/navigation_bringup.launch.py
 launch/slam_only.launch.py
+launch/slam_with_control.launch.py
 maps/README.md
 resource/cleanbot_navigation
+rviz/nav2_default_view.rviz
 test/test_copyright.py
 test/test_flake8.py
 test/test_pep257.py

@@ -120,3 +120,4 @@ gimp ~/cleanbot_maps/your_map.pgm
 
 定期清理不需要的旧地图文件。
 
+

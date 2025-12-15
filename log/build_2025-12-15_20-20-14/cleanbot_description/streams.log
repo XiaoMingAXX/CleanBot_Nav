@@ -1,0 +1,43 @@
+[0.012s] Invoking command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_description -- -j20 -l20
+[0.143s] Invoked command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_description -- -j20 -l20
+[0.144s] Invoking command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_description
+[0.150s] -- Install configuration: ""
+[0.150s] -- Execute custom install script
+[0.150s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/urdf/clean_robot.gv
+[0.150s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/urdf/clean_robot.pdf
+[0.150s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/urdf/clean_robot.urdf
+[0.150s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/urdf/cleanbot/actuator/caster.urdf.xacro
+[0.150s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/urdf/cleanbot/actuator/wheel.urdf.xacro
+[0.150s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/urdf/cleanbot/base.urdf.xacro
+[0.150s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/urdf/cleanbot/clean_robot.xacro
+[0.150s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/urdf/cleanbot/cleanbot.ros2_control.xacro
+[0.150s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/urdf/cleanbot/common_inertia.xacro
+[0.151s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/urdf/cleanbot/plugins/gazebo_control_plugin.xacro
+[0.153s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/urdf/cleanbot/plugins/gazebo_sensor_plugin.xacro
+[0.153s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/urdf/cleanbot/sensor/camera.urdf.xacro
+[0.153s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/urdf/cleanbot/sensor/imu.urdf.xacro
+[0.153s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/urdf/cleanbot/sensor/laser.urdf.xacro
+[0.153s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/launch/__pycache__/display_robot.launch.cpython-310.pyc
+[0.153s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/launch/display_robot.launch.py
+[0.153s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/launch/gazebo_sim.launch.py
+[0.153s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/config/cleanbot_ros2_controller.yaml
+[0.153s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/config/display_robot_model.rviz
+[0.153s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/world/custom_room.world
+[0.153s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/world/room/model.config
+[0.153s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/world/room/model.sdf
+[0.154s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/ament_index/resource_index/package_run_dependencies/cleanbot_description
+[0.154s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/ament_index/resource_index/parent_prefix_path/cleanbot_description
+[0.154s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/environment/ament_prefix_path.sh
+[0.154s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/environment/ament_prefix_path.dsv
+[0.154s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/environment/path.sh
+[0.154s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/environment/path.dsv
+[0.154s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/local_setup.bash
+[0.154s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/local_setup.sh
+[0.154s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/local_setup.zsh
+[0.154s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/local_setup.dsv
+[0.154s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/package.dsv
+[0.158s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/ament_index/resource_index/packages/cleanbot_description
+[0.159s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/cmake/cleanbot_descriptionConfig.cmake
+[0.159s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/cmake/cleanbot_descriptionConfig-version.cmake
+[0.159s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_description/share/cleanbot_description/package.xml
+[0.160s] Invoked command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_description

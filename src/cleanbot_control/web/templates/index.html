@@ -640,16 +640,44 @@
                     <button onclick="setNavigationMode(2)" id="nav-mode-2">导航</button>
                 </div>
                 <div class="data-row">
-                    <span class="data-label">当前导航模式</span>
+                    <span class="data-label">当前模式</span>
                     <span class="data-value" id="nav-mode-status">手动</span>
                 </div>
-                <div class="control-section" style="margin-top: 15px;">
-                    <button onclick="saveMap()" id="save-map-btn" disabled style="width: 100%; background: var(--success);">
-                        💾 保存地图
-                    </button>
+                <div class="data-row" style="margin-top: 5px;">
+                    <span class="data-label">状态</span>
+                    <span class="data-value" id="nav-mode-state" style="color: var(--success);">就绪</span>
                 </div>
                 <div class="data-row" style="margin-top: 10px; font-size: 0.9em; color: var(--text-secondary);">
-                    <span id="nav-info">在建图模式下可保存地图</span>
+                    <span id="nav-info">手动控制模式</span>
+                </div>
+            </div>
+            
+            <!-- 独立地图控制模块 -->
+            <div class="card">
+                <h2>🗺️ 地图管理</h2>
+                
+                <!-- 地图选择 -->
+                <div class="control-section" style="margin-top: 15px;">
+                    <label style="display: block; margin-bottom: 5px; color: var(--text-secondary); font-size: 0.9em;">导航地图选择</label>
+                    <select id="map-select" onchange="onMapSelectChange()" style="width: 100%; margin-bottom: 10px;">
+                        <option value="">选择导航地图...</option>
+                    </select>
+                    <button onclick="refreshMapList()" style="width: 100%; margin-bottom: 10px;">
+                        🔄 刷新列表
+                    </button>
+                    <div style="margin-top: 5px; font-size: 0.85em; color: #888;">
+                        提示：切换到导航模式时将自动加载选中的地图
+                    </div>
+                </div>
+                
+                <!-- 保存地图 (仅在建图模式) -->
+                <div class="control-section" style="margin-top: 15px;">
+                    <button onclick="saveMap()" id="save-map-btn" style="width: 100%; background: var(--warning);">
+                        💾 保存当前地图
+                    </button>
+                    <div id="map-save-feedback" style="margin-top: 10px; font-size: 0.9em; color: var(--text-secondary); text-align: center;">
+                        <!-- 保存反馈信息 -->
+                    </div>
                 </div>
             </div>
 
@@ -781,6 +809,7 @@
         </div>
     </div>
 
-    <script src="/static/control.js"></script>
+    <!-- 添加版本号参数避免浏览器缓存问题 -->
+    <script src="/static/control.js?v=20251215-7"></script>
 </body>
 </html>

@@ -11,7 +11,7 @@ from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
-
+from launch.actions import TimerAction
 
 def generate_launch_description():
     # 获取包路径
@@ -48,10 +48,30 @@ def generate_launch_description():
         ]
     )
     
+    # 生命周期管理器（自动激活SLAM节点）
+    # 注意：如果slam_toolbox.yaml中use_lifecycle_manager为false，此节点不是必需的
+    lifecycle_manager = Node(
+        package='nav2_lifecycle_manager',
+        executable='lifecycle_manager',
+        name='lifecycle_manager_slam',
+        output='screen',
+        parameters=[
+            {'autostart': True},
+            {'node_names': ['slam_toolbox']}
+        ]
+    )
+    
+    # 用定时器延迟启动SLAM节点，确保雷达驱动已上线
+    slam_node_with_delay = TimerAction(
+        period=3.0,  # 等待雷达启动
+        actions=[slam_node, lifecycle_manager]  # 同时启动SLAM和管理器
+    )
+    
     ld = LaunchDescription()
     ld.add_action(declare_use_sim_time)
     ld.add_action(rplidar_launch)
-    ld.add_action(slam_node)
+    ld.add_action(slam_node_with_delay)  # 延迟启动SLAM
     
     return ld
+
 

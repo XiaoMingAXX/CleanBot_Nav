@@ -1,0 +1,21 @@
+[0.458s] Invoking command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_navigation': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_navigation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/cleanbot_navigation build --build-base /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_navigation/build install --record /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_navigation/install.log --single-version-externally-managed install_data
+[0.600s] running egg_info
+[0.609s] writing ../../build/cleanbot_navigation/cleanbot_navigation.egg-info/PKG-INFO
+[0.609s] writing dependency_links to ../../build/cleanbot_navigation/cleanbot_navigation.egg-info/dependency_links.txt
+[0.609s] writing entry points to ../../build/cleanbot_navigation/cleanbot_navigation.egg-info/entry_points.txt
+[0.609s] writing requirements to ../../build/cleanbot_navigation/cleanbot_navigation.egg-info/requires.txt
+[0.609s] writing top-level names to ../../build/cleanbot_navigation/cleanbot_navigation.egg-info/top_level.txt
+[0.629s] reading manifest file '../../build/cleanbot_navigation/cleanbot_navigation.egg-info/SOURCES.txt'
+[0.629s] writing manifest file '../../build/cleanbot_navigation/cleanbot_navigation.egg-info/SOURCES.txt'
+[0.629s] running build
+[0.629s] running build_py
+[0.629s] running install
+[0.633s] running install_lib
+[0.643s] running install_data
+[0.643s] running install_egg_info
+[0.653s] removing '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/lib/python3.12/site-packages/cleanbot_navigation-0.0.0-py3.12.egg-info' (and everything under it)
+[0.653s] Copying ../../build/cleanbot_navigation/cleanbot_navigation.egg-info to /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/lib/python3.12/site-packages/cleanbot_navigation-0.0.0-py3.12.egg-info
+[0.654s] running install_scripts
+[0.721s] Installing navigation_mode_manager script to /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/lib/cleanbot_navigation
+[0.721s] writing list of installed files to '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_navigation/install.log'
+[0.739s] Invoked command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_navigation' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_navigation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/cleanbot_navigation build --build-base /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_navigation/build install --record /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_navigation/install.log --single-version-externally-managed install_data

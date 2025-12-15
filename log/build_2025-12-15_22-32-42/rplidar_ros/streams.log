@@ -1,0 +1,54 @@
+[0.156s] Invoking command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/rplidar_ros': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/rplidar_ros -- -j20 -l20
+[0.197s] [  5%] Built target rplidar_client
+[0.198s] [ 52%] Built target rplidar_node
+[0.199s] [100%] Built target rplidar_composition
+[0.207s] Invoked command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/rplidar_ros' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/rplidar_ros -- -j20 -l20
+[0.208s] Invoking command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/rplidar_ros': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/rplidar_ros
+[0.213s] -- Install configuration: ""
+[0.213s] -- Execute custom install script
+[0.213s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/rplidar_a1_launch.py
+[0.214s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/rplidar_a2m12_launch.py
+[0.214s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/rplidar_a2m7_launch.py
+[0.214s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/rplidar_a2m8_launch.py
+[0.214s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/rplidar_a3_launch.py
+[0.214s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/rplidar_c1_launch.py
+[0.214s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/rplidar_s1_launch.py
+[0.214s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/rplidar_s1_tcp_launch.py
+[0.214s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/rplidar_s2_launch.py
+[0.214s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/rplidar_s2e_launch.py
+[0.214s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/rplidar_s3_launch.py
+[0.215s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/rplidar_t1_launch.py
+[0.215s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a1_launch.py
+[0.215s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a2m12_launch.py
+[0.215s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a2m7_launch.py
+[0.215s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a2m8_launch.py
+[0.215s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_a3_launch.py
+[0.215s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_c1_launch.py
+[0.215s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s1_launch.py
+[0.215s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s1_tcp_launch.py
+[0.215s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s2_launch.py
+[0.215s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s2e_launch.py
+[0.215s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_s3_launch.py
+[0.215s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/launch/view_rplidar_t1_launch.py
+[0.215s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/rviz/rplidar_ros.rviz
+[0.215s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/lib/rplidar_ros/rplidar_node
+[0.215s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/lib/rplidar_ros/rplidar_composition
+[0.215s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/lib/rplidar_ros/rplidar_client
+[0.215s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/ament_index/resource_index/package_run_dependencies/rplidar_ros
+[0.215s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/ament_index/resource_index/parent_prefix_path/rplidar_ros
+[0.215s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/environment/ament_prefix_path.sh
+[0.215s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/environment/ament_prefix_path.dsv
+[0.215s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/environment/path.sh
+[0.216s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/environment/path.dsv
+[0.216s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/local_setup.bash
+[0.216s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/local_setup.sh
+[0.216s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/local_setup.zsh
+[0.216s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/local_setup.dsv
+[0.216s] -- Symlinking: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/package.dsv
+[0.222s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/ament_index/resource_index/packages/rplidar_ros
+[0.222s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/cmake/ament_cmake_export_dependencies-extras.cmake
+[0.222s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/cmake/ament_cmake_export_include_directories-extras.cmake
+[0.222s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/cmake/rplidar_rosConfig.cmake
+[0.222s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/cmake/rplidar_rosConfig-version.cmake
+[0.222s] -- Up-to-date symlink: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/rplidar_ros/share/rplidar_ros/package.xml
+[0.224s] Invoked command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/rplidar_ros' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/rplidar_ros

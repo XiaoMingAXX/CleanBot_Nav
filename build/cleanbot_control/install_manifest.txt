@@ -1,0 +1,1 @@
+/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/package.dsv

@@ -103,6 +103,7 @@ class WebControlNode(Node):
         
         # 导航模式发布器
         self.nav_mode_pub = self.create_publisher(UInt8, 'navigation/mode_cmd', 10)
+        self.map_path_pub = self.create_publisher(String, 'navigation/map_path', 10)
         
         # 订阅导航模式状态
         self.nav_mode_status_sub = self.create_subscription(
@@ -112,6 +113,9 @@ class WebControlNode(Node):
         
         # 导航相关服务客户端
         self.save_map_client = self.create_client(Empty, 'navigation/save_map')
+        
+        # 缓存当前选择的地图路径
+        self.current_selected_map = None
         
         # 定时推送状态数据
         self.create_timer(0.1, self.broadcast_state)  # 10Hz
@@ -251,13 +255,6 @@ class WebControlNode(Node):
             'type': 'navigation_info',
             'message': info
         })
-        
-        for ws in list(self.ws_clients):
-            try:
-                if not ws.closed:
-                    await ws.send_str(message)
-            except Exception:
-                pass
     
     # ==================== WebSocket相关 ====================
     
@@ -355,8 +352,11 @@ class WebControlNode(Node):
             
             if cmd_type == 'cmd_vel':
                 # 速度控制命令
-                linear = data.get('linear', 0.0)
-                angular = data.get('angular', 0.0)
+                linear = data.get('linear', -99.0)
+                angular = data.get('angular', -99.0)
+                if linear == -99.0 and angular == -99.0:
+                    self.get_logger().info(f'收到速度控制命令: linear={linear}, angular={angular}')
+                
                 
                 # 发布 TwistStamped 消息
                 # 注意：控制器配置 use_stamped_vel: true，监听 /diff_drive_controller/cmd_vel
@@ -468,15 +468,35 @@ class WebControlNode(Node):
                         'message': '保存地图服务不可用'
                     }))
             
-            elif cmd_type == 'load_map':
-                # 加载地图（预留接口）
-                map_name = data.get('name', 'default_map')
-                self.get_logger().info(f'加载地图: {map_name}')
-                # TODO: 加载并发布地图
-                await ws.send_str(json.dumps({
-                    'type': 'info',
-                    'message': f'地图加载接口已预留: {map_name}'
-                }))
+            elif cmd_type == 'list_maps':
+                # 列出可用地图
+                import glob
+                map_dir = os.path.expanduser('~/cleanbot_maps')
+                if os.path.exists(map_dir):
+                    map_files = glob.glob(os.path.join(map_dir, '*.yaml'))
+                    map_files.sort(reverse=True)  # 最新的在前
+                    await ws.send_str(json.dumps({
+                        'type': 'map_list',
+                        'maps': map_files
+                    }))
+                    self.get_logger().info(f'发送地图列表: {len(map_files)}个地图')
+                else:
+                    await ws.send_str(json.dumps({
+                        'type': 'map_list',
+                        'maps': []
+                    }))
+            
+            elif cmd_type == 'set_map_path':
+                # 设置导航地图路径
+                map_path = data.get('map_path', '')
+                self.get_logger().info(f'设置导航地图路径: {map_path}')
+                
+                if map_path:
+                    self.current_selected_map = map_path
+                    # 发布地图路径给navigation_mode_manager
+                    map_path_msg = String()
+                    map_path_msg.data = map_path
+                    self.map_path_pub.publish(map_path_msg)
             
             else:
                 await ws.send_str(json.dumps({
