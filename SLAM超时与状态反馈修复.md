@@ -423,3 +423,4 @@ console.log(currentNavigationMode, navigationModeNames[currentNavigationMode]);
 **版本**: v=20251215-6  
 **测试状态**: 待用户验证
 
+
