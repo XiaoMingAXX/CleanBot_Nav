@@ -16,6 +16,7 @@ config/nav2_params.yaml
 config/slam_toolbox.yaml
 launch/localization_only.launch.py
 launch/navigation_bringup.launch.py
+launch/remote.launch.py
 launch/slam_only.launch.py
 launch/slam_with_control.launch.py
 maps/README.md

@@ -1,0 +1,12 @@
+[ 50%] [32mBuilding CXX object CMakeFiles/cleanbot_control.dir/src/cleanbot_hardware_interface.cpp.o[0m
+[100%] [32m[1mLinking CXX shared library libcleanbot_control.so[0m
+[100%] Built target cleanbot_control
+-- Install configuration: ""
+-- Up-to-date: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/include
+-- Up-to-date: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/include/cleanbot_control
+-- Up-to-date: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/launch
+-- Up-to-date: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/config
+-- Up-to-date: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/web
+-- Up-to-date: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/web/templates
+-- Up-to-date: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/web/static
+-- Installing: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/package.dsv

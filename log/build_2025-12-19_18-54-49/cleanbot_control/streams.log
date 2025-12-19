@@ -1,0 +1,14 @@
+[0.012s] Invoking command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_control': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_control -- -j20 -l20
+[0.133s] [100%] Built target cleanbot_control
+[0.133s] Invoked command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_control' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_control -- -j20 -l20
+[0.140s] Invoking command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_control': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_control
+[0.147s] -- Install configuration: ""
+[0.147s] -- Up-to-date: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/include
+[0.147s] -- Up-to-date: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/include/cleanbot_control
+[0.147s] -- Up-to-date: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/launch
+[0.147s] -- Up-to-date: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/config
+[0.148s] -- Up-to-date: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/web
+[0.148s] -- Up-to-date: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/web/templates
+[0.148s] -- Up-to-date: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/web/static
+[0.148s] -- Installing: /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/package.dsv
+[0.150s] Invoked command in '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_control' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_control

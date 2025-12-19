@@ -12,14 +12,18 @@
 import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, GroupAction
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, GroupAction,SetEnvironmentVariable
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node, SetRemap
 from nav2_common.launch import RewrittenYaml
 
 
+
 def generate_launch_description():
+       # 基础环境变量设置
+    set_domain_id = SetEnvironmentVariable('ROS_DOMAIN_ID', '42')
+    set_localhost = SetEnvironmentVariable('ROS_LOCALHOST_ONLY', 'false')
     # 获取包路径
     nav_pkg_dir = get_package_share_directory('cleanbot_navigation')
     rplidar_pkg_dir = get_package_share_directory('rplidar_ros')
@@ -157,7 +161,8 @@ def generate_launch_description():
     
     # 创建启动描述
     ld = LaunchDescription()
-    
+    ld.add_action(set_domain_id)
+    ld.add_action(set_localhost)
     # 添加参数声明
     ld.add_action(declare_use_sim_time)
     ld.add_action(declare_autostart)
@@ -171,7 +176,7 @@ def generate_launch_description():
     ld.add_action(lifecycle_manager_nav)
     ld.add_action(nav2_bringup)
     ld.add_action(mode_manager_node)
-    ld.add_action(rviz_node)
+    #ld.add_action(rviz_node)
     
     return ld
 

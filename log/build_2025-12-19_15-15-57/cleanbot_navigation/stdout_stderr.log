@@ -1,0 +1,29 @@
+running egg_info
+writing ../../build/cleanbot_navigation/cleanbot_navigation.egg-info/PKG-INFO
+writing dependency_links to ../../build/cleanbot_navigation/cleanbot_navigation.egg-info/dependency_links.txt
+writing entry points to ../../build/cleanbot_navigation/cleanbot_navigation.egg-info/entry_points.txt
+writing requirements to ../../build/cleanbot_navigation/cleanbot_navigation.egg-info/requires.txt
+writing top-level names to ../../build/cleanbot_navigation/cleanbot_navigation.egg-info/top_level.txt
+reading manifest file '../../build/cleanbot_navigation/cleanbot_navigation.egg-info/SOURCES.txt'
+writing manifest file '../../build/cleanbot_navigation/cleanbot_navigation.egg-info/SOURCES.txt'
+running build
+running build_py
+copying cleanbot_navigation/navigation_mode_manager.py -> /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_navigation/build/lib/cleanbot_navigation
+running install
+running install_lib
+copying /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_navigation/build/lib/cleanbot_navigation/navigation_mode_manager.py -> /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/lib/python3.12/site-packages/cleanbot_navigation
+byte-compiling /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/lib/python3.12/site-packages/cleanbot_navigation/navigation_mode_manager.py to navigation_mode_manager.cpython-312.pyc
+running install_data
+copying package.xml -> /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/share/cleanbot_navigation
+copying launch/localization_only.launch.py -> /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/share/cleanbot_navigation/launch
+copying launch/remote_rviz.launch.py -> /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/share/cleanbot_navigation/launch
+copying config/nav2_params.yaml -> /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/share/cleanbot_navigation/config
+copying config/amcl.yaml -> /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/share/cleanbot_navigation/config
+copying maps/README.md -> /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/share/cleanbot_navigation/maps
+copying rviz/nav2_default_view.rviz -> /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/share/cleanbot_navigation/rviz
+running install_egg_info
+removing '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/lib/python3.12/site-packages/cleanbot_navigation-0.0.0-py3.12.egg-info' (and everything under it)
+Copying ../../build/cleanbot_navigation/cleanbot_navigation.egg-info to /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/lib/python3.12/site-packages/cleanbot_navigation-0.0.0-py3.12.egg-info
+running install_scripts
+Installing navigation_mode_manager script to /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/lib/cleanbot_navigation
+writing list of installed files to '/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_navigation/install.log'
