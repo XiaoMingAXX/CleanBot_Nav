@@ -8,8 +8,10 @@
 /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/share/cleanbot_navigation/launch/localization_only.launch.py
 /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/share/cleanbot_navigation/launch/slam_only.launch.py
 /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/share/cleanbot_navigation/launch/navigation_bringup.launch.py
+/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/share/cleanbot_navigation/launch/navigation_sim.launch.py
 /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/share/cleanbot_navigation/launch/remote.launch.py
 /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/share/cleanbot_navigation/config/slam_toolbox.yaml
+/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/share/cleanbot_navigation/config/nav2_sim_params.yaml
 /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/share/cleanbot_navigation/config/nav2_params.yaml
 /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/share/cleanbot_navigation/config/amcl.yaml
 /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_navigation/share/cleanbot_navigation/maps/README.md

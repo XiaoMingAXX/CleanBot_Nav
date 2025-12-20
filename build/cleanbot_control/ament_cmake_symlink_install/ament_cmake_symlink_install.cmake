@@ -319,8 +319,8 @@ include("/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_contro
 # install(DIRECTORY "include/" "DESTINATION" "include")
 ament_cmake_symlink_install_directory("/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_control" DIRECTORY "include/" "DESTINATION" "include")
 
-# install(PROGRAMS "scripts/usb_communication_node.py" "scripts/web_control_node.py" "DESTINATION" "lib/cleanbot_control")
-ament_cmake_symlink_install_programs("/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_control" PROGRAMS "scripts/usb_communication_node.py" "scripts/web_control_node.py" "DESTINATION" "lib/cleanbot_control")
+# install(PROGRAMS "scripts/usb_communication_node.py" "scripts/web_control_node.py" "scripts/laser_frame_relay.py" "DESTINATION" "lib/cleanbot_control")
+ament_cmake_symlink_install_programs("/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_control" PROGRAMS "scripts/usb_communication_node.py" "scripts/web_control_node.py" "scripts/laser_frame_relay.py" "DESTINATION" "lib/cleanbot_control")
 
 # install(DIRECTORY "launch" "DESTINATION" "share/cleanbot_control")
 ament_cmake_symlink_install_directory("/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_control" DIRECTORY "launch" "DESTINATION" "share/cleanbot_control")
@@ -330,6 +330,9 @@ ament_cmake_symlink_install_directory("/home/xiaoming/桌面/MOON/Electronic/Cle
 
 # install(DIRECTORY "web" "DESTINATION" "share/cleanbot_control")
 ament_cmake_symlink_install_directory("/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_control" DIRECTORY "web" "DESTINATION" "share/cleanbot_control")
+
+# install(DIRECTORY "world" "DESTINATION" "share/cleanbot_control")
+ament_cmake_symlink_install_directory("/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_control" DIRECTORY "world" "DESTINATION" "share/cleanbot_control")
 
 # install(FILES "/opt/ros/jazzy/lib/python3.12/site-packages/ament_package/template/environment_hook/library_path.sh" "DESTINATION" "share/cleanbot_control/environment")
 ament_cmake_symlink_install_files("/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_control" FILES "/opt/ros/jazzy/lib/python3.12/site-packages/ament_package/template/environment_hook/library_path.sh" "DESTINATION" "share/cleanbot_control/environment")

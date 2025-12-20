@@ -1,6 +1,7 @@
 controller_manager:
   ros__parameters:
     update_rate: 50  # Hz
+    use_sim_time: true
 
     # 差速控制器
     diff_drive_controller:
@@ -36,7 +37,7 @@ diff_drive_controller:
     position_feedback: false  # 完全不使用反馈！
     enable_odom_tf: false
 
-    cmd_vel_timeout: 10.0  # 增加到10秒
+    cmd_vel_timeout: 0.1  # 增加到10秒
     publish_limited_velocity: true
     use_stamped_vel: true  # 使用 TwistStamped 消息（启动文件重映射到 /diff_drive_controller/cmd_vel）
 

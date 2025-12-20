@@ -29,13 +29,19 @@ def generate_launch_description():
     rplidar_pkg_dir = get_package_share_directory('rplidar_ros')
     nav2_bringup_dir = get_package_share_directory('nav2_bringup')
     
+    # 获取源码目录路径（用于地图保存，不随编译改变）
+    launch_file_dir = os.path.dirname(os.path.abspath(__file__))
+    package_src_dir = os.path.dirname(launch_file_dir)  # 从 launch 目录到软件包根目录
+    #map_dir = os.path.join(package_src_dir, 'maps')
+    # 正确解析~为用户主目录
+    map_dir = os.path.expanduser('~/cleanbot_maps')
+    # 可选：确保目录存在（避免保存地图时因目录不存在报错）
+    os.makedirs(map_dir, exist_ok=True)  # exist_ok=True：目录已存在时不报错
+    
     # 配置文件路径
     slam_config = os.path.join(nav_pkg_dir, 'config', 'slam_toolbox.yaml')
     nav2_config = os.path.join(nav_pkg_dir, 'config', 'nav2_params.yaml')
     amcl_config = os.path.join(nav_pkg_dir, 'config', 'amcl.yaml')
-    
-    # 地图目录
-    map_dir = os.path.join(nav_pkg_dir, 'maps')
     
     # 启动参数
     use_sim_time = LaunchConfiguration('use_sim_time')
@@ -88,7 +94,11 @@ def generate_launch_description():
         executable='amcl',
         name='amcl',
         output='screen',
-        parameters=[amcl_config],
+        parameters=[
+            amcl_config,
+            {'use_sim_time': use_sim_time},
+            {'transform_tolerance': 0.5},  # 允许0.5s的时间差（足够覆盖仿真中的延迟）
+            ],
     )
     
     # 4. 启动Map Server（生命周期管理，用于导航模式）
@@ -142,7 +152,7 @@ def generate_launch_description():
         name='navigation_mode_manager',
         output='screen',
         parameters=[
-            {'map_save_dir': os.path.expanduser('~/cleanbot_maps')},
+            {'map_save_dir': map_dir},
             {'default_map_name': 'cleanbot_map'}
         ]
     )

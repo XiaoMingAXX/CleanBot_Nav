@@ -55,6 +55,3 @@ endforeach()
 message(STATUS "Execute custom uninstall script")
 
 # begin of custom uninstall code
-
-# uninstall files installed using the symlink install functions
-include("/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/build/cleanbot_description/ament_cmake_symlink_install/ament_cmake_symlink_install_uninstall_script.cmake")

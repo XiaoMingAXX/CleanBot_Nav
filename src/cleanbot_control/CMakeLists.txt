@@ -67,6 +67,7 @@ endif()
 install(PROGRAMS
   scripts/usb_communication_node.py
   scripts/web_control_node.py
+  scripts/laser_frame_relay.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
@@ -85,6 +86,12 @@ install(DIRECTORY
 # Install web files
 install(DIRECTORY
   web
+  DESTINATION share/${PROJECT_NAME}
+)
+
+# Install world files
+install(DIRECTORY
+  world
   DESTINATION share/${PROJECT_NAME}
 )
 

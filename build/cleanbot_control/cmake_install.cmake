@@ -81,6 +81,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cleanbot_control" TYPE PROGRAM FILES
     "/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_control/scripts/usb_communication_node.py"
     "/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_control/scripts/web_control_node.py"
+    "/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_control/scripts/laser_frame_relay.py"
     )
 endif()
 
@@ -94,6 +95,10 @@ endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/cleanbot_control" TYPE DIRECTORY FILES "/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_control/web")
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/cleanbot_control" TYPE DIRECTORY FILES "/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/src/cleanbot_control/world")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)

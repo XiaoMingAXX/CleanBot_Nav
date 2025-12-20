@@ -404,10 +404,31 @@ function updateRobotState(state) {
     
     // IMU数据
     if (state.imu) {
-        document.getElementById('imu-ax').textContent = state.imu.linear_acceleration.x.toFixed(2) + ' m/s²';
-        document.getElementById('imu-ay').textContent = state.imu.linear_acceleration.y.toFixed(2) + ' m/s²';
+        // 从四元数转换为欧拉角（roll, pitch, yaw）
+        const q = state.imu.orientation;
+        if (q && q.w !== undefined) {
+            // 计算roll (绕X轴旋转)
+            const sinr_cosp = 2 * (q.w * q.x + q.y * q.z);
+            const cosr_cosp = 1 - 2 * (q.x * q.x + q.y * q.y);
+            const roll = Math.atan2(sinr_cosp, cosr_cosp);
+            
+            // 计算pitch (绕Y轴旋转)
+            const sinp = 2 * (q.w * q.y - q.z * q.x);
+            const pitch = Math.abs(sinp) >= 1 ? Math.sign(sinp) * Math.PI / 2 : Math.asin(sinp);
+            
+            // 计算yaw (绕Z轴旋转)
+            const siny_cosp = 2 * (q.w * q.z + q.x * q.y);
+            const cosy_cosp = 1 - 2 * (q.y * q.y + q.z * q.z);
+            const yaw = Math.atan2(siny_cosp, cosy_cosp);
+            
+            // 转换为度数并显示
+            document.getElementById('imu-roll').textContent = (roll * 180 / Math.PI).toFixed(2) + '°';
+            document.getElementById('imu-pitch').textContent = (pitch * 180 / Math.PI).toFixed(2) + '°';
+            document.getElementById('imu-yaw').textContent = (yaw * 180 / Math.PI).toFixed(2) + '°';
+        }
+        
+        // 显示加速度Z
         document.getElementById('imu-az').textContent = state.imu.linear_acceleration.z.toFixed(2) + ' m/s²';
-        document.getElementById('imu-gz').textContent = state.imu.angular_velocity.z.toFixed(2) + ' rad/s';
     }
     
     // 轮速数据
