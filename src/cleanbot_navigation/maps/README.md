@@ -124,3 +124,4 @@ gimp ~/cleanbot_maps/your_map.pgm
 
 
 
+

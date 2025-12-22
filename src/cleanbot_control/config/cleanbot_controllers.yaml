@@ -1,7 +1,7 @@
 controller_manager:
   ros__parameters:
     update_rate: 50  # Hz
-    use_sim_time: true
+    use_sim_time: false
 
     # 差速控制器
     diff_drive_controller:

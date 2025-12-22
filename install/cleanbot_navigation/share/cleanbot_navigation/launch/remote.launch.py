@@ -23,15 +23,18 @@ def generate_launch_description():
         description='Use simulation (Gazebo) clock if true')
 
 
-    rviz_config = os.path.join(nav_pkg_dir, 'rviz', 'nav2_default_view.rviz')
+    # 8. 启动RViz2（使用Nav2官方配置）
+    nav2_bringup_dir = get_package_share_directory('nav2_bringup')
+    rviz_config_path = os.path.join(nav2_bringup_dir, 'rviz', 'nav2_default_view.rviz')
+    
     rviz_node = Node(
         package='rviz2',
         executable='rviz2',
         name='rviz2',
-        arguments=['-d', rviz_config],
+        arguments=['-d', rviz_config_path],
         parameters=[{'use_sim_time': use_sim_time}],
-        output='screen',  # 仍输出到屏幕，但仅输出ERROR级
-        ros_arguments=['--log-level', 'ERROR']  # 只打印ERROR及以上日志
+        output='screen',
+        ros_arguments=['--log-level', 'ERROR']
     )
     
     # 构建启动描述
