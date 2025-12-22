@@ -249,7 +249,7 @@ def generate_launch_description():
     ld = LaunchDescription()
     # 添加环境变量（替换弃用的）
     ld.add_action(set_domain_id)
-    ld.add_action(set_discovery_range)
+    ld.add_action(set_localhost)
     # 添加参数声明
     ld.add_action(declare_use_sim_time)
     ld.add_action(declare_autostart)
