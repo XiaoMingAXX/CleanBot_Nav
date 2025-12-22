@@ -315,7 +315,7 @@ class NavigationModeManager(Node):
         
         # 发布初始位姿
         time.sleep(0.3)
-        self.publish_initial_pose()
+        #self.publish_initial_pose()
         
         # 3. 启动Nav2核心节点
         self.get_logger().info('启动Nav2导航栈...')
