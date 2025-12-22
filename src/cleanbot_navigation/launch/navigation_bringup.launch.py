@@ -27,8 +27,9 @@ def generate_launch_description():
     # ====================== 基础配置（实机环境）======================
     # 基础环境变量设置（替换弃用的ROS_LOCALHOST_ONLY）
     set_domain_id = SetEnvironmentVariable('ROS_DOMAIN_ID', '42')
-    set_discovery_range = SetEnvironmentVariable('ROS_AUTOMATIC_DISCOVERY_RANGE', 'LOCAL')
-    
+    #set_discovery_range = SetEnvironmentVariable('ROS_AUTOMATIC_DISCOVERY_RANGE', 'LOCAL')
+    set_localhost = SetEnvironmentVariable('ROS_LOCALHOST_ONLY', 'false')
+   
     # 获取包路径
     nav_pkg_dir = get_package_share_directory('cleanbot_navigation')
     rplidar_pkg_dir = get_package_share_directory('rplidar_ros')
