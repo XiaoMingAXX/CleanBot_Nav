@@ -12,16 +12,42 @@ let currentAngular = 0;
 let mapCanvas = null;
 let mapCtx = null;
 let robotPose = { x: 0, y: 0, theta: 0 };
-let goalPose = null;
-let path = [];
-let mapData = null;
+let robotPoseMap = null;  // 机器人在地图坐标系下的位姿
+let userGoalPose = null;  // 用户设置的目标点
+let currentGoalPose = null;  // 当前导航实际执行的目标点
+let plannedPath = null;  // 清扫规划路径
+let mapData = null;  // 地图数据
 let mapScale = 20; // 像素/米
 let mapOffset = { x: 0, y: 0 };
+let autoCenter = true;  // 是否自动居中机器人
+let cleaningProgress = { total: 0, completed: 0, percentage: 0.0 };
+
+// 激光雷达和AMCL数据
+let laserScan = null;
+let amclParticles = null;
+let laserTransform = null;  // laser_frame到base_link的变换
+
+// 目标类型模式
+let goalMode = 'navigation';  // 'navigation' = 导航目标点, 'initial_pose' = AMCL初始化
+let clickCount = 0;  // 点击计数
+let firstClickPos = null;  // 第一次点击位置
 
 // 工作模式映射
 const workModeNames = ['待机', '自动全屋', '沿边', '弓形', '遥控', '回充'];
 const dockStatusNames = ['无', '接近', '成功', '失败'];
 let currentMode = 0;
+
+// 清扫模式映射 (工作模式 -> 清扫模式)
+// 清扫模式: 0=待机, 1=沿边, 2=弓形, 3=全屋
+const workModeToCleaningMode = {
+    0: 0,  // 待机 -> 待机
+    1: 3,  // 自动全屋 -> 全屋模式
+    2: 1,  // 沿边 -> 沿边模式
+    3: 2,  // 弓形 -> 弓形模式
+    4: 0,  // 遥控 -> 待机（不启动清扫）
+    5: 0   // 回充 -> 待机（不启动清扫）
+};
+
 
 // 导航模式映射
 const navigationModeNames = ['手动', '建图', '导航'];
@@ -30,11 +56,31 @@ let joystickEnabled = true;
 let availableMaps = [];  // 可用地图列表
 let modeSwitchTimeoutId = null;  // 模式切换超时定时器
 
+// 手动控制模式
+let manualControlMode = 0;  // 0=遥控模式, 1=里程模式
+const manualControlModeNames = ['遥控', '里程'];
+
+// 手动控制反馈数据
+let manualControlFeedback = {
+    accumulated_distance: 0.0,
+    current_yaw: 0.0,
+    control_mode: 0,
+    navigation_mode: 0
+};
+
 // 初始化
 window.onload = function() {
     initMap();
     connectWebSocket();
     initJoystick();
+    // 初始化手动控制模式为遥控模式
+    setManualControlMode(0);
+    // 初始化自动居中按钮状态
+    const autoCenterBtn = document.getElementById('auto-center-btn');
+    if (autoCenterBtn && autoCenter) {
+        autoCenterBtn.classList.add('active');
+        autoCenterBtn.style.boxShadow = '0 0 15px var(--primary-color)';
+    }
     // 注意：不在这里刷新地图列表，等WebSocket连接成功后再刷新
     addLog('前端界面加载完成');
 };
@@ -72,23 +118,74 @@ function handleMapClick(event) {
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
     
-    // 转换为世界坐标
+    // 转换为世界坐标(map坐标系)
     const worldX = (x - mapOffset.x) / mapScale;
     const worldY = -(y - mapOffset.y) / mapScale; // Y轴反向
     
-    // 设置目标点
-    setGoal(worldX, worldY);
+    // 检查是否在导航模式
+    if (currentNavigationMode !== 2) {
+        addLog('⚠️ 请先切换到导航模式');
+        return;
+    }
+    
+    // 根据目标模式处理点击
+    if (goalMode === 'initial_pose') {
+        // AMCL初始化模式 (两次点击)
+        handleInitialPoseClick(worldX, worldY);
+    } else {
+        // 导航目标点模式
+        handleNavigationGoalClick(worldX, worldY);
+    }
 }
 
-function setGoal(x, y) {
-    goalPose = { x: x, y: y };
+function handleInitialPoseClick(worldX, worldY) {
+    if (clickCount === 0) {
+        // 第一次点击：确定位置
+        clickCount = 1;
+        firstClickPos = { x: worldX, y: worldY };
+        addLog('📍 AMCL初始化: 已选择位置，请点击设置方向');
+    } else if (clickCount === 1) {
+        // 第二次点击：确定方向
+        const dx = worldX - firstClickPos.x;
+        const dy = worldY - firstClickPos.y;
+        const theta = Math.atan2(dy, dx);
+        
+        // 发布AMCL初始位姿
+        sendWebSocketMessage({
+            type: 'set_initial_pose',
+            x: firstClickPos.x,
+            y: firstClickPos.y,
+            theta: theta
+        });
+        
+        addLog(`✅ AMCL初始化完成: (${firstClickPos.x.toFixed(2)}, ${firstClickPos.y.toFixed(2)}, ${(theta * 180 / Math.PI).toFixed(1)}°)`);
+        
+        // 重置点击状态
+        clickCount = 0;
+        firstClickPos = null;
+    }
+}
+
+function handleNavigationGoalClick(worldX, worldY) {
+    // 只在待机模式下允许点击发送目标点
+    if (currentMode === 0) {
+        setGoal(worldX, worldY, 0);
+    } else if (currentMode >= 1 && currentMode <= 3) {
+        // 清扫模式下禁止手动发送目标点
+        addLog('⚠️ 清扫模式下无法手动发送目标点');
+    }
+}
+
+function setGoal(x, y, theta = 0) {
+    userGoalPose = { x: x, y: y, theta: theta };
     addLog(`设置目标点: (${x.toFixed(2)}, ${y.toFixed(2)})`);
     
-    // 发送目标点到后端
+    // 发送导航目标到ROS
     sendWebSocketMessage({
-        type: 'set_goal',
+        type: 'navigation_goal',
         x: x,
-        y: y
+        y: y,
+        theta: theta
     });
 }
 
@@ -98,22 +195,33 @@ function drawMap() {
     // 清空画布
     mapCtx.clearRect(0, 0, mapCanvas.width, mapCanvas.height);
     
+    // 如果开启自动居中且有机器人位姿，更新偏移量
+    if (autoCenter && robotPoseMap) {
+        mapOffset.x = mapCanvas.width / 2 - robotPoseMap.x * mapScale;
+        mapOffset.y = mapCanvas.height / 2 + robotPoseMap.y * mapScale;
+    }
+    
     // 绘制坐标网格
     drawGrid();
     
-    // 绘制地图数据（如果有）
+    // 绘制地图数据（障碍物）
     if (mapData) {
         drawMapData();
     }
     
-    // 绘制路径
-    if (path && path.length > 0) {
-        drawPath();
+    // 绘制规划路径
+    if (plannedPath && plannedPath.poses && plannedPath.poses.length > 0) {
+        drawPlannedPath();
     }
     
-    // 绘制目标点
-    if (goalPose) {
-        drawGoal();
+    // 绘制用户目标点
+    if (userGoalPose) {
+        drawUserGoal();
+    }
+    
+    // 绘制初始化临时标记
+    if (goalMode === 'initial_pose' && clickCount === 1 && firstClickPos) {
+        drawInitialPoseMarker();
     }
     
     // 绘制机器人
@@ -158,24 +266,60 @@ function drawGrid() {
 }
 
 function drawMapData() {
-    // 预留给后续的地图数据绘制
-    // mapData应该包含栅格地图信息
-    // 这里可以绘制已知的障碍物等
+    if (!mapData || !mapData.data) return;
+    
+    const { width, height, resolution, origin, data } = mapData;
+    
+    // 绘制栅格地图
+    mapCtx.save();
+    
+    // 遍历地图数据绘制障碍物
+    for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+            const index = y * width + x;
+            const value = data[index];
+            
+            // value: -1=未知, 0=空闲, 100=占用
+            if (value > 50) {  // 占用的格子
+                // 计算世界坐标
+                const worldX = origin.x + x * resolution;
+                const worldY = origin.y + y * resolution;
+                
+                // 转换为屏幕坐标
+                const screen = worldToScreen(worldX, worldY);
+                const cellSize = resolution * mapScale;
+                
+                // 绘制障碍物格子
+                mapCtx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+                mapCtx.fillRect(screen.x, screen.y, cellSize, cellSize);
+            } else if (value === -1) {  // 未知区域
+                const worldX = origin.x + x * resolution;
+                const worldY = origin.y + y * resolution;
+                const screen = worldToScreen(worldX, worldY);
+                const cellSize = resolution * mapScale;
+                
+                mapCtx.fillStyle = 'rgba(100, 100, 100, 0.3)';
+                mapCtx.fillRect(screen.x, screen.y, cellSize, cellSize);
+            }
+        }
+    }
+    
+    mapCtx.restore();
 }
 
-function drawPath() {
-    if (path.length < 2) return;
+function drawPlannedPath() {
+    if (!plannedPath || !plannedPath.poses || plannedPath.poses.length < 2) return;
     
     mapCtx.strokeStyle = 'rgba(255, 170, 0, 0.8)';
     mapCtx.lineWidth = 3;
     mapCtx.setLineDash([10, 5]);
     
     mapCtx.beginPath();
-    const start = worldToScreen(path[0].x, path[0].y);
+    const start = worldToScreen(plannedPath.poses[0].x, plannedPath.poses[0].y);
     mapCtx.moveTo(start.x, start.y);
     
-    for (let i = 1; i < path.length; i++) {
-        const point = worldToScreen(path[i].x, path[i].y);
+    for (let i = 1; i < plannedPath.poses.length; i++) {
+        const point = worldToScreen(plannedPath.poses[i].x, plannedPath.poses[i].y);
         mapCtx.lineTo(point.x, point.y);
     }
     
@@ -183,10 +327,31 @@ function drawPath() {
     mapCtx.setLineDash([]);
 }
 
-function drawGoal() {
-    const screen = worldToScreen(goalPose.x, goalPose.y);
+function drawCurrentGoal() {
+    const screen = worldToScreen(currentGoalPose.x, currentGoalPose.y);
     
-    // 绘制目标点
+    // 绘制实际执行的目标点(红色)
+    mapCtx.fillStyle = 'rgba(255, 0, 0, 0.4)';
+    mapCtx.beginPath();
+    mapCtx.arc(screen.x, screen.y, 18, 0, Math.PI * 2);
+    mapCtx.fill();
+    
+    mapCtx.strokeStyle = 'rgba(255, 0, 0, 1)';
+    mapCtx.lineWidth = 3;
+    mapCtx.beginPath();
+    mapCtx.arc(screen.x, screen.y, 18, 0, Math.PI * 2);
+    mapCtx.stroke();
+    
+    // 绘制标签
+    mapCtx.fillStyle = 'rgba(255, 0, 0, 1)';
+    mapCtx.font = '12px monospace';
+    mapCtx.fillText('执行中', screen.x + 25, screen.y + 5);
+}
+
+function drawUserGoal() {
+    const screen = worldToScreen(userGoalPose.x, userGoalPose.y);
+    
+    // 绘制用户设置的目标点(绿色)
     mapCtx.fillStyle = 'rgba(0, 255, 136, 0.6)';
     mapCtx.beginPath();
     mapCtx.arc(screen.x, screen.y, 15, 0, Math.PI * 2);
@@ -205,14 +370,185 @@ function drawGoal() {
     mapCtx.moveTo(screen.x, screen.y - 10);
     mapCtx.lineTo(screen.x, screen.y + 10);
     mapCtx.stroke();
+    
+    // 绘制标签
+    mapCtx.fillStyle = 'rgba(0, 255, 136, 1)';
+    mapCtx.font = '12px monospace';
+    mapCtx.fillText('目标', screen.x + 20, screen.y + 5);
+}
+
+function drawAmclInitMarker() {
+    if (!amclInitPos) return;
+    
+    const screen = worldToScreen(amclInitPos.x, amclInitPos.y);
+    
+    // 绘制初始位置标记(蓝色闪烁)
+    const alpha = 0.5 + 0.5 * Math.sin(Date.now() / 200);
+    mapCtx.fillStyle = `rgba(0, 150, 255, ${alpha})`;
+    mapCtx.beginPath();
+    mapCtx.arc(screen.x, screen.y, 20, 0, Math.PI * 2);
+    mapCtx.fill();
+    
+    mapCtx.strokeStyle = 'rgba(0, 150, 255, 1)';
+    mapCtx.lineWidth = 3;
+    mapCtx.beginPath();
+    mapCtx.arc(screen.x, screen.y, 20, 0, Math.PI * 2);
+    mapCtx.stroke();
+    
+    // 绘制标签
+    mapCtx.fillStyle = 'rgba(0, 150, 255, 1)';
+    mapCtx.font = 'bold 14px monospace';
+    mapCtx.fillText('点击设置方向 ➜', screen.x + 25, screen.y + 5);
+}
+
+function drawInitialPoseMarker() {
+    if (!firstClickPos) return;
+    
+    const screen = worldToScreen(firstClickPos.x, firstClickPos.y);
+    
+    // 绘制初始位置标记(蓝色闪烁)
+    const alpha = 0.5 + 0.5 * Math.sin(Date.now() / 200);
+    mapCtx.fillStyle = `rgba(0, 150, 255, ${alpha})`;
+    mapCtx.beginPath();
+    mapCtx.arc(screen.x, screen.y, 20, 0, Math.PI * 2);
+    mapCtx.fill();
+    
+    mapCtx.strokeStyle = 'rgba(0, 150, 255, 1)';
+    mapCtx.lineWidth = 3;
+    mapCtx.beginPath();
+    mapCtx.arc(screen.x, screen.y, 20, 0, Math.PI * 2);
+    mapCtx.stroke();
+    
+    // 绘制标签
+    mapCtx.fillStyle = 'rgba(0, 150, 255, 1)';
+    mapCtx.font = 'bold 14px monospace';
+    mapCtx.fillText('点击设置方向 ➜', screen.x + 25, screen.y + 5);
+}
+
+function drawLaserScan() {
+    if (!laserScan || !laserScan.ranges) return;
+    if (!robotPoseMap || !laserTransform) return;
+    
+    const robotPose = robotPoseMap;
+    
+    // 计算机器人在map下的yaw角度
+    let robotYaw = 0;
+    if (robotPose.qw !== undefined) {
+        const siny_cosp = 2 * (robotPose.qw * robotPose.qz + robotPose.qx * robotPose.qy);
+        const cosy_cosp = 1 - 2 * (robotPose.qy * robotPose.qy + robotPose.qz * robotPose.qz);
+        robotYaw = Math.atan2(siny_cosp, cosy_cosp);
+    }
+    
+    // 计算laser_frame在base_link下的yaw角度
+    let laserYawInBase = 0;
+    if (laserTransform.qw !== undefined) {
+        const siny_cosp = 2 * (laserTransform.qw * laserTransform.qz + laserTransform.qx * laserTransform.qy);
+        const cosy_cosp = 1 - 2 * (laserTransform.qy * laserTransform.qy + laserTransform.qz * laserTransform.qz);
+        laserYawInBase = Math.atan2(siny_cosp, cosy_cosp);
+    }
+    
+    mapCtx.save();
+    mapCtx.fillStyle = 'rgba(255, 0, 0, 0.3)';  // 红色半透明点
+    
+    // 绘制激光扫描点
+    for (let i = 0; i < laserScan.ranges.length; i++) {
+        const range = laserScan.ranges[i];
+        
+        // 过滤无效数据
+        if (range < laserScan.range_min || range > laserScan.range_max) {
+            continue;
+        }
+        
+        // 1. 计算激光点在laser_frame坐标系下的位置
+        const angleInLaser = laserScan.angle_min + i * laserScan.angle_increment * 5;  // 乘以5因为采样了
+        const xInLaser = range * Math.cos(angleInLaser);
+        const yInLaser = range * Math.sin(angleInLaser);
+        
+        // 2. 转换到base_link坐标系
+        const cosLaser = Math.cos(laserYawInBase);
+        const sinLaser = Math.sin(laserYawInBase);
+        const xInBase = laserTransform.x + cosLaser * xInLaser - sinLaser * yInLaser;
+        const yInBase = laserTransform.y + sinLaser * xInLaser + cosLaser * yInLaser;
+        
+        // 3. 转换到map坐标系
+        const cosRobot = Math.cos(robotYaw);
+        const sinRobot = Math.sin(robotYaw);
+        const xInMap = robotPose.x + cosRobot * xInBase - sinRobot * yInBase;
+        const yInMap = robotPose.y + sinRobot * xInBase + cosRobot * yInBase;
+        
+        // 4. 转换到屏幕坐标
+        const screen = worldToScreen(xInMap, yInMap);
+        
+        // 绘制点
+        mapCtx.beginPath();
+        mapCtx.arc(screen.x, screen.y, 2, 0, Math.PI * 2);
+        mapCtx.fill();
+    }
+    
+    mapCtx.restore();
+}
+
+function drawAmclParticles() {
+    if (!amclParticles || !amclParticles.poses) return;
+    
+    mapCtx.save();
+    
+    // 根据粒子数量调整透明度
+    const alpha = Math.min(0.5, 10.0 / amclParticles.poses.length);
+    
+    for (const particle of amclParticles.poses) {
+        const screen = worldToScreen(particle.x, particle.y);
+        
+        // 绘制粒子（小绿点）
+        mapCtx.fillStyle = `rgba(0, 255, 0, ${alpha})`;
+        mapCtx.beginPath();
+        mapCtx.arc(screen.x, screen.y, 3, 0, Math.PI * 2);
+        mapCtx.fill();
+        
+        // 可选：绘制粒子方向（箭头）
+        if (amclParticles.poses.length < 50) {  // 粒子少时才绘制方向
+            mapCtx.strokeStyle = `rgba(0, 255, 0, ${alpha * 2})`;
+            mapCtx.lineWidth = 1;
+            mapCtx.beginPath();
+            mapCtx.moveTo(screen.x, screen.y);
+            const arrowLen = 10;
+            mapCtx.lineTo(
+                screen.x + arrowLen * Math.cos(-particle.theta),
+                screen.y + arrowLen * Math.sin(-particle.theta)
+            );
+            mapCtx.stroke();
+        }
+    }
+    
+    mapCtx.restore();
 }
 
 function drawRobot() {
-    const screen = worldToScreen(robotPose.x, robotPose.y);
+    // 优先使用地图坐标系下的位姿
+    let pose = robotPoseMap;
+    if (!pose) {
+        // 回退到里程计位姿
+        pose = robotPose;
+    }
+    
+    if (!pose) return;
+    
+    // 计算yaw角度
+    let theta = 0;
+    if (pose.qw !== undefined) {
+        // 从四元数计算yaw
+        const siny_cosp = 2 * (pose.qw * pose.qz + pose.qx * pose.qy);
+        const cosy_cosp = 1 - 2 * (pose.qy * pose.qy + pose.qz * pose.qz);
+        theta = Math.atan2(siny_cosp, cosy_cosp);
+    } else {
+        theta = pose.theta || 0;
+    }
+    
+    const screen = worldToScreen(pose.x, pose.y);
     
     mapCtx.save();
     mapCtx.translate(screen.x, screen.y);
-    mapCtx.rotate(-robotPose.theta); // 注意负号，因为canvas的Y轴是向下的
+    mapCtx.rotate(-theta); // 注意负号，因为canvas的Y轴是向下的
     
     // 绘制机器人本体（圆形）
     mapCtx.fillStyle = 'rgba(0, 217, 255, 0.6)';
@@ -245,6 +581,11 @@ function drawRobot() {
     mapCtx.arc(screen.x, screen.y, 30, 0, Math.PI * 2);
     mapCtx.fill();
     mapCtx.shadowBlur = 0;
+    
+    // 更新显示
+    document.getElementById('robot-x').textContent = pose.x.toFixed(2);
+    document.getElementById('robot-y').textContent = pose.y.toFixed(2);
+    document.getElementById('robot-theta').textContent = (theta * 180 / Math.PI).toFixed(1);
 }
 
 function worldToScreen(x, y) {
@@ -342,6 +683,52 @@ function handleWebSocketMessage(data) {
             const state = message.data;
             
             updateRobotState(message.data);
+            
+            // 更新地图数据
+            if (state.map) {
+                mapData = state.map;
+            }
+            
+            // 更新规划路径
+            if (state.planned_path) {
+                plannedPath = state.planned_path;
+            }
+            
+            // 更新机器人在地图坐标系下的位姿
+            if (state.robot_pose_map) {
+                robotPoseMap = state.robot_pose_map;
+            }
+            
+            // 更新当前目标点
+            if (state.current_goal) {
+                currentGoalPose = state.current_goal;
+            }
+            
+            // 更新用户目标点
+            if (state.user_goal) {
+                userGoalPose = state.user_goal;
+            }
+            
+            // 更新清扫进度
+            if (state.cleaning_progress) {
+                cleaningProgress = state.cleaning_progress;
+                updateCleaningProgressDisplay();
+            }
+            
+            // 更新激光雷达数据
+            if (state.laser_scan) {
+                laserScan = state.laser_scan;
+            }
+            
+            // 更新激光雷达变换
+            if (state.laser_transform) {
+                laserTransform = state.laser_transform;
+            }
+            
+            // 更新AMCL粒子云
+            if (state.amcl_particles) {
+                amclParticles = state.amcl_particles;
+            }
         } else if (message.type === 'info') {
             addLog('✅ ' + message.message);
         } else if (message.type === 'map_update') {
@@ -480,6 +867,25 @@ function updateRobotState(state) {
         const port = state.system_status.split(':')[1];
         addLog('已连接到串口: ' + port);
     }
+    
+    // 手动控制反馈
+    if (state.manual_control) {
+        manualControlFeedback = state.manual_control;
+        
+        // 更新纵向位移（可正可负）
+        const displacement = state.manual_control.accumulated_distance || 0;
+        document.getElementById('accumulated-distance').textContent = 
+            displacement.toFixed(3) + ' m';
+        
+        // 更新当前航向（转换为度）
+        const yawDeg = state.manual_control.current_yaw * 180 / Math.PI;
+        document.getElementById('current-yaw-deg').textContent = 
+            yawDeg.toFixed(1) + '°';
+        
+        // 更新控制模式显示
+        const controlModeText = state.manual_control.control_mode === 0 ? '遥控' : '里程';
+        document.getElementById('control-mode-text').textContent = controlModeText;
+    }
 }
 
 function updateMapData(data) {
@@ -489,9 +895,119 @@ function updateMapData(data) {
 }
 
 function updatePath(data) {
-    // 预留接口：接收路径规划数据
-    path = data.path || [];
-    addLog(`接收到路径，共${path.length}个点`);
+    // 已废弃：现在使用planned_path
+    // 保留此函数以兼容旧代码
+    if (data.path) {
+        console.log(`收到旧格式路径，共${data.path.length}个点`);
+    }
+}
+
+function updateCleaningProgressDisplay() {
+    const progressElement = document.getElementById('cleaning-progress-text');
+    if (!progressElement) return;
+    
+    if (cleaningProgress.total > 0 || cleaningProgress.percentage > 0) {
+        let text = '';
+        if (cleaningProgress.total > 0) {
+            text = `${cleaningProgress.completed}/${cleaningProgress.total} `;
+        }
+        text += `(${cleaningProgress.percentage.toFixed(1)}%)`;
+        progressElement.textContent = text;
+        progressElement.style.color = 'var(--primary-color)';
+        
+        // 更新进度条
+        updateProgressBar();
+    } else {
+        progressElement.textContent = '待机中';
+        progressElement.style.color = 'var(--text-secondary)';
+        updateProgressBar();
+    }
+}
+
+function updateProgressBar() {
+    const progressBar = document.getElementById('cleaning-progress-bar');
+    const progressFill = document.getElementById('cleaning-progress-fill');
+    const progressText = document.getElementById('cleaning-progress-bar-text');
+    
+    if (!progressBar || !progressFill || !progressText) return;
+    
+    const percentage = cleaningProgress.percentage || 0;
+    
+    // 更新进度条宽度
+    progressFill.style.width = `${percentage}%`;
+    
+    // 更新进度条文本
+    if (cleaningProgress.total > 0) {
+        progressText.textContent = `${cleaningProgress.completed}/${cleaningProgress.total} (${percentage.toFixed(1)}%)`;
+    } else if (percentage > 0) {
+        progressText.textContent = `${percentage.toFixed(1)}%`;
+    } else {
+        progressText.textContent = '待机中';
+    }
+    
+    // 根据进度改变颜色
+    if (percentage < 30) {
+        progressFill.style.background = 'linear-gradient(90deg, var(--danger), var(--warning))';
+    } else if (percentage < 70) {
+        progressFill.style.background = 'linear-gradient(90deg, var(--warning), var(--primary-color))';
+    } else {
+        progressFill.style.background = 'linear-gradient(90deg, var(--primary-color), var(--success))';
+    }
+}
+
+// 切换目标模式
+function toggleGoalMode() {
+    if (goalMode === 'navigation') {
+        goalMode = 'initial_pose';
+        addLog('🎯 切换到AMCL初始化模式');
+    } else {
+        goalMode = 'navigation';
+        addLog('🎯 切换到导航目标点模式');
+    }
+    
+    // 重置点击状态
+    clickCount = 0;
+    firstClickPos = null;
+    
+    // 更新按钮状态
+    const btn = document.getElementById('goal-mode-toggle-btn');
+    if (btn) {
+        if (goalMode === 'initial_pose') {
+            btn.textContent = '📍 初始化模式';
+            btn.classList.add('active');
+            btn.style.background = 'linear-gradient(135deg, rgba(0, 150, 255, 0.3), rgba(0, 100, 200, 0.3))';
+        } else {
+            btn.textContent = '🎯 导航模式';
+            btn.classList.remove('active');
+            btn.style.background = '';
+        }
+    }
+}
+
+// 缩放控制
+function zoomIn() {
+    mapScale = Math.min(mapScale * 1.2, 100);  // 最大缩放
+    addLog(`放大地图: ${mapScale.toFixed(1)}x`);
+}
+
+function zoomOut() {
+    mapScale = Math.max(mapScale / 1.2, 5);  // 最小缩放
+    addLog(`缩小地图: ${mapScale.toFixed(1)}x`);
+}
+
+function toggleAutoCenter() {
+    autoCenter = !autoCenter;
+    const btn = document.getElementById('auto-center-btn');
+    if (btn) {
+        if (autoCenter) {
+            btn.classList.add('active');
+            btn.style.boxShadow = '0 0 15px var(--primary-color)';
+        } else {
+            btn.classList.remove('active');
+            btn.style.boxShadow = '';
+        }
+    }
+    addLog(autoCenter ? '✅ 自动居中已启用' : '⚠️ 自动居中已禁用');
 }
 
 function updateSensorStatus(elementId, label, status) {
@@ -593,8 +1109,8 @@ function drag(e) {
     handle.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
     
     // 计算速度 (-y是前进方向，x是转向)
-    let linear = -y / maxRadius * 0.8;  // 最大线速度0.8m/s
-    let angular = -x / maxRadius * 2.0;  // 最大角速度2.0rad/s
+    let linear = -y / maxRadius * 0.4;  // 最大线速度0.4m/s
+    let angular = -x / maxRadius * 1.0;  // 最大角速度1.0rad/s
     
     // 应用死区（deadzone）减少抖动
     const linearDeadzone = 0.05;  // 5%的死区
@@ -657,11 +1173,11 @@ let zeroVelSendCount = 0;  // 0速度发送计数
 let nonZeroVelSendCount = 0;  // 非0速度发送计数
 
 function sendVelocityCommand() {
-    // 在导航模式下禁用摇杆控制
-    if (!joystickEnabled) {
+    // 在导航模式下或里程模式下禁用摇杆控制
+    if (!joystickEnabled || manualControlMode === 1) {
         // 调试：摇杆被禁用
         if (currentLinear !== 0 || currentAngular !== 0) {
-            console.log('[摇杆调试] 摇杆被禁用，当前模式:', currentNavigationMode, '速度:', currentLinear, currentAngular);
+            console.log('[摇杆调试] 摇杆被禁用，当前模式:', currentNavigationMode, '手动控制模式:', manualControlMode, '速度:', currentLinear, currentAngular);
         }
         return;
     }
@@ -742,6 +1258,7 @@ function setWorkMode(mode) {
     
     currentMode = mode;
     
+    // 发送控制命令到STM32（原有逻辑保持）
     sendWebSocketMessage({
         type: 'control_cmd',
         data: {
@@ -754,8 +1271,47 @@ function setWorkMode(mode) {
         }
     });
     
+    // 更新工作模式显示
     document.getElementById('work-mode').textContent = workModeNames[mode] || '未知';
     addLog('切换工作模式: ' + workModeNames[mode]);
+    
+    // 根据工作模式设置清扫模式
+    const cleaningMode = workModeToCleaningMode[mode];
+    if (cleaningMode !== undefined) {
+        // 如果是清扫模式（沿边、弓形、全屋），需要确保在导航模式下
+        if (mode === 1 || mode === 2 || mode === 3) {
+            // 检查是否在导航模式
+            if (currentNavigationMode !== 2) {
+                addLog('⚠️ 请先切换到导航模式');
+                alert('请先切换到导航模式，再选择清扫模式');
+                return;
+            }
+            
+            // 发送清扫模式（自动规划路径）
+            sendWebSocketMessage({
+                type: 'cleaning_mode',
+                mode: cleaningMode
+            });
+            addLog(`✅ 启动清扫模式: ${workModeNames[mode]} (自动规划路径中...)`);
+        } else {
+            // 待机模式直接发送
+            sendWebSocketMessage({
+                type: 'cleaning_mode',
+                mode: cleaningMode
+            });
+            addLog(`切换清扫模式: 待机`);
+        }
+    }
+}
+
+
+// 发送清扫区域（暂时保留，供以后扩展使用）
+function sendCleaningArea(points) {
+    sendWebSocketMessage({
+        type: 'cleaning_area',
+        points: points
+    });
+    addLog(`清扫区域已设置: ${points.length}个点`);
 }
 
 function updateActuator() {
@@ -1122,3 +1678,64 @@ function loadMap(mapName) {
     });
     addLog(`加载地图: ${mapName}`);
 }
+
+// ==================== 清扫功能 ====================
+
+// 处理清扫信息
+
+// ==================== 手动控制功能 ====================
+
+// 设置手动控制模式
+function setManualControlMode(mode) {
+    // 更新按钮状态
+    for (let i = 0; i < 2; i++) {
+        const btn = document.getElementById(`manual-mode-${i}`);
+        if (btn) {
+            if (i === mode) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        }
+    }
+    
+    manualControlMode = mode;
+    
+    // 切换显示面板
+    const joystickPanel = document.getElementById('joystick-panel');
+    const odometryPanel = document.getElementById('odometry-panel');
+    
+    if (mode === 0) {
+        // 遥控模式
+        joystickPanel.style.display = 'block';
+        odometryPanel.style.display = 'none';
+        addLog('🎮 切换到遥控模式');
+    } else {
+        // 里程模式
+        joystickPanel.style.display = 'none';
+        odometryPanel.style.display = 'block';
+        addLog('📏 切换到里程模式');
+        
+        // 停止摇杆运动
+        stopRobot();
+    }
+}
+
+// 发送里程控制命令
+function sendOdometryCommand() {
+    const distance = parseFloat(document.getElementById('target-distance').value);
+    const yawDeg = parseFloat(document.getElementById('target-yaw').value);
+    
+    // 转换角度为弧度
+    const yawRad = yawDeg * Math.PI / 180;
+    
+    // 发送里程控制命令
+    sendWebSocketMessage({
+        type: 'odometry_control',
+        distance: distance,
+        yaw: yawRad
+    });
+    
+    addLog(`📏 里程控制: 距离=${distance.toFixed(2)}m, 角度=${yawDeg.toFixed(1)}°`);
+}
+

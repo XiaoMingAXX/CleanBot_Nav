@@ -27,8 +27,7 @@ def generate_launch_description():
     # ====================== 基础配置（实机环境）======================
     # 基础环境变量设置（替换弃用的ROS_LOCALHOST_ONLY）
     set_domain_id = SetEnvironmentVariable('ROS_DOMAIN_ID', '42')
-    #set_discovery_range = SetEnvironmentVariable('ROS_AUTOMATIC_DISCOVERY_RANGE', 'LOCAL')
-    set_localhost = SetEnvironmentVariable('ROS_LOCALHOST_ONLY', 'false')
+    set_discovery_range = SetEnvironmentVariable('ROS_AUTOMATIC_DISCOVERY_RANGE', 'network')  # 修正为LOCALHOST
    
     # 获取包路径
     nav_pkg_dir = get_package_share_directory('cleanbot_navigation')
@@ -48,6 +47,7 @@ def generate_launch_description():
     slam_config = os.path.join(nav_pkg_dir, 'config', 'slam_toolbox.yaml')
     nav2_config = os.path.join(nav_pkg_dir, 'config', 'nav2_params.yaml')
     amcl_config = os.path.join(nav_pkg_dir, 'config', 'amcl.yaml')
+    cleaning_task_config = os.path.join(nav_pkg_dir, 'config', 'cleaning_task_params.yaml')  # 清扫任务配置
     
     # 关键：重写Nav2参数，解析BT XML为绝对路径
     configured_nav2_params = RewrittenYaml(
@@ -221,12 +221,24 @@ def generate_launch_description():
     # 7. 启动导航模式管理器（实机环境）
     mode_manager_node = Node(
         package='cleanbot_navigation',
-        executable='navigation_mode_manager',
+        executable='navigation_mode_manager.py',
         name='navigation_mode_manager',
         output='screen',
         parameters=[
             {'map_save_dir': map_dir},
             {'default_map_name': 'cleanbot_map'},
+            {'use_sim_time': use_sim_time}
+        ]
+    )
+    
+    # 8. 清扫任务管理节点（实机环境）
+    cleaning_task_node = Node(
+        package='cleanbot_navigation',
+        executable='cleaning_task_node.py',
+        name='cleaning_task',
+        output='screen',
+        parameters=[
+            cleaning_task_config,
             {'use_sim_time': use_sim_time}
         ]
     )
@@ -249,7 +261,7 @@ def generate_launch_description():
     ld = LaunchDescription()
     # 添加环境变量（替换弃用的）
     ld.add_action(set_domain_id)
-    ld.add_action(set_localhost)
+    ld.add_action(set_discovery_range)
     # 添加参数声明
     ld.add_action(declare_use_sim_time)
     ld.add_action(declare_autostart)
@@ -268,6 +280,7 @@ def generate_launch_description():
     ld.add_action(smoother_server)  # 新增smoother_server
     ld.add_action(lifecycle_manager_nav)
     ld.add_action(mode_manager_node)
+    ld.add_action(cleaning_task_node)  # 清扫任务管理节点
     #ld.add_action(rviz_node)
     
     # 打印提示

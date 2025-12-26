@@ -56,6 +56,10 @@ def generate_launch_description():
         pkg_cleanbot_control, 'config', 'ekf.yaml'
     ])
     
+    manual_control_config = PathJoinSubstitution([
+        pkg_cleanbot_control, 'config', 'manual_control_params.yaml'
+    ])
+    
     # 使用Gazebo仿真的URDF
     urdf_file = PathJoinSubstitution([
         pkg_cleanbot_control, 'config', 'cleanbot_gazebo.urdf.xacro'
@@ -163,9 +167,18 @@ def generate_launch_description():
         parameters=[{
             'use_sim_time': use_sim_time,
             'web_port': web_port
-        }],
-        remappings=[
-            ('cmd_vel', '/diff_drive_controller/cmd_vel'),
+        }]
+    )
+    
+    # 8.5. 手动控制节点
+    manual_control_node = Node(
+        package='cleanbot_control',
+        executable='manual_control_node.py',
+        name='manual_control_node',
+        output='screen',
+        parameters=[
+            manual_control_config,
+            {'use_sim_time': use_sim_time}
         ]
     )
     
@@ -248,6 +261,7 @@ def generate_launch_description():
         robot_state_publisher,      # 0秒：发布robot_description和TF树
         spawn_robot,                # 3秒：在Gazebo中生成机器人
         web_control_node,           # 0秒：启动Web控制
+        manual_control_node,        # 0秒：启动手动控制节点
         diff_drive_spawner,         # 8秒：等待Gazebo的controller_manager
         joint_state_broadcaster_spawner,  # 8秒：等待controller_manager
         ekf_node,                   # 10秒：等待TF树完整

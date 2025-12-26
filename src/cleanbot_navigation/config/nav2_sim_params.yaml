@@ -164,7 +164,7 @@ local_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.0
-        inflation_radius: 0.3
+        inflation_radius: 0.2
       
       voxel_layer:
         plugin: "nav2_costmap_2d::VoxelLayer"
@@ -225,16 +225,16 @@ global_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.0
-        inflation_radius: 0.3
+        inflation_radius: 0.2
       
       always_send_full_costmap: true
 
 planner_server:
   ros__parameters:
-    expected_planner_frequency: 20.0
+    expected_planner_frequency: 0.1  # 清扫路径规划一次后保持不变
     # 修正1：启用仿真时间
     use_sim_time: true
-    planner_plugins: ["GridBased"]
+    planner_plugins: ["GridBased", "EdgePlanner", "BoustrophedonPlanner", "AutoCoveragePlanner"]
     
     GridBased:
       # 修正4：插件名称从/改为::（ROS 2 Jazzy正确格式）
@@ -242,6 +242,37 @@ planner_server:
       tolerance: 0.5
       use_astar: false
       allow_unknown: true
+    
+    # 沿边清扫路径规划器
+    EdgePlanner:
+      plugin: "cleanbot_navigation::EdgePlanner"
+      robot_radius: 0.15
+      boundary_margin: 0.35
+      waypoint_spacing: 0.3
+      edge_offset: 0.35  # 边界向内偏移距离(米)，用于沿边清扫
+      corner_radius: 0.3  # 转角圆弧半径(米)，用于平滑直角转弯
+      min_corner_angle: 0.3  # 最小转角角度(弧度，约17度)才进行平滑
+    
+    # 弓字形清扫路径规划器
+    BoustrophedonPlanner:
+      plugin: "cleanbot_navigation::BoustrophedonPlanner"
+      robot_radius: 0.15
+      boundary_margin: 0.35
+      waypoint_spacing: 0.05
+    
+    # 自动全屋清扫路径规划器 - 基于Cell Decomposition + 蚁群算法
+    AutoCoveragePlanner:
+      plugin: "cleanbot_navigation::AutoCoveragePlanner"
+      robot_radius: 0.15
+      boundary_margin: 0.35
+      waypoint_spacing: 0.5
+      
+      # 蚁群算法参数
+      num_ants: 20
+      max_iterations: 100
+      
+      # 覆盖参数
+      coverage_stripe_width: 0.25  # 条带宽度(机器人直径0.3m,留0.05m重叠)
 
 smoother_server:
   ros__parameters:
@@ -252,7 +283,7 @@ smoother_server:
       plugin: "nav2_smoother::SimpleSmoother"
       tolerance: 1.0e-10
       max_its: 1000
-      do_refinement: true
+      do_refinement: false  # 关闭路径细化，保持原始清扫路径
 
 behavior_server:
   ros__parameters:

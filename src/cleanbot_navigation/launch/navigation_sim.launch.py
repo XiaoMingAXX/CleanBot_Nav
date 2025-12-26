@@ -21,11 +21,12 @@ from launch_ros.actions import Node, SetRemap
 from nav2_common.launch import RewrittenYaml
 
 
+
 def generate_launch_description():
     # ====================== 基础配置（仿真专属）======================
     # 基础环境变量设置（替换弃用的ROS_LOCALHOST_ONLY）
     set_domain_id = SetEnvironmentVariable('ROS_DOMAIN_ID', '42')
-    set_discovery_range = SetEnvironmentVariable('ROS_AUTOMATIC_DISCOVERY_RANGE', 'LOCAL')  # 新环境变量
+    set_discovery_range = SetEnvironmentVariable('ROS_AUTOMATIC_DISCOVERY_RANGE', 'LOCALHOST')  # 修正为LOCALHOST
 
     # 获取包路径
     nav_pkg_dir = get_package_share_directory('cleanbot_navigation')
@@ -44,6 +45,7 @@ def generate_launch_description():
     slam_config = os.path.join(nav_pkg_dir, 'config', 'slam_toolbox.yaml')
     nav2_config = os.path.join(nav_pkg_dir, 'config', 'nav2_sim_params.yaml')  # 仿真配置文件
     amcl_config = os.path.join(nav_pkg_dir, 'config', 'amcl.yaml')
+    cleaning_task_config = os.path.join(nav_pkg_dir, 'config', 'cleaning_task_params.yaml')  # 清扫任务配置
 
     # 关键：重写Nav2参数，解析BT XML为绝对路径
     configured_nav2_params = RewrittenYaml(
@@ -111,7 +113,7 @@ def generate_launch_description():
             amcl_config,
             {'use_sim_time': use_sim_time},
             {'transform_tolerance': 0.5},
-            {'tf_buffer_duration': 10.0}  # 新增：TF缓存时长
+            {'tf_buffer_duration': 5.0}  # 新增：TF缓存时长
         ],
         remappings=[
         ('/odom', '/odometry/filtered')  # AMCL订阅你的里程计话题
@@ -144,7 +146,7 @@ def generate_launch_description():
     ]
     )
     
-    # Planner Server
+    # Planner Server（包含GridBased和三个清扫规划器插件）
     planner_server = Node(
         package='nav2_planner',
         executable='planner_server',
@@ -212,12 +214,24 @@ def generate_launch_description():
     # 7. 启动导航模式管理器（适配仿真环境）
     mode_manager_node = Node(
         package='cleanbot_navigation',
-        executable='navigation_mode_manager',
+        executable='navigation_mode_manager.py',
         name='navigation_mode_manager',
         output='screen',
         parameters=[
             {'map_save_dir': map_dir},
             {'default_map_name': 'cleanbot_map'},
+            {'use_sim_time': use_sim_time}
+        ]
+    )
+    
+    # 8. 清扫任务管理节点（重构版：使用GridBased+目标点序列）
+    cleaning_task_node = Node(
+        package='cleanbot_navigation',
+        executable='cleaning_task_node.py',
+        name='cleaning_task',
+        output='screen',
+        parameters=[
+            cleaning_task_config,
             {'use_sim_time': use_sim_time}
         ]
     )
@@ -236,18 +250,14 @@ def generate_launch_description():
     #     output='screen',
     #     ros_arguments=['--log-level', 'ERROR']
     # )
-# 8. 启动RViz2（改为获取 Nav2 官方配置）
-    # 获取 nav2_bringup 包的路径
-    nav2_bringup_dir = get_package_share_directory('nav2_bringup')
-    
-    # 官方默认配置文件路径
-    rviz_config_path = os.path.join(nav2_bringup_dir, 'rviz', 'nav2_default_view.rviz')
+# 10. 启动RViz2（使用自定义配置，基于Nav2官方）
+    rviz_config_path = os.path.join(nav_pkg_dir, 'rviz', 'cleanbot_nav_view.rviz')
 
     rviz_node = Node(
         package='rviz2',
         executable='rviz2',
         name='rviz2',
-        arguments=['-d', rviz_config_path], # 使用官方路径
+        arguments=['-d', rviz_config_path],
         parameters=[{'use_sim_time': use_sim_time}],
         output='screen',
         ros_arguments=['--log-level', 'ERROR']
@@ -273,9 +283,10 @@ def generate_launch_description():
     ld.add_action(behavior_server)
     ld.add_action(bt_navigator)
     ld.add_action(waypoint_follower)
-    ld.add_action(smoother_server)  # 新增smoother_server
+    ld.add_action(smoother_server)
     ld.add_action(lifecycle_manager_nav)
     ld.add_action(mode_manager_node)
+    ld.add_action(cleaning_task_node)  # 清扫任务管理节点
     ld.add_action(rviz_node)
 
     # 打印提示

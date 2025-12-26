@@ -23,10 +23,9 @@ def generate_launch_description():
         description='Use simulation (Gazebo) clock if true')
 
 
-    # 8. 启动RViz2（使用Nav2官方配置）
-    nav2_bringup_dir = get_package_share_directory('nav2_bringup')
-    rviz_config_path = os.path.join(nav2_bringup_dir, 'rviz', 'nav2_default_view.rviz')
-    
+# 8. 启动RViz2（使用自定义配置，基于Nav2官方）
+    rviz_config_path = os.path.join(nav_pkg_dir, 'rviz', 'cleanbot_nav_view.rviz')
+
     rviz_node = Node(
         package='rviz2',
         executable='rviz2',

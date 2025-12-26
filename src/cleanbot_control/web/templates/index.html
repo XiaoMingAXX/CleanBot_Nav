@@ -439,6 +439,22 @@
             border-color: var(--primary-color);
             box-shadow: 0 0 15px rgba(0, 217, 255, 0.3);
         }
+        
+        /* 输入框 */
+        input[type="number"] {
+            transition: all 0.3s;
+        }
+        
+        input[type="number"]:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(0, 217, 255, 0.3);
+        }
+        
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            opacity: 1;
+        }
 
         /* 传感器网格 */
         .sensor-grid {
@@ -575,14 +591,38 @@
                             Y: <span id="robot-y">0.00</span> m<br>
                             θ: <span id="robot-theta">0.00</span>°
                         </div>
+                        <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-color);">
+                            <div style="margin-bottom: 8px;"><strong>清扫进度</strong></div>
+                            <div style="font-size: 0.9em; color: var(--primary-color);">
+                                <span id="cleaning-progress-text">待机中</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="map-legend">
+                    <!-- 控制按钮组 - 右侧居中 -->
+                    <div class="map-controls" style="position: absolute; top: 50%; right: 15px; transform: translateY(-50%); display: flex; flex-direction: column; gap: 8px;">
+                        <button onclick="zoomIn()" style="width: 40px; height: 40px; padding: 8px; font-size: 1.2em;" title="放大">+</button>
+                        <button onclick="zoomOut()" style="width: 40px; height: 40px; padding: 8px; font-size: 1.2em;" title="缩小">−</button>
+                        <button onclick="toggleAutoCenter()" id="auto-center-btn" style="width: 40px; height: 40px; padding: 8px; font-size: 1em;" title="切换自动居中">📍</button>
+                    </div>
+                    <!-- 目标模式切换按钮 - 右上角 -->
+                    <div style="position: absolute; top: 15px; right: 15px;">
+                        <button onclick="toggleGoalMode()" id="goal-mode-toggle-btn" style="width: 120px; height: 40px; padding: 8px; font-size: 0.9em;" title="切换目标类型">🎯 导航模式</button>
+                    </div>
+                    <!-- 图例 - 右下角上移 -->
+                    <div class="map-legend" style="bottom: 80px;">
                         <div style="margin-bottom: 8px;"><strong>图例</strong></div>
                         <div style="font-size: 0.85em; color: var(--text-secondary);">
                             <div>🟦 机器人</div>
-                            <div>🟩 目标点</div>
-                            <div>🟨 路径</div>
-                            <div>⬛ 障碍物</div>
+                            <div>🟩 用户目标</div>
+                            <div>🟨 规划路径</div>
+                            <div>⬜ 障碍物</div>
+                        </div>
+                    </div>
+                    <!-- 清扫进度条 -->
+                    <div id="cleaning-progress-bar" style="position: absolute; bottom: 15px; left: 15px; right: 15px; height: 50px; background: rgba(10, 14, 39, 0.9); border-radius: 10px; border: 1px solid var(--border-color); padding: 10px; display: flex; flex-direction: column; gap: 5px;">
+                        <div style="font-size: 0.85em; color: var(--text-secondary); text-align: center;" id="cleaning-progress-bar-text">待机中</div>
+                        <div style="flex: 1; background: rgba(0, 0, 0, 0.3); border-radius: 5px; overflow: hidden; position: relative;">
+                            <div id="cleaning-progress-fill" style="height: 100%; width: 0%; background: linear-gradient(90deg, var(--primary-color), var(--success)); transition: width 0.5s ease, background 0.5s ease; border-radius: 5px; box-shadow: 0 0 10px var(--primary-color);"></div>
                         </div>
                     </div>
                 </div>
@@ -612,20 +652,69 @@
                 </div>
             </div>
 
-            <!-- 速度控制 -->
+            <!-- 手动控制 -->
             <div class="card">
-                <h2>速度控制</h2>
-                <div class="joystick-container">
-                    <div class="joystick" id="joystick">
-                        <div class="joystick-handle" id="joystick-handle"></div>
+                <h2>手动控制</h2>
+                
+                <!-- 控制模式切换 -->
+                <div class="button-group" style="grid-template-columns: 1fr 1fr;">
+                    <button onclick="setManualControlMode(0)" id="manual-mode-0" class="active">遥控模式</button>
+                    <button onclick="setManualControlMode(1)" id="manual-mode-1">里程模式</button>
+                </div>
+                
+                <!-- 遥控模式：虚拟摇杆 -->
+                <div id="joystick-panel">
+                    <div class="joystick-container">
+                        <div class="joystick" id="joystick">
+                            <div class="joystick-handle" id="joystick-handle"></div>
+                        </div>
                     </div>
                 </div>
+                
+                <!-- 里程模式：输入框 -->
+                <div id="odometry-panel" style="display: none; margin: 15px 0;">
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; color: var(--text-secondary); font-size: 0.9em;">
+                            移动距离 (m)
+                        </label>
+                        <input type="number" id="target-distance" value="1.0" step="0.1" 
+                               style="width: 100%; padding: 10px; border: 2px solid var(--border-color); 
+                                      border-radius: 10px; background: rgba(10, 14, 39, 0.8); 
+                                      color: var(--text-primary); font-size: 1em;">
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; color: var(--text-secondary); font-size: 0.9em;">
+                            转向角度 (度)
+                        </label>
+                        <input type="number" id="target-yaw" value="0" step="15" 
+                               style="width: 100%; padding: 10px; border: 2px solid var(--border-color); 
+                                      border-radius: 10px; background: rgba(10, 14, 39, 0.8); 
+                                      color: var(--text-primary); font-size: 1em;">
+                    </div>
+                    <button onclick="sendOdometryCommand()" style="width: 100%; margin-bottom: 10px;">
+                        ▶️ 执行运动
+                    </button>
+                </div>
+                
+                <!-- 反馈信息 -->
                 <div class="data-row">
-                    <span class="data-label">线速度</span>
+                    <span class="data-label">控制模式</span>
+                    <span class="data-value" id="control-mode-text">遥控</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">纵向位移</span>
+                    <span class="data-value" id="accumulated-distance">0.000 m</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">当前航向</span>
+                    <span class="data-value" id="current-yaw-deg">0.00°</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">发布线速度</span>
                     <span class="data-value" id="linear-vel">0.00 m/s</span>
                 </div>
                 <div class="data-row">
-                    <span class="data-label">角速度</span>
+                    <span class="data-label">发布角速度</span>
                     <span class="data-value" id="angular-vel">0.00 rad/s</span>
                 </div>
                 <button class="danger" onclick="stopRobot()">🛑 紧急停止</button>
@@ -810,6 +899,6 @@
     </div>
 
     <!-- 添加版本号参数避免浏览器缓存问题 -->
-    <script src="/static/control.js?v=20251215-7"></script>
+    <script src="/static/control.js?v=20251226-manual"></script>
 </body>
 </html>

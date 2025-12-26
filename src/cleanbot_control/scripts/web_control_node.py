@@ -11,10 +11,12 @@ WebSocket控制节点 - 提供Web界面与机器人的交互
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Imu, JointState
-from std_msgs.msg import Bool, UInt8MultiArray, String, UInt8
-from geometry_msgs.msg import Twist, TwistStamped
-from nav_msgs.msg import Odometry
+from std_msgs.msg import Bool, UInt8MultiArray, String, UInt8, Float32MultiArray, Float32
+from geometry_msgs.msg import Twist, TwistStamped, PoseStamped, PoseWithCovarianceStamped
+from nav_msgs.msg import Odometry, OccupancyGrid
+from nav_msgs.msg import Path as NavPath  # 使用别名避免与pathlib.Path冲突
 from std_srvs.srv import Empty
+from tf2_ros import TransformException, Buffer, TransformListener
 import asyncio
 import json
 import threading
@@ -24,6 +26,7 @@ import os
 from pathlib import Path
 import time
 import copy
+import math
 from ament_index_python.packages import get_package_share_directory
 
 
@@ -71,10 +74,30 @@ class WebControlNode(Node):
                 'linear_velocity': {'x': 0.0, 'y': 0.0, 'z': 0.0},
                 'angular_velocity': {'x': 0.0, 'y': 0.0, 'z': 0.0}
             },
+            'manual_control': {
+                'accumulated_distance': 0.0,
+                'current_yaw': 0.0,
+                'control_mode': 0,
+                'navigation_mode': 0
+            },
             'comm_quality': '',
             'system_status': ''
         }
         self.state_lock = threading.Lock()
+        
+        # 地图和导航数据
+        self.map_data = None
+        self.map_lock = threading.Lock()
+        self.planned_path = None
+        self.path_lock = threading.Lock()
+        self.robot_pose_map = None  # 机器人在地图坐标系下的位姿
+        self.pose_lock = threading.Lock()
+        self.current_goal = None  # 当前导航目标点
+        self.goal_lock = threading.Lock()
+        self.user_goal = None  # 用户发布的目标点(区别于实际执行的目标点)
+        self.user_goal_lock = threading.Lock()
+        self.cleaning_progress = {'total': 0, 'completed': 0, 'percentage': 0.0}
+        self.progress_lock = threading.Lock()
         
         # WebSocket客户端连接列表
         self.ws_clients = set()
@@ -95,21 +118,61 @@ class WebControlNode(Node):
         self.system_status_sub = self.create_subscription(
             String, 'system_status', self.system_status_callback, 10)
         
-        # ROS发布器 - 使用 TwistStamped（控制器监听 /diff_drive_controller/cmd_vel）
-        self.cmd_vel_pub = self.create_publisher(TwistStamped, 'cmd_vel', 10)
+        # ROS发布器 - 发布到手动控制节点
+        self.manual_control_pub = self.create_publisher(
+            Float32MultiArray, 'manual_control_cmd', 10)
         self.control_cmd_pub = self.create_publisher(
             UInt8MultiArray, 'control_command', 10)
         self.port_scan_pub = self.create_publisher(String, 'scan_connect_port', 10)
         
+        # 订阅手动控制反馈
+        self.distance_feedback_sub = self.create_subscription(
+            Float32MultiArray, 'distance_feedback', self.distance_feedback_callback, 10)
+        
+        # TF监听器
+        self.tf_buffer = Buffer()
+        self.tf_listener = TransformListener(self.tf_buffer, self)
+        
+        # 订阅地图数据
+        self.map_sub = self.create_subscription(
+            OccupancyGrid, 'map', self.map_callback, 10)
+        
+        # 订阅清扫规划路径
+        self.planned_path_sub = self.create_subscription(
+            NavPath, 'cleaning/planned_path', self.planned_path_callback, 10)
+        
+        # 订阅清扫任务信息(含进度)
+        self.cleaning_task_info_sub_v2 = self.create_subscription(
+            String, 'cleaning/task_info', self.cleaning_progress_callback, 10)
+        
+        # 订阅清扫进度（百分比）
+        self.cleaning_progress_sub = self.create_subscription(
+            Float32, 'cleaning/progress', self.cleaning_progress_float_callback, 10)
+        
         # 导航模式发布器
         self.nav_mode_pub = self.create_publisher(UInt8, 'navigation/mode_cmd', 10)
         self.map_path_pub = self.create_publisher(String, 'navigation/map_path', 10)
+        
+        # 发布AMCL初始位姿
+        self.initial_pose_pub = self.create_publisher(
+            PoseWithCovarianceStamped, 'initialpose', 10)
+        
+        # 发布导航目标点
+        self.goal_pose_pub = self.create_publisher(
+            PoseStamped, 'goal_pose', 10)
         
         # 订阅导航模式状态
         self.nav_mode_status_sub = self.create_subscription(
             UInt8, 'navigation/mode_status', self.nav_mode_status_callback, 10)
         self.nav_info_sub = self.create_subscription(
             String, 'navigation/info', self.nav_info_callback, 10)
+        
+        # 清扫模式发布器
+        self.cleaning_mode_pub = self.create_publisher(UInt8, 'cleaning/mode_cmd', 10)
+        
+        # 订阅清扫任务信息
+        self.cleaning_task_info_sub = self.create_subscription(
+            String, 'cleaning/task_info', self.cleaning_task_info_callback, 10)
         
         # 导航相关服务客户端
         self.save_map_client = self.create_client(Empty, 'navigation/save_map')
@@ -119,6 +182,9 @@ class WebControlNode(Node):
         
         # 定时推送状态数据
         self.create_timer(0.1, self.broadcast_state)  # 10Hz
+        
+        # 定时更新TF
+        self.create_timer(0.1, self.update_robot_pose_from_tf)  # 10Hz
         
         self.get_logger().info(f'Web控制节点已启动 - HTTP端口:{self.web_port}')
         
@@ -130,6 +196,32 @@ class WebControlNode(Node):
         import time
         time.sleep(0.5)
         self.get_logger().info(f'Web服务器启动完成，访问 http://0.0.0.0:{self.web_port}')
+    
+    def update_robot_pose_from_tf(self):
+        """从TF更新机器人在地图坐标系下的位姿"""
+        try:
+            # 获取base_link到map的变换
+            transform = self.tf_buffer.lookup_transform(
+                'map',
+                'base_link',
+                rclpy.time.Time(),
+                timeout=rclpy.duration.Duration(seconds=0.1)
+            )
+            
+            with self.pose_lock:
+                self.robot_pose_map = {
+                    'x': transform.transform.translation.x,
+                    'y': transform.transform.translation.y,
+                    'z': transform.transform.translation.z,
+                    'qx': transform.transform.rotation.x,
+                    'qy': transform.transform.rotation.y,
+                    'qz': transform.transform.rotation.z,
+                    'qw': transform.transform.rotation.w
+                }
+                
+        except TransformException as e:
+            # TF不可用时不打印错误(避免刷屏)
+            pass
     
     # ==================== ROS回调函数 ====================
     
@@ -246,6 +338,104 @@ class WebControlNode(Node):
             except Exception as e:
                 self.get_logger().error(f'发送导航信息失败: {e}')
     
+    def cleaning_task_info_callback(self, msg: String):
+        """清扫任务信息回调"""
+        # 通过WebSocket发送清扫任务信息给前端
+        if hasattr(self, 'loop') and self.loop:
+            try:
+                asyncio.run_coroutine_threadsafe(
+                    self._send_cleaning_task_info(msg.data),
+                    self.loop
+                )
+            except Exception as e:
+                self.get_logger().error(f'发送清扫任务信息失败: {e}')
+    
+    def distance_feedback_callback(self, msg: Float32MultiArray):
+        """手动控制反馈回调"""
+        if len(msg.data) >= 4:
+            with self.state_lock:
+                self.robot_state['manual_control'] = {
+                    'accumulated_distance': msg.data[0],
+                    'current_yaw': msg.data[1],
+                    'control_mode': int(msg.data[2]),
+                    'navigation_mode': int(msg.data[3])
+                }
+    
+    def map_callback(self, msg: OccupancyGrid):
+        """地图数据回调"""
+        with self.map_lock:
+            # 将地图转换为可JSON序列化的格式
+            self.map_data = {
+                'width': msg.info.width,
+                'height': msg.info.height,
+                'resolution': msg.info.resolution,
+                'origin': {
+                    'x': msg.info.origin.position.x,
+                    'y': msg.info.origin.position.y,
+                    'z': msg.info.origin.position.z
+                },
+                'data': list(msg.data)  # 0-100表示占用概率，-1表示未知
+            }
+        self.get_logger().info(f'收到地图数据: {msg.info.width}x{msg.info.height}, 分辨率: {msg.info.resolution}m')
+    
+    def planned_path_callback(self, msg: NavPath):
+        """清扫规划路径回调"""
+        with self.path_lock:
+            self.planned_path = {
+                'header': {
+                    'frame_id': msg.header.frame_id
+                },
+                'poses': [
+                    {
+                        'x': pose.pose.position.x,
+                        'y': pose.pose.position.y,
+                        'z': pose.pose.position.z
+                    }
+                    for pose in msg.poses
+                ]
+            }
+        self.get_logger().info(f'收到清扫规划路径: {len(msg.poses)}个点')
+    
+    def cleaning_progress_callback(self, msg: String):
+        """清扫进度回调"""
+        # 解析进度信息，格式如: "progress:5/10" 或 "completed"
+        try:
+            info = msg.data
+            if info.startswith('progress:'):
+                parts = info.split(':')[1].split('/')
+                completed = int(parts[0])
+                total = int(parts[1])
+                with self.progress_lock:
+                    self.cleaning_progress = {
+                        'total': total,
+                        'completed': completed,
+                        'percentage': (completed / total * 100.0) if total > 0 else 0.0
+                    }
+        except Exception as e:
+            self.get_logger().debug(f'解析清扫进度失败: {e}')
+    
+    def cleaning_progress_float_callback(self, msg: Float32):
+        """清扫进度百分比回调"""
+        with self.progress_lock:
+            self.cleaning_progress['percentage'] = msg.data
+    
+    async def _send_cleaning_task_info(self, info: str):
+        """异步发送清扫任务信息到WebSocket客户端"""
+        if not self.ws_clients:
+            return
+        
+        message = json.dumps({
+            'type': 'cleaning_task_info',
+            'info': info
+        })
+        
+        for ws in list(self.ws_clients):
+            try:
+                if not ws.closed:
+                    await ws.send_str(message)
+            except Exception as e:
+                pass
+    
     async def _send_nav_info(self, info: str):
         """异步发送导航信息到WebSocket客户端"""
         if not self.ws_clients:
@@ -255,6 +445,15 @@ class WebControlNode(Node):
             'type': 'navigation_info',
             'message': info
         })
+        
+        for ws in list(self.ws_clients):
+            try:
+                if not ws.closed:
+                    await ws.send_str(message)
+            except Exception as e:
+                pass
+    
+    
     
     # ==================== WebSocket相关 ====================
     
@@ -273,6 +472,35 @@ class WebControlNode(Node):
             except Exception as e:
                 self.get_logger().error(f'深拷贝状态数据失败: {e}')
                 return
+        
+        # 添加地图数据
+        with self.map_lock:
+            if self.map_data:
+                state_copy['map'] = self.map_data
+        
+        # 添加路径数据
+        with self.path_lock:
+            if self.planned_path:
+                state_copy['planned_path'] = self.planned_path
+        
+        # 添加机器人在地图坐标系下的位姿
+        with self.pose_lock:
+            if self.robot_pose_map:
+                state_copy['robot_pose_map'] = self.robot_pose_map
+        
+        # 添加当前目标点
+        with self.goal_lock:
+            if self.current_goal:
+                state_copy['current_goal'] = self.current_goal
+        
+        # 添加用户目标点
+        with self.user_goal_lock:
+            if self.user_goal:
+                state_copy['user_goal'] = self.user_goal
+        
+        # 添加清扫进度
+        with self.progress_lock:
+            state_copy['cleaning_progress'] = self.cleaning_progress
         
         # 在事件循环中发送消息
         try:
@@ -351,23 +579,40 @@ class WebControlNode(Node):
             cmd_type = data.get('type')
             
             if cmd_type == 'cmd_vel':
-                # 速度控制命令
-                linear = data.get('linear', -99.0)
-                angular = data.get('angular', -99.0)
-                if linear == -99.0 and angular == -99.0:
-                    self.get_logger().info(f'收到速度控制命令: linear={linear}, angular={angular}')
+                # 速度控制命令 - 发布到手动控制节点（遥控模式）
+                linear = data.get('linear', 0.0)
+                angular = data.get('angular', 0.0)
                 
+                # 格式: [control_mode, linear_vel, angular_vel, target_distance, target_yaw]
+                # control_mode=0表示遥控模式
+                manual_cmd = Float32MultiArray()
+                manual_cmd.data = [
+                    0.0,  # 遥控模式
+                    float(linear),
+                    float(angular),
+                    0.0,  # 目标距离增量（遥控模式不使用）
+                    0.0   # 目标航向增量（遥控模式不使用）
+                ]
+                self.manual_control_pub.publish(manual_cmd)
                 
-                # 发布 TwistStamped 消息
-                # 注意：控制器配置 use_stamped_vel: true，监听 /diff_drive_controller/cmd_vel
-                # 启动文件会将 cmd_vel 重映射到 /diff_drive_controller/cmd_vel
-                twist_msg = TwistStamped()
-                twist_msg.header.stamp = self.get_clock().now().to_msg()
-                twist_msg.header.frame_id = 'base_footprint'
-                twist_msg.twist.linear.x = float(linear)
-                twist_msg.twist.angular.z = float(angular)
-                self.cmd_vel_pub.publish(twist_msg)
+            
+            elif cmd_type == 'odometry_control':
+                # 里程闭环控制命令
+                distance_increment = data.get('distance', 0.0)
+                yaw_increment = data.get('yaw', 0.0)
                 
+                # 格式: [control_mode, linear_vel, angular_vel, target_distance, target_yaw]
+                # control_mode=1表示里程模式
+                manual_cmd = Float32MultiArray()
+                manual_cmd.data = [
+                    1.0,  # 里程模式
+                    0.0,  # 线速度（里程模式不使用）
+                    0.0,  # 角速度（里程模式不使用）
+                    float(distance_increment),
+                    float(yaw_increment)
+                ]
+                self.manual_control_pub.publish(manual_cmd)
+                self.get_logger().info(f'里程控制: 距离增量={distance_increment:.3f}m, 航向增量={yaw_increment:.3f}rad')
             
             elif cmd_type == 'control_cmd':
                 # 控制命令（模式、档位等）
@@ -408,15 +653,38 @@ class WebControlNode(Node):
                 }))
             
             elif cmd_type == 'navigation_goal':
-                # 发送导航目标（预留接口）
+                # 发送导航目标（用户发布的目标点）
                 x = data.get('x', 0.0)
                 y = data.get('y', 0.0)
                 theta = data.get('theta', 0.0)
-                self.get_logger().info(f'收到导航目标: ({x}, {y}, {theta})')
-                # TODO: 使用nav2的action接口
+                
+                # 创建PoseStamped消息
+                goal_msg = PoseStamped()
+                goal_msg.header.stamp = self.get_clock().now().to_msg()
+                goal_msg.header.frame_id = 'map'
+                goal_msg.pose.position.x = float(x)
+                goal_msg.pose.position.y = float(y)
+                goal_msg.pose.position.z = 0.0
+                
+                # 从yaw角度转换为四元数
+                qz = math.sin(theta / 2.0)
+                qw = math.cos(theta / 2.0)
+                goal_msg.pose.orientation.x = 0.0
+                goal_msg.pose.orientation.y = 0.0
+                goal_msg.pose.orientation.z = qz
+                goal_msg.pose.orientation.w = qw
+                
+                # 发布目标点
+                self.goal_pose_pub.publish(goal_msg)
+                
+                # 保存用户目标点(用于前端显示)
+                with self.user_goal_lock:
+                    self.user_goal = {'x': x, 'y': y, 'theta': theta}
+                
+                self.get_logger().info(f'发布导航目标(用户): ({x:.2f}, {y:.2f}, {theta:.2f})')
                 await ws.send_str(json.dumps({
                     'type': 'info',
-                    'message': '导航目标已发送'
+                    'message': f'导航目标已发送: ({x:.2f}, {y:.2f})'
                 }))
             
             elif cmd_type == 'cancel_navigation':
@@ -444,6 +712,24 @@ class WebControlNode(Node):
                 msg.data = int(mode)
                 self.nav_mode_pub.publish(msg)
                 self.get_logger().info(f'切换导航模式: {mode}')
+            
+            elif cmd_type == 'cleaning_mode':
+                # 设置清扫模式
+                mode = data.get('mode', 0)
+                mode_names = {0: '待机', 1: '沿边', 2: '弓形', 3: '全屋'}
+                mode_name = mode_names.get(mode, f'未知({mode})')
+                
+                msg = UInt8()
+                msg.data = int(mode)
+                self.cleaning_mode_pub.publish(msg)
+                
+                self.get_logger().info(f'✅ 收到清扫模式切换命令: {mode} ({mode_name})')
+                self.get_logger().info(f'   发布到话题: /cleaning/mode_cmd')
+                
+                await ws.send_str(json.dumps({
+                    'type': 'info',
+                    'message': f'清扫模式已切换: {mode_name}'
+                }))
             
             elif cmd_type == 'save_map':
                 # 保存地图
@@ -497,6 +783,43 @@ class WebControlNode(Node):
                     map_path_msg = String()
                     map_path_msg.data = map_path
                     self.map_path_pub.publish(map_path_msg)
+            
+            elif cmd_type == 'set_initial_pose':
+                # 设置AMCL初始位姿
+                x = data.get('x', 0.0)
+                y = data.get('y', 0.0)
+                theta = data.get('theta', 0.0)
+                
+                # 创建PoseWithCovarianceStamped消息
+                initial_pose = PoseWithCovarianceStamped()
+                initial_pose.header.stamp = self.get_clock().now().to_msg()
+                initial_pose.header.frame_id = 'map'
+                initial_pose.pose.pose.position.x = float(x)
+                initial_pose.pose.pose.position.y = float(y)
+                initial_pose.pose.pose.position.z = 0.0
+                
+                # 从yaw角度转换为四元数
+                qz = math.sin(theta / 2.0)
+                qw = math.cos(theta / 2.0)
+                initial_pose.pose.pose.orientation.x = 0.0
+                initial_pose.pose.pose.orientation.y = 0.0
+                initial_pose.pose.pose.orientation.z = qz
+                initial_pose.pose.pose.orientation.w = qw
+                
+                # 设置协方差矩阵(6x6, 只设置x, y, yaw的不确定性)
+                initial_pose.pose.covariance = [0.0] * 36
+                initial_pose.pose.covariance[0] = 0.25  # x方差
+                initial_pose.pose.covariance[7] = 0.25  # y方差
+                initial_pose.pose.covariance[35] = 0.06853  # yaw方差 (约15度)
+                
+                # 发布初始位姿
+                self.initial_pose_pub.publish(initial_pose)
+                
+                self.get_logger().info(f'发布AMCL初始位姿: ({x:.2f}, {y:.2f}, {theta:.2f})')
+                await ws.send_str(json.dumps({
+                    'type': 'info',
+                    'message': f'初始位姿已设置: ({x:.2f}, {y:.2f})'
+                }))
             
             else:
                 await ws.send_str(json.dumps({

@@ -1,0 +1,14 @@
+<library path="cleanbot_coverage_planners">
+  <class type="cleanbot_navigation::EdgePlanner" base_class_type="nav2_core::GlobalPlanner">
+    <description>沿边清扫路径规划器</description>
+  </class>
+  
+  <class type="cleanbot_navigation::BoustrophedonPlanner" base_class_type="nav2_core::GlobalPlanner">
+    <description>弓字形清扫路径规划器</description>
+  </class>
+  
+  <class type="cleanbot_navigation::AutoCoveragePlanner" base_class_type="nav2_core::GlobalPlanner">
+    <description>自动全屋清扫路径规划器（弓形+沿边）</description>
+  </class>
+</library>
+

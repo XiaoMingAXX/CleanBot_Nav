@@ -34,6 +34,10 @@ def generate_launch_description():
         pkg_cleanbot_control, 'config', 'ekf.yaml'
     ])
     
+    manual_control_config = PathJoinSubstitution([
+        pkg_cleanbot_control, 'config', 'manual_control_params.yaml'
+    ])
+    
     # 使用真实硬件的URDF（包含ros2_control标签）
     urdf_file = PathJoinSubstitution([
         pkg_cleanbot_control, 'config', 'cleanbot_real.urdf.xacro'
@@ -74,8 +78,6 @@ def generate_launch_description():
     )
     
     # 3. Web控制节点
-    # 发布 TwistStamped 到 cmd_vel，重映射到 /diff_drive_controller/cmd_vel
-    # 控制器配置 use_stamped_vel: true，监听 /diff_drive_controller/cmd_vel
     web_control_node = Node(
         package='cleanbot_control',
         executable='web_control_node.py',
@@ -84,9 +86,18 @@ def generate_launch_description():
         parameters=[{
             'use_sim_time': use_sim_time,
             'web_port': web_port
-        }],
-        remappings=[
-            ('cmd_vel', '/diff_drive_controller/cmd_vel'),
+        }]
+    )
+    
+    # 3.5. 手动控制节点
+    manual_control_node = Node(
+        package='cleanbot_control',
+        executable='manual_control_node.py',
+        name='manual_control_node',
+        output='screen',
+        parameters=[
+            manual_control_config,
+            {'use_sim_time': use_sim_time}
         ]
     )
     
@@ -175,6 +186,7 @@ def generate_launch_description():
         robot_state_publisher,      # 0秒：立即启动，发布URDF和TF
         usb_comm_node,              # 0秒：立即启动
         web_control_node,           # 0秒：立即启动
+        manual_control_node,        # 0秒：立即启动手动控制节点
         controller_manager,         # 2秒：等待robot_description
         diff_drive_spawner,         # 4秒：等待controller_manager
         joint_state_broadcaster_spawner,  # 4秒：等待controller_manager

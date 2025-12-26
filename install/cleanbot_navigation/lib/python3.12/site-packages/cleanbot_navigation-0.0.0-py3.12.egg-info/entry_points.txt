@@ -1,2 +1,0 @@
-[console_scripts]
-navigation_mode_manager = cleanbot_navigation.navigation_mode_manager:main

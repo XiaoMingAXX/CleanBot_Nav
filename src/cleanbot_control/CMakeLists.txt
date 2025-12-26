@@ -68,6 +68,7 @@ install(PROGRAMS
   scripts/usb_communication_node.py
   scripts/web_control_node.py
   scripts/laser_frame_relay.py
+  scripts/manual_control_node.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

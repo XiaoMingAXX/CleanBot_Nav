@@ -1,0 +1,20 @@
+cleaning_task_node:
+  ros__parameters:
+    # 路点间距（米）- 控制路径密度
+    waypoint_spacing: 1
+    
+    # 机器人参数
+    robot_radius: 0.15  # 机器人半径（米）
+    
+    # 沿边清扫参数
+    edge_offset: 0.3  # 边界向内偏移距离（米）
+    
+    # 弓形清扫参数
+    coverage_stripe_width: 0.3  # 覆盖条带宽度（米）
+    
+    # 转角平滑参数
+    corner_radius: 0.3  # 转角圆弧半径（米）
+    
+    # 导航队列参数
+    queue_size: 2  # 同时发送的目标点数量（滑动窗口）
+
