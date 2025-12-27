@@ -5,6 +5,7 @@
 /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/lib/cleanbot_control/web_control_node.py
 /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/lib/cleanbot_control/laser_frame_relay.py
 /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/lib/cleanbot_control/manual_control_node.py
+/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/lib/cleanbot_control/voice_control_node.py
 /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/launch/cleanbot.launch.py
 /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/launch/cleanbot_gazebo.launch.py
 /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/config/cleanbot_controllers.yaml
@@ -14,6 +15,7 @@
 /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/config/cleanbot_real.urdf.xacro
 /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/config/ekf.yaml
 /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/config/manual_control_params.yaml
+/home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/config/voice_control_params.yaml
 /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/web/static/control.js
 /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/web/templates/index.html
 /home/xiaoming/桌面/MOON/Electronic/CleanBot_ws/install/cleanbot_control/share/cleanbot_control/world/simple_room.sdf

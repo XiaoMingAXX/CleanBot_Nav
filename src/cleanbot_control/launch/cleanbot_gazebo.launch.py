@@ -7,6 +7,7 @@ CleanBot Gazebo仿真启动文件 (Gazebo Harmonic / gz-sim版本)
 3. 启动ros2_control控制器
 4. 启动Web控制界面
 5. 启动EKF定位
+6. 启动导航系统
 """
 
 import os
@@ -16,9 +17,11 @@ from launch.actions import (
     TimerAction, 
     SetEnvironmentVariable,
     ExecuteProcess,
-    RegisterEventHandler
+    RegisterEventHandler,
+    IncludeLaunchDescription
 )
 from launch.event_handlers import OnProcessExit
+from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import (
     LaunchConfiguration, 
     PathJoinSubstitution, 
@@ -46,6 +49,7 @@ def generate_launch_description():
     
     # 包路径
     pkg_cleanbot_control = get_package_share_directory('cleanbot_control')
+    pkg_cleanbot_navigation = get_package_share_directory('cleanbot_navigation')
     
     # 配置文件路径
     controllers_config = PathJoinSubstitution([
@@ -58,6 +62,10 @@ def generate_launch_description():
     
     manual_control_config = PathJoinSubstitution([
         pkg_cleanbot_control, 'config', 'manual_control_params.yaml'
+    ])
+    
+    voice_control_config = PathJoinSubstitution([
+        pkg_cleanbot_control, 'config', 'voice_control_params.yaml'
     ])
     
     # 使用Gazebo仿真的URDF
@@ -182,6 +190,18 @@ def generate_launch_description():
         ]
     )
     
+    # 8.6. 语音控制节点
+    voice_control_node = Node(
+        package='cleanbot_control',
+        executable='voice_control_node.py',
+        name='voice_control_node',
+        output='screen',
+        parameters=[
+            voice_control_config,
+            {'use_sim_time': use_sim_time}
+        ]
+    )
+    
     # 9. 差速控制器spawner - 延迟8秒启动（等待Gazebo的controller_manager启动）
     diff_drive_spawner = TimerAction(
         period=8.0,
@@ -227,6 +247,26 @@ def generate_launch_description():
         ]
     )
     
+    # 12. 导航系统 - 延迟13秒启动，确保EKF定位稳定
+    navigation_launch = TimerAction(
+        period=13.0,
+        actions=[
+            IncludeLaunchDescription(
+                PythonLaunchDescriptionSource(
+                    PathJoinSubstitution([
+                        pkg_cleanbot_navigation, 'launch', 'navigation.launch.py'
+                    ])
+                ),
+                launch_arguments={
+                    'sim_mode': 'true',  # 仿真模式
+                    'use_sim_time': use_sim_time,
+                    'autostart': 'false',  # 由mode_manager控制
+                    'enable_rviz': 'true',  # 仿真默认启动RViz
+                }.items()
+            )
+        ]
+    )
+    
     # ==================== Launch描述 ====================
     
     return LaunchDescription([
@@ -262,8 +302,10 @@ def generate_launch_description():
         spawn_robot,                # 3秒：在Gazebo中生成机器人
         web_control_node,           # 0秒：启动Web控制
         manual_control_node,        # 0秒：启动手动控制节点
+        voice_control_node,         # 0秒：启动语音控制节点
         diff_drive_spawner,         # 8秒：等待Gazebo的controller_manager
         joint_state_broadcaster_spawner,  # 8秒：等待controller_manager
         ekf_node,                   # 10秒：等待TF树完整
+        navigation_launch,          # 13秒：启动导航系统（等待EKF稳定）
     ])
 

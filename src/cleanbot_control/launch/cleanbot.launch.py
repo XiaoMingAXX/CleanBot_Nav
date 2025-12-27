@@ -1,12 +1,18 @@
 #!/usr/bin/env python3
 """
 CleanBot完整系统启动文件
-包含所有功能：USB通讯、Web控制、ros2_control、EKF定位
+包含所有功能：USB通讯、Web控制、ros2_control、EKF定位、导航系统
 """
 
 import os
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, TimerAction, SetEnvironmentVariable
+from launch.actions import (
+    DeclareLaunchArgument, 
+    TimerAction, 
+    SetEnvironmentVariable, 
+    IncludeLaunchDescription
+)
+from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution, Command
 from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
@@ -25,6 +31,7 @@ def generate_launch_description():
     
     # 获取配置文件路径
     pkg_cleanbot_control = get_package_share_directory('cleanbot_control')
+    pkg_cleanbot_navigation = get_package_share_directory('cleanbot_navigation')
     
     controllers_config = PathJoinSubstitution([
         pkg_cleanbot_control, 'config', 'cleanbot_controllers.yaml'
@@ -36,6 +43,10 @@ def generate_launch_description():
     
     manual_control_config = PathJoinSubstitution([
         pkg_cleanbot_control, 'config', 'manual_control_params.yaml'
+    ])
+    
+    voice_control_config = PathJoinSubstitution([
+        pkg_cleanbot_control, 'config', 'voice_control_params.yaml'
     ])
     
     # 使用真实硬件的URDF（包含ros2_control标签）
@@ -101,6 +112,18 @@ def generate_launch_description():
         ]
     )
     
+    # 3.6. 语音控制节点
+    voice_control_node = Node(
+        package='cleanbot_control',
+        executable='voice_control_node.py',
+        name='voice_control_node',
+        output='screen',
+        parameters=[
+            voice_control_config,
+            {'use_sim_time': use_sim_time}
+        ]
+    )
+    
     # 4. Controller Manager (ros2_control) - 延迟2秒启动
     controller_manager = TimerAction(
         period=2.0,
@@ -154,6 +177,26 @@ def generate_launch_description():
         ]
     )
     
+    # 8. 导航系统 - 延迟8秒启动，确保EKF定位稳定
+    navigation_launch = TimerAction(
+        period=8.0,
+        actions=[
+            IncludeLaunchDescription(
+                PythonLaunchDescriptionSource(
+                    PathJoinSubstitution([
+                        pkg_cleanbot_navigation, 'launch', 'navigation.launch.py'
+                    ])
+                ),
+                launch_arguments={
+                    'sim_mode': 'false',  # 实机模式
+                    'use_sim_time': use_sim_time,
+                    'autostart': 'false',  # 由mode_manager控制
+                    'enable_rviz': 'false',  # 实机默认不启动RViz
+                }.items()
+            )
+        ]
+    )
+    
     # ==================== Launch描述 ====================
     
     return LaunchDescription([
@@ -187,9 +230,11 @@ def generate_launch_description():
         usb_comm_node,              # 0秒：立即启动
         web_control_node,           # 0秒：立即启动
         manual_control_node,        # 0秒：立即启动手动控制节点
+        voice_control_node,         # 0秒：立即启动语音控制节点
         controller_manager,         # 2秒：等待robot_description
         diff_drive_spawner,         # 4秒：等待controller_manager
         joint_state_broadcaster_spawner,  # 4秒：等待controller_manager
         ekf_node,                   # 5秒：等待TF树完整
+        navigation_launch,          # 8秒：启动导航系统（等待EKF稳定）
     ])
 

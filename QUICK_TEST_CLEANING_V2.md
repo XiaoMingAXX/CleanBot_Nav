@@ -326,3 +326,7 @@ ros2 action send_goal /navigate_to_pose nav2_msgs/action/NavigateToPose "{pose: 
 **状态**：✅ 待测试
 
 
+
+
+
+

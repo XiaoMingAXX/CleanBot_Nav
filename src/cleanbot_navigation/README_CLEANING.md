@@ -207,3 +207,7 @@ ros2 topic pub --once /cleaning/mode_cmd std_msgs/msg/UInt8 'data: 3'
 - 全局优化：考虑起始位置，选择最优路径顺序
 
 
+
+
+
+

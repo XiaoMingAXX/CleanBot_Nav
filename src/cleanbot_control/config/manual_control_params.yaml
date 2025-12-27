@@ -24,12 +24,16 @@ manual_control_node:
     max_angular_velocity: 1.0  # 最大角速度 (rad/s)
     
     # ==================== 里程模式控制容差 ====================
-    distance_tolerance: 0.01   # 路程容差 (m)
-    yaw_tolerance: 0.005        # 航向容差 (rad, 约0.286度)
+    distance_tolerance: 0.005   # 路程容差 (m)
+    yaw_tolerance: 0.001        # 航向容差 (rad, 约0.286度)
     
     # ==================== 红外安全限制 ====================
     # 红外触发时的最大线速度 (m/s)
     # 0.0 表示完全禁止前进，可以设置为小的正值允许慢速前进
     ir_triggered_max_linear_velocity: 0.0
+
+
+
+
 
 

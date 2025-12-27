@@ -69,6 +69,7 @@ install(PROGRAMS
   scripts/web_control_node.py
   scripts/laser_frame_relay.py
   scripts/manual_control_node.py
+  scripts/voice_control_node.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
