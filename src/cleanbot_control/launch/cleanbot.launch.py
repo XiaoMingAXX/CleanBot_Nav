@@ -16,7 +16,7 @@ from ament_index_python.packages import get_package_share_directory
 def generate_launch_description():
     # 设置环境变量（避免 ROS2 网络冲突）
     set_domain_id = SetEnvironmentVariable('ROS_DOMAIN_ID', '42')
-    set_localhost = SetEnvironmentVariable('ROS_LOCALHOST_ONLY', 'false')
+    set_localhost = SetEnvironmentVariable('ROS_AUTOMATIC_DISCOVERY_RANGE', 'SUBNET')
     # 声明launch参数
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
     port = LaunchConfiguration('port', default='/dev/ttyACM0')
