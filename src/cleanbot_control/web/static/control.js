@@ -1109,8 +1109,8 @@ function drag(e) {
     handle.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
     
     // 计算速度 (-y是前进方向，x是转向)
-    let linear = -y / maxRadius * 0.4;  // 最大线速度0.4m/s
-    let angular = -x / maxRadius * 1.0;  // 最大角速度1.0rad/s
+    let linear = -y / maxRadius * 0.8;  // 最大线速度0.8m/s
+    let angular = -x / maxRadius * 2.0;  // 最大角速度2.0rad/s
     
     // 应用死区（deadzone）减少抖动
     const linearDeadzone = 0.05;  // 5%的死区

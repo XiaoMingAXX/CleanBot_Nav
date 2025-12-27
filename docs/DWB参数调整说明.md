@@ -294,3 +294,4 @@ RotateToGoal.scale: 32.0
 **配置文件**: `nav2_sim_params.yaml`  
 **需要重启**: 是（配置文件修改需要重启导航节点）
 
+

@@ -27,7 +27,7 @@ def generate_launch_description():
     # ====================== 基础配置（实机环境）======================
     # 基础环境变量设置（替换弃用的ROS_LOCALHOST_ONLY）
     set_domain_id = SetEnvironmentVariable('ROS_DOMAIN_ID', '42')
-    set_discovery_range = SetEnvironmentVariable('ROS_AUTOMATIC_DISCOVERY_RANGE', 'network')  # 修正为LOCALHOST
+    set_discovery_range = SetEnvironmentVariable('ROS_AUTOMATIC_DISCOVERY_RANGE', 'SUBNET')  # 修正为LOCALHOST
    
     # 获取包路径
     nav_pkg_dir = get_package_share_directory('cleanbot_navigation')

@@ -323,3 +323,4 @@ ros2 topic pub --once /navigation/mode_cmd std_msgs/msg/UInt8 'data: 2'
 
 详细文档请参考：`src/cleanbot_navigation/README_CLEANING.md`
 
+

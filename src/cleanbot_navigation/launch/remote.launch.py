@@ -9,7 +9,8 @@ from launch_ros.actions import Node
 def generate_launch_description():
     # 基础环境变量设置
     set_domain_id = SetEnvironmentVariable('ROS_DOMAIN_ID', '42')
-    set_localhost = SetEnvironmentVariable('ROS_LOCALHOST_ONLY', 'false')
+    # set_localhost = SetEnvironmentVariable('ROS_LOCALHOST_ONLY', 'false')
+    set_localhost = SetEnvironmentVariable('ROS_AUTOMATIC_DISCOVERY_RANGE', 'SUBNET')  # 修正为LOCALHOST
     nav_pkg_dir = get_package_share_directory('cleanbot_navigation')
     # 声明参数
     declare_host_ip = DeclareLaunchArgument(

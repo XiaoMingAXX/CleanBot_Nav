@@ -32,3 +32,4 @@ manual_control_node:
     # 0.0 表示完全禁止前进，可以设置为小的正值允许慢速前进
     ir_triggered_max_linear_velocity: 0.0
 
+
