@@ -106,7 +106,7 @@ def generate_launch_description():
                     os.path.join(rplidar_pkg_dir, 'launch', 'rplidar_a1_launch.py')
                 ),
                 launch_arguments={
-                    'serial_port': '/dev/ttyUSB0',
+                    'serial_port': '/dev/radar_serial',
                     'frame_id': 'laser',
                 }.items()
             )
