@@ -384,28 +384,61 @@ class VoiceControlNode(Node):
         # ========== 工作模式切换类（清扫模式）==========
         if main_code == 0x30 and sub_code == 0x00:  # 待机模式
             self.switch_cleaning_mode(0)
-            self.get_logger().info('🎤 切换到待机模式')
+            # 关闭所有执行器
+            self.set_actuator(side_brush_left=0, side_brush_right=0, fan_level=0, water_level=0)
+            self.get_logger().info('🎤 切换到待机模式（关闭所有执行器）')
             return
         
         if main_code == 0x31 and sub_code == 0x00:  # 自动全屋模式
             # 自动全屋需要先切换到导航模式
             self.switch_navigation_mode(self.NAV_MODE_NAVIGATION)
             self.switch_cleaning_mode(3)  # 清扫模式3 = 全屋覆盖
-            self.get_logger().info('🎤 切换到自动全屋模式（导航模式 + 全屋覆盖）')
+            # 启动所有执行器：强劲模式
+            self.set_actuator(side_brush_left=3, side_brush_right=3, fan_level=5, water_level=5)
+            self.get_logger().info('🎤 切换到自动全屋模式（导航模式 + 全屋覆盖 + 强劲清扫）')
             return
         
         if main_code == 0x32 and sub_code == 0x00:  # 沿边模式
             # 沿边需要先切换到导航模式
             self.switch_navigation_mode(self.NAV_MODE_NAVIGATION)
             self.switch_cleaning_mode(1)  # 清扫模式1 = 沿边
-            self.get_logger().info('🎤 切换到沿边模式（导航模式 + 沿边清扫）')
+            # 启动所有执行器：强劲模式
+            self.set_actuator(side_brush_left=3, side_brush_right=3, fan_level=5, water_level=5)
+            self.get_logger().info('🎤 切换到沿边模式（导航模式 + 沿边清扫 + 强劲清扫）')
             return
         
         if main_code == 0x33 and sub_code == 0x00:  # 弓形模式
             # 弓形需要先切换到导航模式
             self.switch_navigation_mode(self.NAV_MODE_NAVIGATION)
             self.switch_cleaning_mode(2)  # 清扫模式2 = 弓形
-            self.get_logger().info('🎤 切换到弓形模式（导航模式 + 弓形清扫）')
+            # 启动所有执行器：强劲模式
+            self.set_actuator(side_brush_left=3, side_brush_right=3, fan_level=5, water_level=5)
+            self.get_logger().info('🎤 切换到弓形模式（导航模式 + 弓形清扫 + 强劲清扫）')
+            return
+        
+        # ========== 特殊语音指令 ==========
+        if main_code == 0x34 and sub_code == 0x00:  # 地好脏
+            # 按全屋清扫处理
+            self.switch_navigation_mode(self.NAV_MODE_NAVIGATION)
+            self.switch_cleaning_mode(3)  # 清扫模式3 = 全屋覆盖
+            # 启动所有执行器：强劲模式
+            self.set_actuator(side_brush_left=3, side_brush_right=3, fan_level=5, water_level=5)
+            self.get_logger().info('🎤 地好脏！启动全屋深度清扫')
+            return
+        
+        if main_code == 0x35 and sub_code == 0x00:  # 你好吵
+            # 打开洗地和吸尘（非强劲，3档）
+            self.set_actuator(fan_level=3, water_level=3)
+            self.get_logger().info('🎤 你好吵～打开吸尘和洗地')
+            return
+        
+        if main_code == 0x36 and sub_code == 0x00:  # 你是谁
+            # 先左转20度，3秒后右转20度
+            turn_angle = 0.349  # 20度 = 0.349 rad
+            self.publish_odometry_cmd(0.0, turn_angle)
+            self.get_logger().info('🎤 你是谁？让我转身看看你～（左转20度）')
+            # 3秒后右转20度
+            self.create_timer(3.0, lambda: self.delayed_turn_right(turn_angle), oneshot=True)
             return
         
         # 未识别的指令
@@ -483,6 +516,11 @@ class VoiceControlNode(Node):
         msg = UInt8()
         msg.data = mode
         self.cleaning_mode_pub.publish(msg)
+    
+    def delayed_turn_right(self, turn_angle: float):
+        """延迟右转（用于"你是谁"指令）"""
+        self.publish_odometry_cmd(0.0, -turn_angle)
+        self.get_logger().info(f'🎤 （右转{turn_angle:.3f}rad，转回来了～）')
     
     # ==================== 接收线程 ====================
     
