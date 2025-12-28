@@ -129,7 +129,7 @@ def generate_launch_description():
             {'tf_cache_time': 2.0},
             # 仿真模式容差更大，实机更小
             {'transform_timeout': PythonExpression([
-                '0.5 if "', sim_mode, '" == "true" else 0.3'
+                '0.5 if "', sim_mode, '" == "true" else 0.5'
             ])}
         ],
         remappings=[('/scan', '/scan')]
@@ -146,10 +146,10 @@ def generate_launch_description():
             {'use_sim_time': use_sim_time},
             # 仿真模式容差更大
             {'transform_tolerance': PythonExpression([
-                '0.5 if "', sim_mode, '" == "true" else 0.05'
+                '0.5 if "', sim_mode, '" == "true" else 0.3'
             ])},
             {'tf_buffer_duration': PythonExpression([
-                '5.0 if "', sim_mode, '" == "true" else 2.0'
+                '5.0 if "', sim_mode, '" == "true" else 5.0'
             ])}
         ],
         remappings=[('/odom', '/odometry/filtered')]
