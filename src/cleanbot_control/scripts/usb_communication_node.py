@@ -262,7 +262,7 @@ class USBCommunicationNode(Node):
         super().__init__('usb_communication_node')
         
         # 声明参数
-        self.declare_parameter('port', '/dev/ttyACM0')
+        self.declare_parameter('port', '/dev/mcu_serial')
         self.declare_parameter('baudrate', 921600)
         self.declare_parameter('auto_reconnect', True)
         self.declare_parameter('reconnect_interval', 2.0)

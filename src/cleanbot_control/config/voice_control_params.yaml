@@ -2,7 +2,7 @@
 voice_control_node:
   ros__parameters:
     # ==================== 串口配置 ====================
-    port: '/dev/ttyUSB0'       # 语音模块串口
+    port: '/dev/ch340_serial'       # 语音模块串口
     baudrate: 115200              # 波特率
     auto_reconnect: true        # 自动重连
     reconnect_interval: 2.0     # 重连间隔 (秒)
