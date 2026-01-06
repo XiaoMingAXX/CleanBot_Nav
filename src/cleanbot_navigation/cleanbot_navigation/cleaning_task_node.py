@@ -316,16 +316,22 @@ class CleaningTaskNode(Node):
         for count in range(len(cleaning_boundary)):
             idx = (closest_idx + count) % len(cleaning_boundary)
             next_idx = (closest_idx + count + 1) % len(cleaning_boundary)
+            prev_idx = (closest_idx + count - 1) % len(cleaning_boundary)
             
             # 当前边界点坐标
             curr_x, curr_y = cleaning_boundary[idx]
             next_x, next_y = cleaning_boundary[next_idx]
+            prev_x, prev_y = cleaning_boundary[prev_idx]
             
-            # 计算朝向
-            dx = next_x - curr_x
-            dy = next_y - curr_y
-            dist = math.sqrt(dx*dx + dy*dy)
-            yaw = math.atan2(dy, dx)
+            # 计算从前一个点到当前点的方向（让机器人在运动中保持朝向）
+            dx_to_curr = curr_x - prev_x
+            dy_to_curr = curr_y - prev_y
+            yaw = math.atan2(dy_to_curr, dx_to_curr)
+            
+            # 计算到下一个点的距离（用于插值）
+            dx_to_next = next_x - curr_x
+            dy_to_next = next_y - curr_y
+            dist = math.sqrt(dx_to_next*dx_to_next + dy_to_next*dy_to_next)
             
             # 添加当前边界点（沿边清扫使用宽松检查）
             if self._is_position_safe(curr_x, curr_y, strict=False):
@@ -336,14 +342,16 @@ class CleaningTaskNode(Node):
             # 边界点之间插值（固定0.2m间距）
             if dist > 0.2:
                 num_steps = int(dist / 0.2)
+                # 插值点的朝向指向下一个边界点
+                yaw_to_next = math.atan2(dy_to_next, dx_to_next)
                 
                 for j in range(1, num_steps):
                     t = j / num_steps
-                    x = curr_x + t * dx
-                    y = curr_y + t * dy
+                    x = curr_x + t * dx_to_next
+                    y = curr_y + t * dy_to_next
                     # 沿边清扫使用宽松检查
                     if self._is_position_safe(x, y, strict=False):
-                        waypoints.append(self._create_pose_simple(x, y, yaw))
+                        waypoints.append(self._create_pose_simple(x, y, yaw_to_next))
                     else:
                         skipped_count += 1
         
@@ -407,17 +415,21 @@ class CleaningTaskNode(Node):
             
             # 添加这条线到路径
             for i, (px, py) in enumerate(line_points):
-                # 计算朝向
-                if i < len(line_points) - 1:
-                    yaw = math.atan2(
-                        line_points[i+1][1] - py,
-                        line_points[i+1][0] - px)
-                elif i > 0:
+                # 计算朝向：从上一个点指向当前点（让运动连续）
+                if i > 0:
+                    # 从前一个点指向当前点
                     yaw = math.atan2(
                         py - line_points[i-1][1],
                         px - line_points[i-1][0])
+                elif len(waypoints) > 0:
+                    # 第一个点：从前一个航点指向当前点
+                    prev_pose = waypoints[-1]
+                    yaw = math.atan2(
+                        py - prev_pose.pose.position.y,
+                        px - prev_pose.pose.position.x)
                 else:
-                    yaw = 0.0
+                    # 全局第一个点：使用扫描方向
+                    yaw = 0.0 if direction == 1 else math.pi
                 
                 waypoints.append(self._create_pose_simple(px, py, yaw))
             
@@ -921,9 +933,22 @@ class CleaningTaskNode(Node):
                             line_points.append((x, y))
                         x -= sample_interval
                 
-                # 添加路点
-                for px, py in line_points:
-                    yaw = 0.0 if direction == 1 else math.pi
+                # 添加路点（从上一个点指向当前点，保持运动连续）
+                for i, (px, py) in enumerate(line_points):
+                    if i > 0:
+                        # 从前一个点指向当前点
+                        yaw = math.atan2(
+                            py - line_points[i-1][1],
+                            px - line_points[i-1][0])
+                    elif len(coverage_path) > 0:
+                        # 从前一个路点指向当前点
+                        prev_pose = coverage_path[-1]
+                        yaw = math.atan2(
+                            py - prev_pose.pose.position.y,
+                            px - prev_pose.pose.position.x)
+                    else:
+                        # 第一个点使用扫描方向
+                        yaw = 0.0 if direction == 1 else math.pi
                     coverage_path.append(self._create_pose_simple(px, py, yaw))
                 
                 y += stripe_width
@@ -951,9 +976,22 @@ class CleaningTaskNode(Node):
                             line_points.append((x, y))
                         y -= sample_interval
                 
-                # 添加路点
-                for px, py in line_points:
-                    yaw = math.pi / 2.0 if direction == 1 else -math.pi / 2.0
+                # 添加路点（从上一个点指向当前点，保持运动连续）
+                for i, (px, py) in enumerate(line_points):
+                    if i > 0:
+                        # 从前一个点指向当前点
+                        yaw = math.atan2(
+                            py - line_points[i-1][1],
+                            px - line_points[i-1][0])
+                    elif len(coverage_path) > 0:
+                        # 从前一个路点指向当前点
+                        prev_pose = coverage_path[-1]
+                        yaw = math.atan2(
+                            py - prev_pose.pose.position.y,
+                            px - prev_pose.pose.position.x)
+                    else:
+                        # 第一个点使用扫描方向
+                        yaw = math.pi / 2.0 if direction == 1 else -math.pi / 2.0
                     coverage_path.append(self._create_pose_simple(px, py, yaw))
                 
                 x += stripe_width
